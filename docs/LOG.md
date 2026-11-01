@@ -43,10 +43,13 @@
 - [x] **Test suite** — [`tests/test_ingest.py`](../tests/test_ingest.py)
   - 16 tests: extractor, segmenter, ingestor, real PDF integration
   - All passing, ruff lint clean
+### M2/M7 - Corpus collection (addendum)
+- [x] Added 5 public term sheets to `corpus/` (NVCA Model, Founder Institute Plain Preferred, WSGR generated, Series Seed Equity, Gunderson Dettmer Series Seed) and registered them in `corpus/manifest.json`
+- [ ] 5 more needed to reach the target
 
 ### Remaining for Week 1
 - [ ] **M5**: Draft annotation guide v0 (clause family definitions + attribute schemas for annotators)
-- [ ] **M2 + M7**: Collect ≥10 public term sheets, add entries to `corpus/manifest.json`
+- [ ] **M2 + M7**: Collect ≥10 public term sheets, add entries to `corpus/manifest.json` (5/10 done)
 
 ### Blockers
 - None currently
