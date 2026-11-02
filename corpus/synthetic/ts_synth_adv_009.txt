@@ -1,0 +1,94 @@
+========================================================================
+TERM SHEET
+FOR SERIES SEED PREFERRED STOCK FINANCING OF
+HELIX ANALYTICS, INC.
+
+Date: 9 May 2026
+
+Issuer:           Helix Analytics, Inc. (the "Company")
+Investors:        Founders Fund (the "Lead Investor")
+Series:           Series Seed Preferred Stock
+Pre-Money Valuation:  $100.0 million
+Amount of Financing:  $34.4 million
+========================================================================
+
+This term sheet summarizes the principal terms of the proposed financing.
+Except for the binding provisions set forth below, this term sheet is
+non-binding and is intended solely as a basis for further discussion.
+────────────────────────────────────────────────────────────────────────
+
+
+────────────────────────────────────────────────────────────────────────
+
+Section – Liquidation Preference
+The Series Seed Preferred Stock shall have a liquidation preference equal to 4.0x the Original Purchase Price per share. After receiving the Liquidation Preference, the Series Seed Preferred shall participate pro rata with the Common Stock on an as-converted basis, with no cap.Any remaining proceeds shall be distributed pro rata among holders of Common Stock.
+
+────────────────────────────────────────────────────────────────────────
+
+ANTI-DILUTION PROTECTION
+In the event of a down-round issuance, the conversion price of the Series Seed Preferred shall be adjusted pursuant to a full ratchet formula.
+
+────────────────────────────────────────────────────────────────────────
+
+Board of Directors
+The Board of Directors shall consist of 3 members: 2 seat(s) designated by the holders of Series Seed Preferred Stock, 1 seat(s) designated by the holders of Common Stock.
+
+────────────────────────────────────────────────────────────────────────
+
+Section – Founder Share Vesting
+60 months total vesting schedule. Cliff: 12 months. Monthly vesting thereafter. Upon a Change of Control event, 100% of unvested Founder shares shall accelerate.
+
+────────────────────────────────────────────────────────────────────────
+
+DIVIDEND RIGHTS
+The Series Seed Preferred shall accrue non-cumulative dividends at 8% of the Original Issue Price, payable when and if declared by the Board.
+
+────────────────────────────────────────────────────────────────────────
+
+PROTECTIVE PROVISIONS
+The consent of the majority of Series Seed Preferred holders shall be required for: amendments to the Charter affecting the Preferred Stock; issuance of equity securities senior to the Series Seed Preferred; any Liquidation Event or Change of Control; changes to the Board size; and declaration of dividends on Common Stock.
+
+────────────────────────────────────────────────────────────────────────
+
+Option Pool
+Prior to the closing of the financing, the Company shall reserve 30% of its post-money fully-diluted capitalization for issuance to directors, officers, employees, and consultants under the Company's equity incentive plan.
+
+────────────────────────────────────────────────────────────────────────
+
+Information Rights
+The Company shall deliver to each Major Investor (i) annual audited financial statements within 120 days after the end of each fiscal year, (ii) unaudited quarterly financial statements within 45 days after the end of each quarter, and (iii) an annual budget and business plan within 30 days prior to the start of each fiscal year.
+
+────────────────────────────────────────────────────────────────────────
+
+ROFR AND CO-SALE AGREEMENT
+Founders may not transfer shares without first offering them to the Company, then to the Investors. If the transfer proceeds, Investors have co-sale rights to participate on a pro-rata basis.
+
+────────────────────────────────────────────────────────────────────────
+
+CONVERSION
+The Series Seed Preferred converts to Common Stock at a 1:1 ratio (as adjusted). Automatic conversion occurs upon a Qualified IPO or majority Preferred consent.
+
+────────────────────────────────────────────────────────────────────────
+
+Drag-Along Agreement
+If holders of at least 50% of the outstanding shares approve a Sale of the Company, all other shareholders shall be required to vote in favor of such transaction and take all necessary actions to consummate it.
+
+────────────────────────────────────────────────────────────────────────
+
+Redemption Rights
+At any time after 3 years from the date of issuance, upon the request of the holders of at least a majority of the then-outstanding Series Seed Preferred Stock, the Company shall redeem all outstanding shares at the Original Purchase Price plus any declared but unpaid dividends.
+
+────────────────────────────────────────────────────────────────────────
+
+NO-SHOP AGREEMENT
+For 180 days from execution of this term sheet, the Company and the Founders shall not directly or indirectly solicit, initiate, or encourage any competing financing proposal.
+
+────────────────────────────────────────────────────────────────────────
+
+Binding Provisions
+This Term Sheet is non-binding, except for the provisions relating to Confidentiality, Exclusivity, and Expenses, which shall be binding agreements of the parties.
+
+────────────────────────────────────────────────────────────────────────
+
+Expenses
+The Company shall pay the reasonable legal fees and expenses of counsel to the Investors in connection with the financing, up to a maximum of $25,000.

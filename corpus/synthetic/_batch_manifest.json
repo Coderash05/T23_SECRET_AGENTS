@@ -1,0 +1,476 @@
+{
+  "_meta": {
+    "description": "Synthetic term-sheet batch manifest with gold labels.",
+    "total_count": 30,
+    "adversarial_count": 15,
+    "standard_count": 15
+  },
+  "documents": [
+    {
+      "doc_id": "synth_adv_006",
+      "filename": "ts_synth_adv_006.txt",
+      "gold_label_file": "ts_synth_adv_006.gold.json",
+      "is_adversarial": true,
+      "expected_flag_count": 9,
+      "expected_flags": [
+        "R-LP-01",
+        "R-AD-01",
+        "R-CT-02",
+        "R-CT-03",
+        "R-OP-01",
+        "R-EX-01",
+        "R-DA-01",
+        "R-RD-01",
+        "R-DV-01"
+      ]
+    },
+    {
+      "doc_id": "synth_adv_004",
+      "filename": "ts_synth_adv_004.txt",
+      "gold_label_file": "ts_synth_adv_004.gold.json",
+      "is_adversarial": true,
+      "expected_flag_count": 9,
+      "expected_flags": [
+        "R-LP-01",
+        "R-LP-03",
+        "R-AD-01",
+        "R-CT-02",
+        "R-CT-03",
+        "R-VS-01",
+        "R-EX-01",
+        "R-RD-01",
+        "R-DV-01"
+      ]
+    },
+    {
+      "doc_id": "synth_std_007",
+      "filename": "ts_synth_std_007.txt",
+      "gold_label_file": "ts_synth_std_007.gold.json",
+      "is_adversarial": false,
+      "expected_flag_count": 4,
+      "expected_flags": [
+        "R-LP-01",
+        "R-LP-03",
+        "R-AD-02",
+        "R-VS-01"
+      ]
+    },
+    {
+      "doc_id": "synth_std_006",
+      "filename": "ts_synth_std_006.txt",
+      "gold_label_file": "ts_synth_std_006.gold.json",
+      "is_adversarial": false,
+      "expected_flag_count": 3,
+      "expected_flags": [
+        "R-LP-02",
+        "R-AD-02",
+        "R-DV-01"
+      ]
+    },
+    {
+      "doc_id": "synth_adv_010",
+      "filename": "ts_synth_adv_010.txt",
+      "gold_label_file": "ts_synth_adv_010.gold.json",
+      "is_adversarial": true,
+      "expected_flag_count": 12,
+      "expected_flags": [
+        "R-LP-01",
+        "R-LP-02",
+        "R-LP-03",
+        "R-AD-01",
+        "R-CT-02",
+        "R-CT-03",
+        "R-VS-02",
+        "R-OP-01",
+        "R-EX-01",
+        "R-DA-01",
+        "R-RD-01",
+        "R-DV-01"
+      ]
+    },
+    {
+      "doc_id": "synth_std_005",
+      "filename": "ts_synth_std_005.txt",
+      "gold_label_file": "ts_synth_std_005.gold.json",
+      "is_adversarial": false,
+      "expected_flag_count": 4,
+      "expected_flags": [
+        "R-LP-01",
+        "R-AD-02",
+        "R-VS-01",
+        "R-DV-01"
+      ]
+    },
+    {
+      "doc_id": "synth_adv_012",
+      "filename": "ts_synth_adv_012.txt",
+      "gold_label_file": "ts_synth_adv_012.gold.json",
+      "is_adversarial": true,
+      "expected_flag_count": 10,
+      "expected_flags": [
+        "R-LP-01",
+        "R-LP-02",
+        "R-AD-01",
+        "R-CT-02",
+        "R-CT-03",
+        "R-VS-02",
+        "R-OP-01",
+        "R-EX-01",
+        "R-RD-01",
+        "R-DV-01"
+      ]
+    },
+    {
+      "doc_id": "synth_std_002",
+      "filename": "ts_synth_std_002.txt",
+      "gold_label_file": "ts_synth_std_002.gold.json",
+      "is_adversarial": false,
+      "expected_flag_count": 3,
+      "expected_flags": [
+        "R-LP-01",
+        "R-AD-02",
+        "R-EX-01"
+      ]
+    },
+    {
+      "doc_id": "synth_adv_002",
+      "filename": "ts_synth_adv_002.txt",
+      "gold_label_file": "ts_synth_adv_002.gold.json",
+      "is_adversarial": true,
+      "expected_flag_count": 9,
+      "expected_flags": [
+        "R-LP-01",
+        "R-AD-01",
+        "R-CT-02",
+        "R-CT-03",
+        "R-OP-01",
+        "R-EX-01",
+        "R-DA-01",
+        "R-RD-01",
+        "R-DV-01"
+      ]
+    },
+    {
+      "doc_id": "synth_adv_013",
+      "filename": "ts_synth_adv_013.txt",
+      "gold_label_file": "ts_synth_adv_013.gold.json",
+      "is_adversarial": true,
+      "expected_flag_count": 12,
+      "expected_flags": [
+        "R-LP-01",
+        "R-LP-02",
+        "R-LP-03",
+        "R-AD-01",
+        "R-CT-02",
+        "R-CT-03",
+        "R-VS-01",
+        "R-OP-01",
+        "R-EX-01",
+        "R-DA-01",
+        "R-RD-01",
+        "R-DV-01"
+      ]
+    },
+    {
+      "doc_id": "synth_std_009",
+      "filename": "ts_synth_std_009.txt",
+      "gold_label_file": "ts_synth_std_009.gold.json",
+      "is_adversarial": false,
+      "expected_flag_count": 3,
+      "expected_flags": [
+        "R-LP-01",
+        "R-LP-03",
+        "R-AD-02"
+      ]
+    },
+    {
+      "doc_id": "synth_std_001",
+      "filename": "ts_synth_std_001.txt",
+      "gold_label_file": "ts_synth_std_001.gold.json",
+      "is_adversarial": false,
+      "expected_flag_count": 2,
+      "expected_flags": [
+        "R-LP-01",
+        "R-AD-01"
+      ]
+    },
+    {
+      "doc_id": "synth_adv_015",
+      "filename": "ts_synth_adv_015.txt",
+      "gold_label_file": "ts_synth_adv_015.gold.json",
+      "is_adversarial": true,
+      "expected_flag_count": 11,
+      "expected_flags": [
+        "R-LP-01",
+        "R-LP-02",
+        "R-AD-01",
+        "R-CT-02",
+        "R-CT-03",
+        "R-VS-02",
+        "R-OP-01",
+        "R-EX-01",
+        "R-DA-01",
+        "R-RD-01",
+        "R-DV-01"
+      ]
+    },
+    {
+      "doc_id": "synth_std_010",
+      "filename": "ts_synth_std_010.txt",
+      "gold_label_file": "ts_synth_std_010.gold.json",
+      "is_adversarial": false,
+      "expected_flag_count": 2,
+      "expected_flags": [
+        "R-AD-02",
+        "R-DV-01"
+      ]
+    },
+    {
+      "doc_id": "synth_adv_014",
+      "filename": "ts_synth_adv_014.txt",
+      "gold_label_file": "ts_synth_adv_014.gold.json",
+      "is_adversarial": true,
+      "expected_flag_count": 9,
+      "expected_flags": [
+        "R-LP-01",
+        "R-LP-03",
+        "R-AD-01",
+        "R-CT-02",
+        "R-CT-03",
+        "R-VS-02",
+        "R-OP-01",
+        "R-EX-01",
+        "R-RD-01"
+      ]
+    },
+    {
+      "doc_id": "synth_adv_009",
+      "filename": "ts_synth_adv_009.txt",
+      "gold_label_file": "ts_synth_adv_009.gold.json",
+      "is_adversarial": true,
+      "expected_flag_count": 9,
+      "expected_flags": [
+        "R-LP-01",
+        "R-LP-02",
+        "R-LP-03",
+        "R-AD-01",
+        "R-CT-02",
+        "R-CT-03",
+        "R-OP-01",
+        "R-EX-01",
+        "R-RD-01"
+      ]
+    },
+    {
+      "doc_id": "synth_adv_001",
+      "filename": "ts_synth_adv_001.txt",
+      "gold_label_file": "ts_synth_adv_001.gold.json",
+      "is_adversarial": true,
+      "expected_flag_count": 11,
+      "expected_flags": [
+        "R-LP-01",
+        "R-LP-02",
+        "R-LP-03",
+        "R-AD-01",
+        "R-CT-02",
+        "R-CT-03",
+        "R-OP-01",
+        "R-EX-01",
+        "R-DA-01",
+        "R-RD-01",
+        "R-DV-01"
+      ]
+    },
+    {
+      "doc_id": "synth_std_014",
+      "filename": "ts_synth_std_014.txt",
+      "gold_label_file": "ts_synth_std_014.gold.json",
+      "is_adversarial": false,
+      "expected_flag_count": 4,
+      "expected_flags": [
+        "R-LP-02",
+        "R-VS-01",
+        "R-OP-01",
+        "R-EX-01"
+      ]
+    },
+    {
+      "doc_id": "synth_adv_011",
+      "filename": "ts_synth_adv_011.txt",
+      "gold_label_file": "ts_synth_adv_011.gold.json",
+      "is_adversarial": true,
+      "expected_flag_count": 12,
+      "expected_flags": [
+        "R-LP-01",
+        "R-LP-02",
+        "R-LP-03",
+        "R-AD-02",
+        "R-CT-02",
+        "R-CT-03",
+        "R-VS-02",
+        "R-OP-01",
+        "R-EX-01",
+        "R-DA-01",
+        "R-RD-01",
+        "R-DV-01"
+      ]
+    },
+    {
+      "doc_id": "synth_std_015",
+      "filename": "ts_synth_std_015.txt",
+      "gold_label_file": "ts_synth_std_015.gold.json",
+      "is_adversarial": false,
+      "expected_flag_count": 3,
+      "expected_flags": [
+        "R-LP-01",
+        "R-AD-02",
+        "R-VS-01"
+      ]
+    },
+    {
+      "doc_id": "synth_std_008",
+      "filename": "ts_synth_std_008.txt",
+      "gold_label_file": "ts_synth_std_008.gold.json",
+      "is_adversarial": false,
+      "expected_flag_count": 1,
+      "expected_flags": [
+        "R-AD-02"
+      ]
+    },
+    {
+      "doc_id": "synth_std_012",
+      "filename": "ts_synth_std_012.txt",
+      "gold_label_file": "ts_synth_std_012.gold.json",
+      "is_adversarial": false,
+      "expected_flag_count": 4,
+      "expected_flags": [
+        "R-LP-02",
+        "R-LP-03",
+        "R-AD-02",
+        "R-DV-01"
+      ]
+    },
+    {
+      "doc_id": "synth_std_013",
+      "filename": "ts_synth_std_013.txt",
+      "gold_label_file": "ts_synth_std_013.gold.json",
+      "is_adversarial": false,
+      "expected_flag_count": 4,
+      "expected_flags": [
+        "R-LP-01",
+        "R-LP-02",
+        "R-VS-01",
+        "R-DV-01"
+      ]
+    },
+    {
+      "doc_id": "synth_std_003",
+      "filename": "ts_synth_std_003.txt",
+      "gold_label_file": "ts_synth_std_003.gold.json",
+      "is_adversarial": false,
+      "expected_flag_count": 4,
+      "expected_flags": [
+        "R-LP-02",
+        "R-AD-02",
+        "R-VS-01",
+        "R-OP-01"
+      ]
+    },
+    {
+      "doc_id": "synth_adv_003",
+      "filename": "ts_synth_adv_003.txt",
+      "gold_label_file": "ts_synth_adv_003.gold.json",
+      "is_adversarial": true,
+      "expected_flag_count": 11,
+      "expected_flags": [
+        "R-LP-01",
+        "R-LP-02",
+        "R-AD-01",
+        "R-CT-02",
+        "R-CT-03",
+        "R-VS-02",
+        "R-OP-01",
+        "R-EX-01",
+        "R-DA-01",
+        "R-RD-01",
+        "R-DV-01"
+      ]
+    },
+    {
+      "doc_id": "synth_adv_007",
+      "filename": "ts_synth_adv_007.txt",
+      "gold_label_file": "ts_synth_adv_007.gold.json",
+      "is_adversarial": true,
+      "expected_flag_count": 7,
+      "expected_flags": [
+        "R-LP-01",
+        "R-AD-01",
+        "R-CT-02",
+        "R-CT-03",
+        "R-VS-02",
+        "R-EX-01",
+        "R-RD-01"
+      ]
+    },
+    {
+      "doc_id": "synth_std_004",
+      "filename": "ts_synth_std_004.txt",
+      "gold_label_file": "ts_synth_std_004.gold.json",
+      "is_adversarial": false,
+      "expected_flag_count": 1,
+      "expected_flags": [
+        "R-LP-01"
+      ]
+    },
+    {
+      "doc_id": "synth_std_011",
+      "filename": "ts_synth_std_011.txt",
+      "gold_label_file": "ts_synth_std_011.gold.json",
+      "is_adversarial": false,
+      "expected_flag_count": 2,
+      "expected_flags": [
+        "R-LP-01",
+        "R-LP-02"
+      ]
+    },
+    {
+      "doc_id": "synth_adv_005",
+      "filename": "ts_synth_adv_005.txt",
+      "gold_label_file": "ts_synth_adv_005.gold.json",
+      "is_adversarial": true,
+      "expected_flag_count": 11,
+      "expected_flags": [
+        "R-LP-01",
+        "R-LP-03",
+        "R-AD-01",
+        "R-CT-02",
+        "R-CT-03",
+        "R-VS-02",
+        "R-OP-01",
+        "R-EX-01",
+        "R-DA-01",
+        "R-RD-01",
+        "R-DV-01"
+      ]
+    },
+    {
+      "doc_id": "synth_adv_008",
+      "filename": "ts_synth_adv_008.txt",
+      "gold_label_file": "ts_synth_adv_008.gold.json",
+      "is_adversarial": true,
+      "expected_flag_count": 10,
+      "expected_flags": [
+        "R-LP-01",
+        "R-LP-02",
+        "R-LP-03",
+        "R-AD-01",
+        "R-CT-02",
+        "R-CT-03",
+        "R-OP-01",
+        "R-EX-01",
+        "R-RD-01",
+        "R-DV-01"
+      ]
+    }
+  ]
+}

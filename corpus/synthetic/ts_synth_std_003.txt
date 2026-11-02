@@ -1,0 +1,94 @@
+========================================================================
+TERM SHEET
+FOR SERIES B PREFERRED STOCK FINANCING OF
+PRISM TECH, INC.
+
+Date: 19 October 2025
+
+Issuer:           Prism Tech, Inc. (the "Company")
+Investors:        Index Ventures (the "Lead Investor")
+Series:           Series B Preferred Stock
+Pre-Money Valuation:  $12.0 million
+Amount of Financing:  $5.0 million
+========================================================================
+
+This term sheet summarizes the principal terms of the proposed financing.
+Except for the binding provisions set forth below, this term sheet is
+non-binding and is intended solely as a basis for further discussion.
+────────────────────────────────────────────────────────────────────────
+
+
+────────────────────────────────────────────────────────────────────────
+
+Liquidation Preference
+In the event of any liquidation, dissolution, or winding up of the Company, the holders of Series Series B Preferred Stock shall be entitled to receive, prior and in preference to any distribution to the holders of Common Stock, an amount per share equal to 1.0x the Original Purchase Price (the "Liquidation Preference"). Participation is capped at an aggregate of 2.0x the Original Purchase Price per share.
+
+────────────────────────────────────────────────────────────────────────
+
+ANTI-DILUTION PROTECTION
+In the event of a down-round issuance, the conversion price of the Series B Preferred shall be adjusted pursuant to a broad-based weighted average formula.
+
+────────────────────────────────────────────────────────────────────────
+
+BOARD COMPOSITION
+The Company's Board shall be composed of 5 directors: 2 appointed by the Investors, 2 appointed by the Founders, and 1 independent director(s) mutually agreed upon by the Common and Preferred holders.
+
+────────────────────────────────────────────────────────────────────────
+
+VESTING
+Founder shares will vest over a period of 3.0 years with a 12-month cliff period. After the cliff, 2.78% of the remaining shares shall vest each month. No acceleration of vesting upon Change of Control.
+
+────────────────────────────────────────────────────────────────────────
+
+Dividends
+The holders of Series B Preferred Stock shall be entitled to receive non-cumulative dividends at a rate of 8% per annum on the Original Purchase Price. Dividends on Common Stock may not be paid unless all accrued Preferred dividends have been paid.
+
+────────────────────────────────────────────────────────────────────────
+
+PROTECTIVE PROVISIONS
+The consent of the majority of Series B Preferred holders shall be required for: amendments to the Charter affecting the Preferred Stock; issuance of equity securities senior to the Series B Preferred; any Liquidation Event or Change of Control; changes to the Board size; and declaration of dividends on Common Stock.
+
+────────────────────────────────────────────────────────────────────────
+
+EMPLOYEE OPTION POOL
+An option pool equal to 25% of the post-money fully-diluted shares shall be established prior to closing.
+
+────────────────────────────────────────────────────────────────────────
+
+INFORMATION AND INSPECTION RIGHTS
+Major Investors shall receive annual audited financials, quarterly unaudited financials, monthly management reports, and an annual operating budget.
+
+────────────────────────────────────────────────────────────────────────
+
+ROFR AND CO-SALE AGREEMENT
+Founders may not transfer shares without first offering them to the Company, then to the Investors. If the transfer proceeds, Investors have co-sale rights to participate on a pro-rata basis.
+
+────────────────────────────────────────────────────────────────────────
+
+CONVERSION
+The Series B Preferred converts to Common Stock at a 1:1 ratio (as adjusted). Automatic conversion occurs upon a Qualified IPO or majority Preferred consent.
+
+────────────────────────────────────────────────────────────────────────
+
+Section – Drag-Along
+Shareholders holding at least 75% of the shares may compel all remaining shareholders to participate in an approved Sale of the Company.
+
+────────────────────────────────────────────────────────────────────────
+
+Redemption Rights
+At any time after 7 years from the date of issuance, upon the request of the holders of at least a majority of the then-outstanding Series B Preferred Stock, the Company shall redeem all outstanding shares at the Original Purchase Price plus any declared but unpaid dividends.
+
+────────────────────────────────────────────────────────────────────────
+
+Section – Exclusivity Period
+The Founders agree to an exclusivity period of 30 days during which no competing offers shall be sought or entertained.
+
+────────────────────────────────────────────────────────────────────────
+
+Governing Law
+This Term Sheet shall be governed by and construed in accordance with the laws of the State of Delaware, without regard to its conflict of laws provisions.
+
+────────────────────────────────────────────────────────────────────────
+
+Expenses
+The Company shall pay the reasonable legal fees and expenses of counsel to the Investors in connection with the financing, up to a maximum of $25,000.

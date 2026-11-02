@@ -1,0 +1,99 @@
+========================================================================
+TERM SHEET
+FOR SERIES A-1 PREFERRED STOCK FINANCING OF
+AETHER VENTURES, INC.
+
+Date: 18 June 2024
+
+Issuer:           Aether Ventures, Inc. (the "Company")
+Investors:        Coatue Management (the "Lead Investor")
+Series:           Series A-1 Preferred Stock
+Pre-Money Valuation:  $25.0 million
+Amount of Financing:  $12.5 million
+========================================================================
+
+This term sheet summarizes the principal terms of the proposed financing.
+Except for the binding provisions set forth below, this term sheet is
+non-binding and is intended solely as a basis for further discussion.
+────────────────────────────────────────────────────────────────────────
+
+
+────────────────────────────────────────────────────────────────────────
+
+LIQUIDATION PREFERENCE
+Upon any Liquidation Event, each holder of Series A-1 Preferred shall receive a per-share amount equal to 1.5 times the Original Issue Price, plus any declared but unpaid dividends. No participation rights beyond the initial Liquidation Preference amount.
+
+────────────────────────────────────────────────────────────────────────
+
+ANTI-DILUTION PROTECTION
+In the event of a down-round issuance, the conversion price of the Series A-1 Preferred shall be adjusted pursuant to a narrow-based weighted average formula.
+
+────────────────────────────────────────────────────────────────────────
+
+BOARD COMPOSITION
+The Company's Board shall be composed of 5 directors: 2 appointed by the Investors, 2 appointed by the Founders, and 1 independent director(s) mutually agreed upon by the Common and Preferred holders.
+
+────────────────────────────────────────────────────────────────────────
+
+Founder Vesting
+All shares held by each Founder shall be subject to vesting over 4.0 years (48 months total), with a 12-month cliff. Shares shall vest monthly following the cliff on a pro-rata basis. Upon a Change of Control event, 100% of unvested Founder shares shall accelerate.
+
+────────────────────────────────────────────────────────────────────────
+
+Dividends
+The holders of Series A-1 Preferred Stock shall be entitled to receive non-cumulative dividends at a rate of 8% per annum on the Original Purchase Price. Dividends on Common Stock may not be paid unless all accrued Preferred dividends have been paid.
+
+────────────────────────────────────────────────────────────────────────
+
+Protective Provisions
+So long as any shares of Series A-1 Preferred Stock are outstanding, the Company shall not, without the prior written consent of the holders of at least a majority of the Series A-1 Preferred Stock: (i) alter or change the rights of the Preferred Stock; (ii) increase or decrease the authorized number of shares; (iii) create any new class or series of shares having rights senior to or on parity with the Preferred Stock; (iv) declare or pay any dividend on Common Stock; (v) approve any merger, sale of substantially all assets, or other liquidation event; or (vi) increase the size of the Board of Directors.
+
+────────────────────────────────────────────────────────────────────────
+
+EMPLOYEE OPTION POOL
+An option pool equal to 15% of the post-money fully-diluted shares shall be established prior to closing.
+
+────────────────────────────────────────────────────────────────────────
+
+Information Rights
+The Company shall deliver to each Major Investor (i) annual audited financial statements within 120 days after the end of each fiscal year, (ii) unaudited quarterly financial statements within 45 days after the end of each quarter, and (iii) an annual budget and business plan within 30 days prior to the start of each fiscal year.
+
+────────────────────────────────────────────────────────────────────────
+
+Right of First Refusal / Co-Sale
+The Company shall have a right of first refusal on any proposed transfer of shares by a Founder. If the Company does not exercise its right, the Investors holding Series A-1 Preferred Stock shall have a secondary right of first refusal, followed by a co-sale right allowing participation in the transfer pro rata.
+
+────────────────────────────────────────────────────────────────────────
+
+Conversion Rights
+Each share of Series A-1 Preferred Stock shall be convertible, at the option of the holder, into shares of Common Stock at the then-applicable Conversion Rate (initially 1:1, subject to anti-dilution adjustments). All Series A-1 Preferred Stock shall automatically convert into Common Stock upon (i) an IPO with aggregate proceeds of at least $50,000,000 or (ii) the consent of a majority of the Preferred holders.
+
+────────────────────────────────────────────────────────────────────────
+
+Drag-Along Agreement
+If holders of at least 50% of the outstanding shares approve a Sale of the Company, all other shareholders shall be required to vote in favor of such transaction and take all necessary actions to consummate it.
+
+────────────────────────────────────────────────────────────────────────
+
+Section – Mandatory Redemption
+The Series A-1 Preferred Stock is redeemable at the option of the holders commencing 5 years from the Closing Date.
+
+────────────────────────────────────────────────────────────────────────
+
+NO-SHOP AGREEMENT
+For 45 days from execution of this term sheet, the Company and the Founders shall not directly or indirectly solicit, initiate, or encourage any competing financing proposal.
+
+────────────────────────────────────────────────────────────────────────
+
+Confidentiality
+The existence and terms of this Term Sheet shall be treated as confidential information by all parties and shall not be disclosed to any third party without the prior written consent of the other party, except as required by law.
+
+────────────────────────────────────────────────────────────────────────
+
+Binding Provisions
+This Term Sheet is non-binding, except for the provisions relating to Confidentiality, Exclusivity, and Expenses, which shall be binding agreements of the parties.
+
+────────────────────────────────────────────────────────────────────────
+
+Governing Law
+This Term Sheet shall be governed by and construed in accordance with the laws of the State of Delaware, without regard to its conflict of laws provisions.

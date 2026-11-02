@@ -1,0 +1,104 @@
+========================================================================
+TERM SHEET
+FOR SERIES C PREFERRED STOCK FINANCING OF
+AETHER ENERGY, INC.
+
+Date: 24 June 2026
+
+Issuer:           Aether Energy, Inc. (the "Company")
+Investors:        Accel Partners (the "Lead Investor")
+Series:           Series C Preferred Stock
+Pre-Money Valuation:  $5.0 million
+Amount of Financing:  $2.3 million
+========================================================================
+
+This term sheet summarizes the principal terms of the proposed financing.
+Except for the binding provisions set forth below, this term sheet is
+non-binding and is intended solely as a basis for further discussion.
+────────────────────────────────────────────────────────────────────────
+
+
+────────────────────────────────────────────────────────────────────────
+
+Liquidation Preference
+In the event of any liquidation, dissolution, or winding up of the Company, the holders of Series Series C Preferred Stock shall be entitled to receive, prior and in preference to any distribution to the holders of Common Stock, an amount per share equal to 1.5x the Original Purchase Price (the "Liquidation Preference"). Holders of Series C Preferred shall not participate in remaining distributions beyond the Liquidation Preference.
+
+────────────────────────────────────────────────────────────────────────
+
+Anti-Dilution Provisions
+The Conversion Price of the Series C Preferred Stock shall be subject to broad-based weighted average anti-dilution adjustment in the event that the Company issues additional equity securities at a purchase price less than the then-effective Conversion Price.
+
+────────────────────────────────────────────────────────────────────────
+
+Board of Directors
+The Board of Directors shall consist of 4 members: 1 seat(s) designated by the holders of Series C Preferred Stock, 2 seat(s) designated by the holders of Common Stock, and 1 independent director(s) mutually agreed upon by the Common and Preferred holders.
+
+────────────────────────────────────────────────────────────────────────
+
+Section – Founder Share Vesting
+36 months total vesting schedule. Cliff: 12 months. Monthly vesting thereafter. Single-trigger acceleration: all unvested shares shall immediately vest upon a Change of Control.
+
+────────────────────────────────────────────────────────────────────────
+
+DIVIDEND RIGHTS
+The Series C Preferred shall accrue non-cumulative dividends at 8% of the Original Issue Price, payable when and if declared by the Board.
+
+────────────────────────────────────────────────────────────────────────
+
+Protective Provisions
+So long as any shares of Series C Preferred Stock are outstanding, the Company shall not, without the prior written consent of the holders of at least a majority of the Series C Preferred Stock: (i) alter or change the rights of the Preferred Stock; (ii) increase or decrease the authorized number of shares; (iii) create any new class or series of shares having rights senior to or on parity with the Preferred Stock; (iv) declare or pay any dividend on Common Stock; (v) approve any merger, sale of substantially all assets, or other liquidation event; or (vi) increase the size of the Board of Directors.
+
+────────────────────────────────────────────────────────────────────────
+
+Option Pool
+Prior to the closing of the financing, the Company shall reserve 15% of its post-money fully-diluted capitalization for issuance to directors, officers, employees, and consultants under the Company's equity incentive plan.
+
+────────────────────────────────────────────────────────────────────────
+
+INFORMATION AND INSPECTION RIGHTS
+Major Investors shall receive annual audited financials, quarterly unaudited financials, monthly management reports, and an annual operating budget.
+
+────────────────────────────────────────────────────────────────────────
+
+ROFR AND CO-SALE AGREEMENT
+Founders may not transfer shares without first offering them to the Company, then to the Investors. If the transfer proceeds, Investors have co-sale rights to participate on a pro-rata basis.
+
+────────────────────────────────────────────────────────────────────────
+
+CONVERSION
+The Series C Preferred converts to Common Stock at a 1:1 ratio (as adjusted). Automatic conversion occurs upon a Qualified IPO or majority Preferred consent.
+
+────────────────────────────────────────────────────────────────────────
+
+Drag-Along Agreement
+If holders of at least 50% of the outstanding shares approve a Sale of the Company, all other shareholders shall be required to vote in favor of such transaction and take all necessary actions to consummate it.
+
+────────────────────────────────────────────────────────────────────────
+
+Section – Mandatory Redemption
+The Series C Preferred Stock is redeemable at the option of the holders commencing 7 years from the Closing Date.
+
+────────────────────────────────────────────────────────────────────────
+
+NO-SHOP AGREEMENT
+For 30 days from execution of this term sheet, the Company and the Founders shall not directly or indirectly solicit, initiate, or encourage any competing financing proposal.
+
+────────────────────────────────────────────────────────────────────────
+
+Conditions Precedent
+The closing of the financing shall be subject to customary conditions, including: completion of due diligence satisfactory to the Investors; execution of definitive agreements; delivery of legal opinions; and all requisite corporate approvals.
+
+────────────────────────────────────────────────────────────────────────
+
+Governing Law
+This Term Sheet shall be governed by and construed in accordance with the laws of the State of Delaware, without regard to its conflict of laws provisions.
+
+────────────────────────────────────────────────────────────────────────
+
+Expenses
+The Company shall pay the reasonable legal fees and expenses of counsel to the Investors in connection with the financing, up to a maximum of $25,000.
+
+────────────────────────────────────────────────────────────────────────
+
+Binding Provisions
+This Term Sheet is non-binding, except for the provisions relating to Confidentiality, Exclusivity, and Expenses, which shall be binding agreements of the parties.

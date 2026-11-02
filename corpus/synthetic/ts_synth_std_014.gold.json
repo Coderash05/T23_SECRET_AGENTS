@@ -1,0 +1,26 @@
+{
+  "doc_id": "synth_std_014",
+  "is_adversarial": false,
+  "liq_multiple": 1.0,
+  "liq_participation": "capped_participating",
+  "liq_cap": 3.0,
+  "liq_seniority": "pari_passu",
+  "anti_dilution_type": "narrow_based_weighted_average",
+  "board_investor_seats": 2,
+  "board_founder_seats": 2,
+  "board_independent_seats": 1,
+  "vesting_months": 36,
+  "cliff_months": 0,
+  "acceleration": "double_trigger",
+  "option_pool_pct": 25,
+  "exclusivity_days": 60,
+  "drag_threshold_pct": 67,
+  "redemption_years": 10,
+  "dividends_cumulative": false,
+  "expected_flags": [
+    "R-LP-02",
+    "R-VS-01",
+    "R-OP-01",
+    "R-EX-01"
+  ]
+}
