@@ -49,3 +49,6 @@ data/cache/
 *.pdf
 *.docx
 !data/samples/*.pdf
+
+# LLM prompt cache (generated at runtime)
+.llm_cache.json
