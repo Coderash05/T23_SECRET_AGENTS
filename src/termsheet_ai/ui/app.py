@@ -24,12 +24,20 @@ def _sidebar():
         payload = load_mock_payload()
     else:
         upload = st.sidebar.file_uploader("PDF, DOCX or TXT", type=["pdf", "docx", "txt"])
-        if upload is not None and uses_plaintext_ingestor(build_pipeline()) and not upload.name.lower().endswith(".txt"):
-            st.sidebar.warning("The current ingestor reads plain text only. PDF/DOCX parsing arrives with the real S1 stage.")
+        if (
+            upload is not None
+            and uses_plaintext_ingestor(build_pipeline())
+            and not upload.name.lower().endswith(".txt")
+        ):
+            st.sidebar.warning(
+                "The current ingestor reads plain text only. PDF/DOCX parsing arrives with the real S1 stage."
+            )
         if upload is not None and st.sidebar.button("Analyse", type="primary"):
             with st.spinner("Running the pipeline..."):
                 try:
-                    st.session_state["payload"] = run_pipeline_on_upload(upload.name, upload.getvalue())
+                    st.session_state["payload"] = run_pipeline_on_upload(
+                        upload.name, upload.getvalue()
+                    )
                 except Exception as exc:  # surface any pipeline failure instead of a stack trace
                     st.session_state.pop("payload", None)
                     st.sidebar.error(f"Pipeline failed: {exc}")
@@ -52,7 +60,9 @@ def main() -> None:
 
     mode, payload, severities, only_flagged = _sidebar()
     if payload is None:
-        st.info("Upload a term sheet in the sidebar and press Analyse, or switch to the demo result.")
+        st.info(
+            "Upload a term sheet in the sidebar and press Analyse, or switch to the demo result."
+        )
         return
     if mode == DEMO:
         st.info("You are viewing bundled mock data. Nothing here came from the live pipeline.")

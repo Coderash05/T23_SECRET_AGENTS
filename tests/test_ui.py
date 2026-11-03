@@ -33,8 +33,13 @@ def test_mock_payload_is_consistent(payload):
 
 def test_mock_source_spans_appear_in_their_clause(payload):
     by_id = {c.clause_id: c for c in payload.clauses}
-    for name in ("liquidation_preference", "anti_dilution", "board_composition",
-                 "founder_vesting", "protective_provisions"):
+    for name in (
+        "liquidation_preference",
+        "anti_dilution",
+        "board_composition",
+        "founder_vesting",
+        "protective_provisions",
+    ):
         fact = getattr(payload.facts, name)
         assert fact.source_span.text in by_id[fact.clause_id].raw_text
 
