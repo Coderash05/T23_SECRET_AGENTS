@@ -27,6 +27,7 @@ from termsheet_ai.data.generator import (
 # Fixtures
 # ---------------------------------------------------------------------------
 
+
 @pytest.fixture
 def generator() -> SyntheticGenerator:
     """Deterministic generator with fixed seed."""
@@ -204,9 +205,12 @@ class TestExpectedFlags:
         )
         flags = _compute_expected_flags(label)
         expected = [
-            "R-LP-01", "R-LP-02", "R-LP-03",
+            "R-LP-01",
+            "R-LP-02",
+            "R-LP-03",
             "R-AD-01",
-            "R-CT-02", "R-CT-03",
+            "R-CT-02",
+            "R-CT-03",
             "R-VS-02",
             "R-OP-01",
             "R-EX-01",
@@ -219,28 +223,48 @@ class TestExpectedFlags:
 
     def test_liq_multiple_flag(self) -> None:
         label = GoldLabel(
-            doc_id="t", is_adversarial=False,
-            liq_multiple=2.0, liq_participation="non_participating", liq_cap=None,
+            doc_id="t",
+            is_adversarial=False,
+            liq_multiple=2.0,
+            liq_participation="non_participating",
+            liq_cap=None,
             liq_seniority="pari_passu",
             anti_dilution_type="broad_based_weighted_average",
-            board_investor_seats=1, board_founder_seats=2, board_independent_seats=1,
-            vesting_months=48, cliff_months=12, acceleration="double_trigger",
-            option_pool_pct=15, exclusivity_days=30, drag_threshold_pct=67,
-            redemption_years=5, dividends_cumulative=False,
+            board_investor_seats=1,
+            board_founder_seats=2,
+            board_independent_seats=1,
+            vesting_months=48,
+            cliff_months=12,
+            acceleration="double_trigger",
+            option_pool_pct=15,
+            exclusivity_days=30,
+            drag_threshold_pct=67,
+            redemption_years=5,
+            dividends_cumulative=False,
         )
         flags = _compute_expected_flags(label)
         assert "R-LP-01" in flags
 
     def test_full_ratchet_flag(self) -> None:
         label = GoldLabel(
-            doc_id="t", is_adversarial=False,
-            liq_multiple=1.0, liq_participation="non_participating", liq_cap=None,
+            doc_id="t",
+            is_adversarial=False,
+            liq_multiple=1.0,
+            liq_participation="non_participating",
+            liq_cap=None,
             liq_seniority="pari_passu",
             anti_dilution_type="full_ratchet",
-            board_investor_seats=1, board_founder_seats=2, board_independent_seats=1,
-            vesting_months=48, cliff_months=12, acceleration="double_trigger",
-            option_pool_pct=15, exclusivity_days=30, drag_threshold_pct=67,
-            redemption_years=5, dividends_cumulative=False,
+            board_investor_seats=1,
+            board_founder_seats=2,
+            board_independent_seats=1,
+            vesting_months=48,
+            cliff_months=12,
+            acceleration="double_trigger",
+            option_pool_pct=15,
+            exclusivity_days=30,
+            drag_threshold_pct=67,
+            redemption_years=5,
+            dividends_cumulative=False,
         )
         flags = _compute_expected_flags(label)
         assert "R-AD-01" in flags
@@ -248,14 +272,24 @@ class TestExpectedFlags:
 
     def test_investor_board_majority_flag(self) -> None:
         label = GoldLabel(
-            doc_id="t", is_adversarial=False,
-            liq_multiple=1.0, liq_participation="non_participating", liq_cap=None,
+            doc_id="t",
+            is_adversarial=False,
+            liq_multiple=1.0,
+            liq_participation="non_participating",
+            liq_cap=None,
             liq_seniority="pari_passu",
             anti_dilution_type="broad_based_weighted_average",
-            board_investor_seats=3, board_founder_seats=1, board_independent_seats=0,
-            vesting_months=48, cliff_months=12, acceleration="double_trigger",
-            option_pool_pct=15, exclusivity_days=30, drag_threshold_pct=67,
-            redemption_years=5, dividends_cumulative=False,
+            board_investor_seats=3,
+            board_founder_seats=1,
+            board_independent_seats=0,
+            vesting_months=48,
+            cliff_months=12,
+            acceleration="double_trigger",
+            option_pool_pct=15,
+            exclusivity_days=30,
+            drag_threshold_pct=67,
+            redemption_years=5,
+            dividends_cumulative=False,
         )
         flags = _compute_expected_flags(label)
         assert "R-CT-02" in flags
