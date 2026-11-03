@@ -1,7 +1,7 @@
 """Streamlit rendering functions. Each takes a PipelinePayload (or view-model rows)."""
 
 from html import escape
-from typing import Iterable, List, Sequence
+from typing import Iterable, Sequence
 
 import streamlit as st
 
@@ -51,7 +51,9 @@ def render_header(payload: PipelinePayload) -> None:
             chips = "".join(
                 chip_html(
                     f"{getattr(trace.risk_score, sev + '_count')} {sev_label(sev)}",
-                    sev_colour(sev) if getattr(trace.risk_score, sev + "_count") else NEUTRAL_COLOUR,
+                    sev_colour(sev)
+                    if getattr(trace.risk_score, sev + "_count")
+                    else NEUTRAL_COLOUR,
                 )
                 for sev in SEVERITY_ORDER
             )
@@ -61,7 +63,9 @@ def render_header(payload: PipelinePayload) -> None:
             f"{len(payload.clauses)} clauses, "
             f"{sum(1 for c in payload.clauses if c.is_unclassified)} need manual review"
         )
-        st.caption("Educational tool, not legal advice. Every flag below cites the rule that raised it.")
+        st.caption(
+            "Educational tool, not legal advice. Every flag below cites the rule that raised it."
+        )
 
 
 def render_clauses_tab(
@@ -97,7 +101,9 @@ def _render_clause_card(row: ClauseRow) -> None:
     original, plain = st.columns(2)
     with original:
         st.markdown('<div class="ts-label">Original clause</div>', unsafe_allow_html=True)
-        st.markdown(f'<div class="ts-clause">{escape(clause.raw_text)}</div>', unsafe_allow_html=True)
+        st.markdown(
+            f'<div class="ts-clause">{escape(clause.raw_text)}</div>', unsafe_allow_html=True
+        )
         st.caption(f"Page {clause.page_number}")
     with plain:
         st.markdown('<div class="ts-label">In plain English</div>', unsafe_allow_html=True)
@@ -108,7 +114,9 @@ def _render_clause_card(row: ClauseRow) -> None:
         else:
             st.markdown(md_safe(row.summary.summary_text))
             if not row.summary.numbers_verified:
-                st.caption("⚠️ Numbers in this summary were not verified against the extracted facts. Rely on the original clause.")
+                st.caption(
+                    "⚠️ Numbers in this summary were not verified against the extracted facts. Rely on the original clause."
+                )
         for flag in row.flags:
             st.markdown(f"{sev_icon(flag.severity)} **{flag.title}**")
 
@@ -144,10 +152,12 @@ def render_facts_tab(payload: PipelinePayload) -> None:
             st.caption("Not found in this document.")
             continue
         data = fact.model_dump(mode="json", exclude={"source_span", "clause_id", "is_grounded"})
-        st.dataframe(
-            [{"attribute": k, "value": str(v)} for k, v in data.items()], hide_index=True
+        st.dataframe([{"attribute": k, "value": str(v)} for k, v in data.items()], hide_index=True)
+        grounded = (
+            "verified against the clause text"
+            if fact.is_grounded
+            else "NOT grounded in the clause text"
         )
-        grounded = "verified against the clause text" if fact.is_grounded else "NOT grounded in the clause text"
         st.markdown(f"> {md_safe(fact.source_span.text)}")
         st.caption(f"Source quote, page {fact.source_span.page_number}, {grounded}.")
     if facts.custom_facts:
@@ -156,7 +166,9 @@ def render_facts_tab(payload: PipelinePayload) -> None:
 
 
 def render_investor_tab() -> None:
-    st.info("Investor lookup (SEC EDGAR Form D) is a stretch feature planned for Week 4. This panel is a placeholder.")
+    st.info(
+        "Investor lookup (SEC EDGAR Form D) is a stretch feature planned for Week 4. This panel is a placeholder."
+    )
     st.text_input("Investor or fund name", disabled=True, placeholder="e.g. Example Ventures LP")
     st.button("Search Form D records", disabled=True)
 
