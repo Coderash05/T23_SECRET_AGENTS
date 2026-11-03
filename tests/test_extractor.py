@@ -408,3 +408,97 @@ class TestFactExtractorLiveIntegration:
         assert fact.participation == ParticipationType.NON_PARTICIPATING
         assert fact.is_grounded is True
         assert extractor.extraction_modes.get("live_lp_1") == "llm"
+
+    def test_live_anti_dilution_extraction(self):
+        """Extract a broad-based weighted average anti-dilution provision via Gemini."""
+        clause = ClauseSpan(
+            clause_id="live_ad_1",
+            raw_text="The Series A Conversion Price will be subject to customary broad-based weighted average anti-dilution adjustments in the event of down-round issuances.",
+            page_number=2,
+            detected_family=ClauseFamily.ANTI_DILUTION,
+        )
+
+        extractor = FactExtractor.with_gemini(model="gemini-3.5-flash")
+        facts = extractor.extract(doc_id="live_doc", clauses=[clause])
+
+        assert facts.anti_dilution is not None
+        assert facts.anti_dilution.anti_dilution_type == AntiDilutionType.BROAD_BASED_WEIGHTED_AVERAGE
+        assert facts.anti_dilution.is_grounded is True
+        assert extractor.extraction_modes.get("live_ad_1") == "llm"
+
+    def test_live_board_composition_extraction(self):
+        """Extract a 5-member board composition via Gemini."""
+        clause = ClauseSpan(
+            clause_id="live_bc_1",
+            raw_text="The Board shall consist of five (5) directors: two (2) appointed by the Founders, two (2) appointed by Series A, and one (1) mutually agreed independent director.",
+            page_number=3,
+            detected_family=ClauseFamily.BOARD_COMPOSITION,
+        )
+
+        extractor = FactExtractor.with_gemini(model="gemini-3.5-flash")
+        facts = extractor.extract(doc_id="live_doc", clauses=[clause])
+
+        assert facts.board_composition is not None
+        board = facts.board_composition
+        assert board.founder_seats == 2
+        assert board.investor_seats == 2
+        assert board.independent_seats == 1
+        assert board.total_seats == 5
+        assert board.investor_majority is False
+        assert board.is_grounded is True
+        assert extractor.extraction_modes.get("live_bc_1") == "llm"
+
+    def test_live_founder_vesting_extraction(self):
+        """Extract a 4-year vesting schedule with 12-month cliff and no acceleration via Gemini."""
+        clause = ClauseSpan(
+            clause_id="live_vest_1",
+            raw_text="Founder equity shall vest over a 4-year schedule with a 12-month cliff and no acceleration.",
+            page_number=4,
+            detected_family=ClauseFamily.FOUNDER_VESTING,
+        )
+
+        extractor = FactExtractor.with_gemini(model="gemini-3.5-flash")
+        facts = extractor.extract(doc_id="live_doc", clauses=[clause])
+
+        assert facts.founder_vesting is not None
+        vesting = facts.founder_vesting
+        assert vesting.total_vesting_years == 4.0
+        assert vesting.cliff_months == 12
+        assert vesting.acceleration_type == "none"
+        assert vesting.is_grounded is True
+        assert extractor.extraction_modes.get("live_vest_1") == "llm"
+
+    def test_live_protective_provisions_extraction(self):
+        """Extract protective provisions requiring Series A majority consent via Gemini."""
+        clause = ClauseSpan(
+            clause_id="live_prot_1",
+            raw_text="Consent of the holders of a majority of Series A Preferred shall be required for: (a) any merger, sale, or liquidation of the Company; and (b) creating new senior equity.",
+            page_number=5,
+            detected_family=ClauseFamily.PROTECTIVE_PROVISIONS,
+        )
+
+        extractor = FactExtractor.with_gemini(model="gemini-3.5-flash")
+        facts = extractor.extract(doc_id="live_doc", clauses=[clause])
+
+        assert facts.protective_provisions is not None
+        prot = facts.protective_provisions
+        assert prot.requires_series_majority is True
+        assert len(prot.covered_actions) >= 1
+        assert prot.is_grounded is True
+        assert extractor.extraction_modes.get("live_prot_1") == "llm"
+
+    def test_live_missing_information_never_fabricated(self):
+        """Verify that Gemini returns null and FactExtractor does not fabricate facts when terms are absent."""
+        clause = ClauseSpan(
+            clause_id="live_missing_1",
+            raw_text="Liquidation Matters: General governance procedures for corporate dissolution will follow Delaware state law without preferential distributions.",
+            page_number=6,
+            detected_family=ClauseFamily.LIQUIDATION_PREFERENCE,
+        )
+
+        extractor = FactExtractor.with_gemini(model="gemini-3.5-flash")
+        facts = extractor.extract(doc_id="live_doc", clauses=[clause])
+
+        # No multiple is agreed upon or stated; fact must remain None
+        assert facts.liquidation_preference is None
+        assert extractor.extraction_modes.get("live_missing_1") == "llm"
