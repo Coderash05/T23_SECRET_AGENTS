@@ -127,21 +127,72 @@ ADVERSARIAL_ACCELERATION = [("none", 60), ("single_trigger", 25), ("double_trigg
 
 # Company name parts for generating realistic headers
 COMPANY_PREFIXES = [
-    "Nova", "Apex", "Vertex", "Quantum", "Helix", "Zephyr", "Cipher", "Prism",
-    "Atlas", "Vanguard", "Nexus", "Orion", "Pulsar", "Zenith", "Forge", "Aether",
-    "Stratos", "Kyber", "Ionic", "Flux", "Photon", "Cortex", "Nimbus", "Cobalt",
+    "Nova",
+    "Apex",
+    "Vertex",
+    "Quantum",
+    "Helix",
+    "Zephyr",
+    "Cipher",
+    "Prism",
+    "Atlas",
+    "Vanguard",
+    "Nexus",
+    "Orion",
+    "Pulsar",
+    "Zenith",
+    "Forge",
+    "Aether",
+    "Stratos",
+    "Kyber",
+    "Ionic",
+    "Flux",
+    "Photon",
+    "Cortex",
+    "Nimbus",
+    "Cobalt",
 ]
 COMPANY_SUFFIXES = [
-    "Labs", "AI", "Tech", "Robotics", "Bio", "Health", "Systems", "Solutions",
-    "Analytics", "Networks", "Cloud", "Data", "Genomics", "Therapeutics", "Energy",
-    "Dynamics", "Innovations", "Ventures", "Scientific", "Digital",
+    "Labs",
+    "AI",
+    "Tech",
+    "Robotics",
+    "Bio",
+    "Health",
+    "Systems",
+    "Solutions",
+    "Analytics",
+    "Networks",
+    "Cloud",
+    "Data",
+    "Genomics",
+    "Therapeutics",
+    "Energy",
+    "Dynamics",
+    "Innovations",
+    "Ventures",
+    "Scientific",
+    "Digital",
 ]
 INVESTOR_NAMES = [
-    "Sequoia Capital", "Andreessen Horowitz", "Accel Partners", "Founders Fund",
-    "Khosla Ventures", "Lightspeed Venture Partners", "Bessemer Venture Partners",
-    "Greylock Partners", "Index Ventures", "General Catalyst", "NEA", "Benchmark",
-    "First Round Capital", "Insight Partners", "Tiger Global Management",
-    "Ribbit Capital", "Coatue Management", "Thrive Capital",
+    "Sequoia Capital",
+    "Andreessen Horowitz",
+    "Accel Partners",
+    "Founders Fund",
+    "Khosla Ventures",
+    "Lightspeed Venture Partners",
+    "Bessemer Venture Partners",
+    "Greylock Partners",
+    "Index Ventures",
+    "General Catalyst",
+    "NEA",
+    "Benchmark",
+    "First Round Capital",
+    "Insight Partners",
+    "Tiger Global Management",
+    "Ribbit Capital",
+    "Coatue Management",
+    "Thrive Capital",
 ]
 SERIES_NAMES = ["Series Seed", "Series A", "Series A-1", "Series B", "Series C"]
 
@@ -155,6 +206,7 @@ def _weighted_choice(distribution: list, rng: random.Random) -> Any:
 # ---------------------------------------------------------------------------
 # Gold-label data class
 # ---------------------------------------------------------------------------
+
 
 @dataclass
 class GoldLabel:
@@ -212,7 +264,7 @@ _LIQUIDATION_TEMPLATES = [
         "the holders of Series {series} Preferred Stock shall be entitled to receive, "
         "prior and in preference to any distribution to the holders of Common Stock, "
         "an amount per share equal to {multiple}x the Original Purchase Price "
-        "(the \"Liquidation Preference\"). "
+        '(the "Liquidation Preference"). '
         "{participation_text}"
     ),
     (
@@ -248,7 +300,7 @@ _PARTICIPATION_TEXTS = {
     "capped_participating": [
         "After receiving the Liquidation Preference, the {series} Preferred shall participate "
         "pro rata with Common Stock on an as-converted basis up to a total return of "
-        "{cap}x the Original Purchase Price (the \"Cap\").",
+        '{cap}x the Original Purchase Price (the "Cap").',
         "Participation is capped at an aggregate of {cap}x the Original Purchase Price per share.",
         "The {series} Preferred shall participate with Common Stock up to a maximum return "
         "of {cap} times the Original Issue Price, after which they receive no further distributions.",
@@ -547,6 +599,7 @@ _BOILERPLATE_SECTIONS = [
 # Expected-flag computation (mirrors rules_v1.yaml)
 # ---------------------------------------------------------------------------
 
+
 def _compute_expected_flags(label: GoldLabel) -> List[str]:
     """Derive the list of expected rule-engine flag IDs from gold-label values.
 
@@ -617,6 +670,7 @@ def _compute_expected_flags(label: GoldLabel) -> List[str]:
 # ---------------------------------------------------------------------------
 # Generator
 # ---------------------------------------------------------------------------
+
 
 @dataclass
 class SyntheticSheet:
@@ -692,7 +746,9 @@ class SyntheticGenerator:
         )
 
     def _render_board(self, series: str, label: GoldLabel) -> str:
-        total = label.board_investor_seats + label.board_founder_seats + label.board_independent_seats
+        total = (
+            label.board_investor_seats + label.board_founder_seats + label.board_independent_seats
+        )
         ind_text = ""
         if label.board_independent_seats > 0:
             ind_text = (
@@ -859,24 +915,24 @@ class SyntheticGenerator:
 
         # Header
         header = textwrap.dedent(f"""\
-            {'=' * 72}
+            {"=" * 72}
             TERM SHEET
             FOR {series.upper()} PREFERRED STOCK FINANCING OF
             {company.upper()}, INC.
 
-            Date: {self.rng.randint(1, 28)} {self.rng.choice(['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'])} {self.rng.randint(2022, 2026)}
+            Date: {self.rng.randint(1, 28)} {self.rng.choice(["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"])} {self.rng.randint(2022, 2026)}
 
             Issuer:           {company}, Inc. (the "Company")
             Investors:        {investor} (the "Lead Investor")
             Series:           {series} Preferred Stock
             Pre-Money Valuation:  ${pre_money:,.1f} million
             Amount of Financing:  ${raise_amt:,.1f} million
-            {'=' * 72}
+            {"=" * 72}
 
             This term sheet summarizes the principal terms of the proposed financing.
             Except for the binding provisions set forth below, this term sheet is
             non-binding and is intended solely as a basis for further discussion.
-            {'─' * 72}
+            {"─" * 72}
         """)
         sections.append(header)
 
@@ -987,14 +1043,16 @@ class SyntheticGenerator:
                 encoding="utf-8",
             )
 
-            manifest_entries.append({
-                "doc_id": sheet.doc_id,
-                "filename": sheet.filename,
-                "gold_label_file": gold_path.name,
-                "is_adversarial": sheet.gold_label.is_adversarial,
-                "expected_flag_count": len(sheet.gold_label.expected_flags),
-                "expected_flags": sheet.gold_label.expected_flags,
-            })
+            manifest_entries.append(
+                {
+                    "doc_id": sheet.doc_id,
+                    "filename": sheet.filename,
+                    "gold_label_file": gold_path.name,
+                    "is_adversarial": sheet.gold_label.is_adversarial,
+                    "expected_flag_count": len(sheet.gold_label.expected_flags),
+                    "expected_flags": sheet.gold_label.expected_flags,
+                }
+            )
 
             logger.debug("Wrote %s + %s", txt_path.name, gold_path.name)
 
