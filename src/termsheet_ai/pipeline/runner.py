@@ -4,6 +4,8 @@ Orchestrates stages S1 through S5 while supporting modular dependency injection
 of custom components as they are completed throughout the 6-week timeline.
 """
 
+from __future__ import annotations
+
 import uuid
 from pathlib import Path
 from typing import List, Optional, Union
@@ -44,7 +46,6 @@ class MockIngestor(BaseIngestor):
         path = Path(file_path)
         doc_id = str(uuid.uuid5(uuid.NAMESPACE_DNS, str(path.resolve())))
 
-        # Simple suffix detection
         ext = path.suffix.lower().replace(".", "")
         try:
             doc_type = DocumentType(ext)
@@ -276,12 +277,51 @@ class TermSheetPipeline:
         extractor: Optional[BaseExtractor] = None,
         reasoner: Optional[BaseReasoner] = None,
         explainer: Optional[BaseExplainer] = None,
+        use_mock_fallbacks: bool = False,
     ):
-        self.ingestor = ingestor or MockIngestor()
-        self.classifier = classifier or MockClassifier()
-        self.extractor = extractor or MockExtractor()
-        self.reasoner = reasoner or MockReasoner()
-        self.explainer = explainer or MockExplainer()
+        if use_mock_fallbacks:
+            self.ingestor = ingestor or MockIngestor()
+            self.classifier = classifier or MockClassifier()
+            self.extractor = extractor or MockExtractor()
+            self.reasoner = reasoner or MockReasoner()
+            self.explainer = explainer or MockExplainer()
+        else:
+            if ingestor is None:
+                from termsheet_ai.ingest.ingestor import Ingestor
+
+                ingestor = Ingestor()
+            if classifier is None:
+                from termsheet_ai.classify.tfidf import TfidfBaselineClassifier
+
+                classifier = TfidfBaselineClassifier()
+            if extractor is None:
+                from termsheet_ai.extraction.extractor import FactExtractor
+
+                extractor = FactExtractor()
+            if reasoner is None:
+                from termsheet_ai.reasoning.engine import ForwardChainingEngine
+
+                reasoner = ForwardChainingEngine()
+            if explainer is None:
+                from termsheet_ai.explain.explainer import PlainEnglishExplainer
+
+                explainer = PlainEnglishExplainer()
+
+            self.ingestor = ingestor
+            self.classifier = classifier
+            self.extractor = extractor
+            self.reasoner = reasoner
+            self.explainer = explainer
+
+    @classmethod
+    def create_mock(cls) -> "TermSheetPipeline":
+        """Factory for lightweight mock pipeline."""
+        return cls(use_mock_fallbacks=True)
+
+    @classmethod
+    def create_production(cls) -> "TermSheetPipeline":
+        """Factory for full production pipeline."""
+        return cls(use_mock_fallbacks=False)
 
     def run(self, file_path: Union[str, Path]) -> PipelinePayload:
         """Executes full S1-S5 pipeline on the input document."""
@@ -315,6 +355,8 @@ class TermSheetPipeline:
         summaries = []
         if audit_trace:
             try:
+                if hasattr(self.explainer, "facts"):
+                    self.explainer.facts = facts
                 summaries = self.explainer.explain(clauses, audit_trace)
             except Exception as e:
                 errors.append(f"S5 Summary Error: {str(e)}")
