@@ -92,3 +92,39 @@
 ---
 
 *Last updated: 2026-10-24 by M3*
+
+
+## Week 3 (25–31 Oct 2026)
+
+### Completed
+
+#### M3 — Deep Learning: Embeddings & Search
+- [x] **Pipeline Verification & SBERT Production Default** — [`src/termsheet_ai/pipeline/runner.py`](../src/termsheet_ai/pipeline/runner.py)
+  - Updated production pipeline (`TermSheetPipeline.create_production` and default constructor) to cleanly default Stage S2 to `SbertClassifier(mode="hybrid")`.
+  - Verified contract compatibility with S1 `Ingestor` output and S3 `FactExtractor` input across all 13 clause families.
+- [x] **Stage S5 Retrieval Pairing for Market Phrasing** — [`src/termsheet_ai/explain/explainer.py`](../src/termsheet_ai/explain/explainer.py)
+  - Connected `retrieve_nearest_exemplars()` from Stage S2 SBERT ChromaDB index into `PlainEnglishExplainer`.
+  - Enabled plain-English summaries to cite standard market phrasing directly from NVCA/YC exemplars.
+  - Hardened `NumberConsistencyChecker` integration by passing exemplar citation numbers via `allowed_extras` to preserve zero-hallucination guarantees.
+  - Added unit test `test_explainer_with_sbert_retriever_cites_market_exemplar` in [`tests/test_consistency.py`](../tests/test_consistency.py).
+- [x] **Synthetic Corpus Benchmark v0** — [`scripts/benchmark_synthetic.py`](../scripts/benchmark_synthetic.py)
+  - Benchmarked out-of-fold generalization across all 30 synthetic term sheets in `corpus/synthetic/` (15 standard with 221 clauses, 15 adversarial with 202 clauses; 423 total clauses).
+  - Evaluated SBERT Hybrid vs. TF-IDF Baseline across overall, standard, and adversarial subsets:
+    - Overall SBERT Accuracy: **71.63%**, Weighted F1: **0.7457**, Macro Precision: **0.7996**, Macro Recall: **0.8515**.
+    - Standard Documents: Accuracy **73.76%**, Weighted F1: **0.7643**.
+    - Adversarial Documents: Accuracy **69.31%**, Weighted F1: **0.7254**.
+  - Verified adversarial clause robustness:
+    - 3x+ / Participating Liquidation: **100.0%** (9/9)
+    - Full-Ratchet Anti-Dilution: **100.0%** (9/9)
+    - Hostile Founder Vesting: **100.0%** (3/3)
+    - Investor-Controlled Board: **66.7%** (2/3)
+    - Total Adversarial Clauses Correct: **23/24 (95.8%)**
+
+### Planned
+- **M3**: Tune SBERT similarity and OOD thresholds based on synthetic benchmark error analysis; support gold annotation evaluation across the 50-document corpus.
+- **M4**: Complete LLM attribute extraction benchmarking and prompt caching for S3.
+- **M7**: Complete full Streamlit UI integration with trace visualizer.
+
+---
+
+*Last updated: 2026-10-31 by M3*

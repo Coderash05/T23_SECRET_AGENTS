@@ -1,8 +1,12 @@
-"""Tests for the S5 Number Consistency Checker."""
+"""Tests for the S5 Number Consistency Checker and PlainEnglishExplainer."""
 
 from termsheet_ai.explain.consistency import NumberConsistencyChecker
+from termsheet_ai.explain.explainer import PlainEnglishExplainer
 from termsheet_ai.schemas.contracts import (
+    AuditTrace,
+    ClauseFamily,
     ClauseSpan,
+    DocumentRiskScore,
     ExtractedFacts,
     LiquidationPreferenceFact,
     ParticipationType,
@@ -69,3 +73,36 @@ def test_hallucinated_number_fails():
 
     assert verified is False
     assert 3.5 in unverified
+
+
+def test_explainer_with_sbert_retriever_cites_market_exemplar():
+    class MockRetriever:
+        def retrieve_nearest_exemplars(self, clause, top_k=1):
+            return [
+                {
+                    "text": "1.0x non-participating preferred is standard.",
+                    "family": ClauseFamily.LIQUIDATION_PREFERENCE,
+                    "source": "NVCA Model Term Sheet §3",
+                    "cosine_similarity": 0.88,
+                }
+            ]
+
+    clause = ClauseSpan(
+        clause_id="c_1",
+        raw_text="The Series A Preferred shall have a 1.0x non-participating liquidation preference.",
+        page_number=1,
+        detected_family=ClauseFamily.LIQUIDATION_PREFERENCE,
+    )
+    trace = AuditTrace(
+        doc_id="doc_1",
+        risk_score=DocumentRiskScore(overall_score=0.0),
+        flags=[],
+        rule_traces=[],
+    )
+
+    explainer = PlainEnglishExplainer(retriever=MockRetriever())
+    summaries = explainer.explain([clause], trace)
+
+    assert len(summaries) == 1
+    assert "NVCA Model Term Sheet §3" in summaries[0].summary_text
+    assert summaries[0].numbers_verified is True
