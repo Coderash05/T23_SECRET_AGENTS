@@ -14,7 +14,6 @@ from __future__ import annotations
 
 import json
 import logging
-import os
 import re
 from typing import Any, Callable, Dict, List, Optional
 
@@ -211,7 +210,10 @@ class FactExtractor(BaseExtractor):
         for clause in clauses:
             family = clause.detected_family
 
-            if family == ClauseFamily.LIQUIDATION_PREFERENCE and facts.liquidation_preference is None:
+            if (
+                family == ClauseFamily.LIQUIDATION_PREFERENCE
+                and facts.liquidation_preference is None
+            ):
                 fact = self._extract_liquidation_preference(clause)
                 if fact is not None:
                     facts.liquidation_preference = fact
@@ -231,14 +233,18 @@ class FactExtractor(BaseExtractor):
                 if fact is not None:
                     facts.founder_vesting = fact
 
-            elif family == ClauseFamily.PROTECTIVE_PROVISIONS and facts.protective_provisions is None:
+            elif (
+                family == ClauseFamily.PROTECTIVE_PROVISIONS and facts.protective_provisions is None
+            ):
                 fact = self._extract_protective_provisions(clause)
                 if fact is not None:
                     facts.protective_provisions = fact
 
         return facts
 
-    def _ground_and_create_span(self, clause: ClauseSpan, quote: Optional[str]) -> tuple[SourceSpan, bool]:
+    def _ground_and_create_span(
+        self, clause: ClauseSpan, quote: Optional[str]
+    ) -> tuple[SourceSpan, bool]:
         """Validate candidate quote and return (SourceSpan, is_grounded).
 
         If the quote is missing or cannot be grounded verbatim in clause.raw_text,
@@ -246,7 +252,7 @@ class FactExtractor(BaseExtractor):
         """
         if not quote or not quote.strip():
             span = SourceSpan(
-                text=clause.raw_text[:min(60, len(clause.raw_text))],
+                text=clause.raw_text[: min(60, len(clause.raw_text))],
                 page_number=clause.page_number,
             )
             return span, False
@@ -259,7 +265,9 @@ class FactExtractor(BaseExtractor):
 
         return candidate_span, False
 
-    def _extract_liquidation_preference(self, clause: ClauseSpan) -> Optional[LiquidationPreferenceFact]:
+    def _extract_liquidation_preference(
+        self, clause: ClauseSpan
+    ) -> Optional[LiquidationPreferenceFact]:
         data = None
         mode = "none"
 
@@ -302,7 +310,9 @@ class FactExtractor(BaseExtractor):
         if is_grounded and not _quote_contains_numeric(span.text, multiple_val):
             is_grounded = False
 
-        part_raw = str(data.get("participation", "unknown")).lower().replace(" ", "_").replace("-", "_")
+        part_raw = (
+            str(data.get("participation", "unknown")).lower().replace(" ", "_").replace("-", "_")
+        )
         try:
             part = ParticipationType(part_raw)
         except ValueError:
@@ -332,7 +342,9 @@ class FactExtractor(BaseExtractor):
         mode = "none"
 
         if self.llm_callable:
-            prompt = EXTRACTION_PROMPTS[ClauseFamily.ANTI_DILUTION].format(clause_text=clause.raw_text)
+            prompt = EXTRACTION_PROMPTS[ClauseFamily.ANTI_DILUTION].format(
+                clause_text=clause.raw_text
+            )
             try:
                 raw_resp = self.llm_callable(prompt)
                 data = _extract_json_block(raw_resp)
@@ -353,7 +365,12 @@ class FactExtractor(BaseExtractor):
         quote = data.get("quote")
         span, is_grounded = self._ground_and_create_span(clause, quote)
 
-        ad_raw = str(data.get("anti_dilution_type", "unknown")).lower().replace(" ", "_").replace("-", "_")
+        ad_raw = (
+            str(data.get("anti_dilution_type", "unknown"))
+            .lower()
+            .replace(" ", "_")
+            .replace("-", "_")
+        )
         try:
             ad_type = AntiDilutionType(ad_raw)
         except ValueError:
@@ -435,7 +452,9 @@ class FactExtractor(BaseExtractor):
         mode = "none"
 
         if self.llm_callable:
-            prompt = EXTRACTION_PROMPTS[ClauseFamily.FOUNDER_VESTING].format(clause_text=clause.raw_text)
+            prompt = EXTRACTION_PROMPTS[ClauseFamily.FOUNDER_VESTING].format(
+                clause_text=clause.raw_text
+            )
             try:
                 raw_resp = self.llm_callable(prompt)
                 data = _extract_json_block(raw_resp)
@@ -486,7 +505,9 @@ class FactExtractor(BaseExtractor):
             is_grounded=is_grounded,
         )
 
-    def _extract_protective_provisions(self, clause: ClauseSpan) -> Optional[ProtectiveProvisionsFact]:
+    def _extract_protective_provisions(
+        self, clause: ClauseSpan
+    ) -> Optional[ProtectiveProvisionsFact]:
         data = None
         mode = "none"
 
@@ -584,7 +605,7 @@ class FactExtractor(BaseExtractor):
         else:
             ad_type = "unknown"
             quote_match = re.search(r"anti[- ]dilution", text, re.IGNORECASE)
-            quote = quote_match.group(0) if quote_match else text[:min(30, len(text))]
+            quote = quote_match.group(0) if quote_match else text[: min(30, len(text))]
 
         return {
             "anti_dilution_type": ad_type,
@@ -598,7 +619,9 @@ class FactExtractor(BaseExtractor):
 
         tot_match = re.search(r"(\d+)\s*(?:member|director|total|seats)", lower)
         f_match = re.search(r"(\d+)\s*(?:seat|member|director)?[^,\.]*?(?:founder|common)", lower)
-        i_match = re.search(r"(\d+)\s*(?:seat|member|director)?[^,\.]*?(?:investor|preferred|series)", lower)
+        i_match = re.search(
+            r"(\d+)\s*(?:seat|member|director)?[^,\.]*?(?:investor|preferred|series)", lower
+        )
 
         # Do not fabricate board seats if no numbers exist
         if not tot_match and not f_match and not i_match:
@@ -625,7 +648,7 @@ class FactExtractor(BaseExtractor):
             "investor_seats": i_seats,
             "independent_seats": ind_seats,
             "total_seats": tot_seats,
-            "quote": quote or text[:min(50, len(text))],
+            "quote": quote or text[: min(50, len(text))],
         }
 
     def _fallback_extract_vesting(self, text: str) -> Optional[Dict[str, Any]]:
@@ -650,7 +673,7 @@ class FactExtractor(BaseExtractor):
             accel = "single_trigger"
 
         quote_match = re.search(r"(\d+[- ]year vesting|\d+[- ]month cliff)", text, re.IGNORECASE)
-        quote = quote_match.group(0) if quote_match else text[:min(50, len(text))]
+        quote = quote_match.group(0) if quote_match else text[: min(50, len(text))]
 
         return {
             "total_vesting_years": years,
@@ -661,7 +684,12 @@ class FactExtractor(BaseExtractor):
 
     def _fallback_extract_protective(self, text: str) -> Optional[Dict[str, Any]]:
         lower = text.lower()
-        if "protective" not in lower and "veto" not in lower and "consent" not in lower and "negative covenants" not in lower:
+        if (
+            "protective" not in lower
+            and "veto" not in lower
+            and "consent" not in lower
+            and "negative covenants" not in lower
+        ):
             return None
 
         requires_majority = "majority" in lower or "consent" in lower or "approval" in lower
@@ -671,8 +699,10 @@ class FactExtractor(BaseExtractor):
         if "shares" in lower or "class" in lower or "equity" in lower:
             actions.append("authorization_of_senior_shares")
 
-        quote_match = re.search(r"(?:require\w*\s+(?:the\s+)?(?:vote|consent|approval))", text, re.IGNORECASE)
-        quote = quote_match.group(0) if quote_match else text[:min(50, len(text))]
+        quote_match = re.search(
+            r"(?:require\w*\s+(?:the\s+)?(?:vote|consent|approval))", text, re.IGNORECASE
+        )
+        quote = quote_match.group(0) if quote_match else text[: min(50, len(text))]
 
         return {
             "requires_series_majority": requires_majority,

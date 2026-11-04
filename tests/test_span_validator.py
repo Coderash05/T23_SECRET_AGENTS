@@ -4,7 +4,6 @@ import pytest
 from pydantic import ValidationError
 
 from termsheet_ai.extract.span_validator import (
-    SpanValidationResult,
     validate_source_span,
 )
 from termsheet_ai.schemas.contracts import ClauseSpan, SourceSpan
@@ -218,12 +217,16 @@ def test_hallucinated_text_rejected(sample_clause: ClauseSpan):
 
 def test_partial_offsets_rejected(sample_clause: ClauseSpan):
     """Test when only start_char or only end_char is provided."""
-    span1 = SourceSpan(text="2.0x liquidation preference", start_char=10, end_char=None, page_number=2)
+    span1 = SourceSpan(
+        text="2.0x liquidation preference", start_char=10, end_char=None, page_number=2
+    )
     res1 = validate_source_span(sample_clause, span1)
     assert res1.is_valid is False
     assert "incomplete offsets" in res1.error_message.lower()
 
-    span2 = SourceSpan(text="2.0x liquidation preference", start_char=None, end_char=20, page_number=2)
+    span2 = SourceSpan(
+        text="2.0x liquidation preference", start_char=None, end_char=20, page_number=2
+    )
     res2 = validate_source_span(sample_clause, span2)
     assert res2.is_valid is False
     assert "incomplete offsets" in res2.error_message.lower()
@@ -304,71 +307,3 @@ def test_page_number_mismatch_rejected():
     result = validate_source_span(clause, span)
     assert result.is_valid is False
     assert "page number mismatch" in result.error_message.lower()
-
-def test_partial_word_match_prevented():
-    """Ensure partial words like 'part' do not match 'participating' during normalized matching."""
-    clause = ClauseSpan(
-        clause_id="c_30",
-        raw_text="Holders are participating in proceeds.",
-        page_number=1,
-    )
-    span = SourceSpan(text="part in proceeds")
-    result = validate_source_span(clause, span, allow_whitespace_normalization=True)
-    assert result.is_valid is False
-    assert "not found in clause" in result.error_message.lower()
-
-
-def test_punctuation_preserved_in_normalized_matching():
-    """Punctuation must be preserved: '1.0x, non-participating' must not match '1.0x non-participating'."""
-    clause = ClauseSpan(
-        clause_id="c_31",
-        raw_text="The shares are 1.0x, non-participating preferred.",
-        page_number=1,
-    )
-    # Span is missing the comma
-    span = SourceSpan(text="1.0x non-participating")
-    result = validate_source_span(clause, span, allow_whitespace_normalization=True)
-    assert result.is_valid is False
-    assert "not found in clause" in result.error_message.lower()
-
-
-def test_ambiguous_normalized_matches_rejected():
-    """If normalized match occurs multiple times without explicit offsets, it must be rejected."""
-    clause = ClauseSpan(
-        clause_id="c_32",
-        raw_text="Item A: 4-year   vesting. Item B: 4-year\n\nvesting.",
-        page_number=1,
-    )
-    span = SourceSpan(text="4-year vesting")
-    result = validate_source_span(clause, span, allow_whitespace_normalization=True)
-    assert result.is_valid is False
-    assert result.match_count == 2
-    assert "ambiguous match" in result.error_message.lower()
-
-
-def test_page_number_consistency_inherits_when_none():
-    """When span page_number is None, it inherits clause page_number."""
-    clause = ClauseSpan(
-        clause_id="c_33",
-        raw_text="Clause text on page 3.",
-        page_number=3,
-    )
-    span = SourceSpan(text="Clause text", page_number=None)
-    result = validate_source_span(clause, span)
-    assert result.is_valid is True
-    assert result.resolved_span.page_number == 3
-
-
-def test_page_number_mismatch_rejected():
-    """When span page_number conflicts with clause page_number, it is rejected."""
-    clause = ClauseSpan(
-        clause_id="c_34",
-        raw_text="Clause text on page 3.",
-        page_number=3,
-    )
-    # Span explicitly claims it is on page 1
-    span = SourceSpan(text="Clause text", page_number=1)
-    result = validate_source_span(clause, span)
-    assert result.is_valid is False
-    assert "page number mismatch" in result.error_message.lower()
-

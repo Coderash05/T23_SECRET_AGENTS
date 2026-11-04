@@ -5,7 +5,6 @@ from __future__ import annotations
 import json
 import os
 import socket
-from unittest.mock import MagicMock
 
 import pytest
 from dotenv import load_dotenv
@@ -87,13 +86,15 @@ def test_gemini_mocked_liquidation_preference():
 
     def gemini_mock(prompt: str) -> str:
         assert "liquidation" in prompt.lower()
-        return json.dumps({
-            "multiple": 1.5,
-            "participation": "capped_participating",
-            "cap_multiple": 3.0,
-            "seniority": "pari_passu",
-            "quote": "1.5x preference, participating with a 3.0x cap",
-        })
+        return json.dumps(
+            {
+                "multiple": 1.5,
+                "participation": "capped_participating",
+                "cap_multiple": 3.0,
+                "seniority": "pari_passu",
+                "quote": "1.5x preference, participating with a 3.0x cap",
+            }
+        )
 
     extractor = FactExtractor(llm_callable=gemini_mock)
     facts = extractor.extract(doc_id="test_doc", clauses=[clause])
@@ -119,10 +120,12 @@ def test_gemini_mocked_anti_dilution():
 
     def gemini_mock(prompt: str) -> str:
         assert "anti-dilution" in prompt.lower() or "anti_dilution" in prompt.lower()
-        return json.dumps({
-            "anti_dilution_type": "broad_based_weighted_average",
-            "quote": "broad-based weighted average anti-dilution",
-        })
+        return json.dumps(
+            {
+                "anti_dilution_type": "broad_based_weighted_average",
+                "quote": "broad-based weighted average anti-dilution",
+            }
+        )
 
     extractor = FactExtractor(llm_callable=gemini_mock)
     facts = extractor.extract(doc_id="test_doc", clauses=[clause])
@@ -144,13 +147,15 @@ def test_gemini_mocked_board_composition():
     )
 
     def gemini_mock(prompt: str) -> str:
-        return json.dumps({
-            "founder_seats": 2,
-            "investor_seats": 2,
-            "independent_seats": 1,
-            "total_seats": 5,
-            "quote": "2 Founder directors, 2 Preferred directors, and 1 Independent director",
-        })
+        return json.dumps(
+            {
+                "founder_seats": 2,
+                "investor_seats": 2,
+                "independent_seats": 1,
+                "total_seats": 5,
+                "quote": "2 Founder directors, 2 Preferred directors, and 1 Independent director",
+            }
+        )
 
     extractor = FactExtractor(llm_callable=gemini_mock)
     facts = extractor.extract(doc_id="test_doc", clauses=[clause])
@@ -176,12 +181,14 @@ def test_gemini_mocked_founder_vesting():
     )
 
     def gemini_mock(prompt: str) -> str:
-        return json.dumps({
-            "total_vesting_years": 4.0,
-            "cliff_months": 12,
-            "acceleration_type": "single_trigger",
-            "quote": "vest over 4 years with a 12-month cliff",
-        })
+        return json.dumps(
+            {
+                "total_vesting_years": 4.0,
+                "cliff_months": 12,
+                "acceleration_type": "single_trigger",
+                "quote": "vest over 4 years with a 12-month cliff",
+            }
+        )
 
     extractor = FactExtractor(llm_callable=gemini_mock)
     facts = extractor.extract(doc_id="test_doc", clauses=[clause])
@@ -205,11 +212,13 @@ def test_gemini_mocked_protective_provisions():
     )
 
     def gemini_mock(prompt: str) -> str:
-        return json.dumps({
-            "requires_series_majority": True,
-            "covered_actions": ["amend_charter", "create_senior_shares"],
-            "quote": "Company shall not without Series A consent",
-        })
+        return json.dumps(
+            {
+                "requires_series_majority": True,
+                "covered_actions": ["amend_charter", "create_senior_shares"],
+                "quote": "Company shall not without Series A consent",
+            }
+        )
 
     extractor = FactExtractor(llm_callable=gemini_mock)
     facts = extractor.extract(doc_id="test_doc", clauses=[clause])
@@ -238,11 +247,13 @@ def test_extractor_hallucinated_quote_marked_ungrounded():
     )
 
     def hallucinating_llm(prompt: str) -> str:
-        return json.dumps({
-            "multiple": 3.0,
-            "participation": "fully_participating",
-            "quote": "3.0x super-priority participation with guaranteed return",  # Absent from text
-        })
+        return json.dumps(
+            {
+                "multiple": 3.0,
+                "participation": "fully_participating",
+                "quote": "3.0x super-priority participation with guaranteed return",  # Absent from text
+            }
+        )
 
     extractor = FactExtractor(llm_callable=hallucinating_llm)
     facts = extractor.extract(doc_id="test_doc", clauses=[clause])
@@ -262,11 +273,13 @@ def test_extractor_contradictory_number_in_quote_marked_ungrounded():
     )
 
     def contradictory_num_llm(prompt: str) -> str:
-        return json.dumps({
-            "multiple": 2.0,  # Contradicts the text
-            "participation": "non_participating",
-            "quote": "1.0x liquidation preference",  # Exists verbatim
-        })
+        return json.dumps(
+            {
+                "multiple": 2.0,  # Contradicts the text
+                "participation": "non_participating",
+                "quote": "1.0x liquidation preference",  # Exists verbatim
+            }
+        )
 
     extractor = FactExtractor(llm_callable=contradictory_num_llm)
     facts = extractor.extract(doc_id="test_doc", clauses=[clause])
@@ -325,12 +338,14 @@ def test_extractor_missing_info_llm_returns_null_never_fabricated():
     )
 
     def null_llm(prompt: str) -> str:
-        return json.dumps({
-            "total_vesting_years": None,
-            "cliff_months": None,
-            "acceleration_type": "none",
-            "quote": "",
-        })
+        return json.dumps(
+            {
+                "total_vesting_years": None,
+                "cliff_months": None,
+                "acceleration_type": "none",
+                "quote": "",
+            }
+        )
 
     extractor = FactExtractor(llm_callable=null_llm)
     facts = extractor.extract(doc_id="test_doc", clauses=[clause])
@@ -422,7 +437,9 @@ class TestFactExtractorLiveIntegration:
         facts = extractor.extract(doc_id="live_doc", clauses=[clause])
 
         assert facts.anti_dilution is not None
-        assert facts.anti_dilution.anti_dilution_type == AntiDilutionType.BROAD_BASED_WEIGHTED_AVERAGE
+        assert (
+            facts.anti_dilution.anti_dilution_type == AntiDilutionType.BROAD_BASED_WEIGHTED_AVERAGE
+        )
         assert facts.anti_dilution.is_grounded is True
         assert extractor.extraction_modes.get("live_ad_1") == "llm"
 

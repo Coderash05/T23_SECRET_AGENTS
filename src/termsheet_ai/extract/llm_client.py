@@ -118,9 +118,7 @@ def make_gemini_callable(
             key = os.getenv("GEMINI_API_KEY") or ""
 
         if not key:
-            raise EnvironmentError(
-                "GEMINI_API_KEY is not set. Add it to your .env file."
-            )
+            raise EnvironmentError("GEMINI_API_KEY is not set. Add it to your .env file.")
 
         url = f"{_API_BASE}/{resolved_model}:generateContent"
         payload = {

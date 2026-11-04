@@ -184,9 +184,7 @@ def validate_source_span(
 
         # Exact match at given offsets
         if actual_slice == span_text:
-            resolved = span.model_copy(
-                update={"page_number": target_page}
-            )
+            resolved = span.model_copy(update={"page_number": target_page})
             return SpanValidationResult(
                 is_valid=True,
                 resolved_span=resolved,

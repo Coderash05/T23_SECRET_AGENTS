@@ -13,7 +13,6 @@ from __future__ import annotations
 import json
 import os
 import socket
-from pathlib import Path
 from unittest.mock import MagicMock, patch
 
 import pytest
@@ -56,13 +55,11 @@ from termsheet_ai.extract.llm_cache import (  # noqa: E402
     make_cached_callable,
 )
 from termsheet_ai.extract.llm_client import (  # noqa: E402
-    GeminiAPIError,
     GeminiAuthenticationError,
     GeminiModelNotFoundError,
     GeminiQuotaError,
     make_gemini_callable,
 )
-
 
 # ===========================================================================
 # 1. Offline Unit Tests for Gemini Client (No Network Required)
@@ -188,9 +185,7 @@ class TestMakeGeminiCallableUnit:
         mock_response = MagicMock(spec=httpx.Response)
         mock_response.raise_for_status.return_value = None
         mock_response.json.return_value = {
-            "candidates": [
-                {"content": {"parts": [{"text": expected_text}]}}
-            ]
+            "candidates": [{"content": {"parts": [{"text": expected_text}]}}]
         }
 
         with patch("httpx.post", return_value=mock_response):
