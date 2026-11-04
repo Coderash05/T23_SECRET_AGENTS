@@ -1,0 +1,94 @@
+========================================================================
+TERM SHEET
+FOR SERIES A-1 PREFERRED STOCK FINANCING OF
+NEXUS ANALYTICS, INC.
+
+Date: 13 November 2026
+
+Issuer:           Nexus Analytics, Inc. (the "Company")
+Investors:        Accel Partners (the "Lead Investor")
+Series:           Series A-1 Preferred Stock
+Pre-Money Valuation:  $20.0 million
+Amount of Financing:  $7.5 million
+========================================================================
+
+This term sheet summarizes the principal terms of the proposed financing.
+Except for the binding provisions set forth below, this term sheet is
+non-binding and is intended solely as a basis for further discussion.
+────────────────────────────────────────────────────────────────────────
+
+
+────────────────────────────────────────────────────────────────────────
+
+Liquidation Preference
+In the event of any liquidation, dissolution, or winding up of the Company, the holders of Series Series A-1 Preferred Stock shall be entitled to receive, prior and in preference to any distribution to the holders of Common Stock, an amount per share equal to 4.0x the Original Purchase Price (the "Liquidation Preference"). Full participation: following payment of the Liquidation Preference, holders of Series A-1 Preferred shall share in remaining proceeds alongside Common holders.
+
+────────────────────────────────────────────────────────────────────────
+
+Anti-Dilution Provisions
+The Conversion Price of the Series A-1 Preferred Stock shall be subject to broad-based weighted average anti-dilution adjustment in the event that the Company issues additional equity securities at a purchase price less than the then-effective Conversion Price.
+
+────────────────────────────────────────────────────────────────────────
+
+BOARD COMPOSITION
+The Company's Board shall be composed of 5 directors: 4 appointed by the Investors, 1 appointed by the Founders.
+
+────────────────────────────────────────────────────────────────────────
+
+Section – Founder Share Vesting
+48 months total vesting schedule. Cliff: 18 months. Monthly vesting thereafter. No acceleration of vesting upon Change of Control.
+
+────────────────────────────────────────────────────────────────────────
+
+DIVIDEND RIGHTS
+The Series A-1 Preferred shall accrue cumulative dividends at 8% of the Original Issue Price, payable when and if declared by the Board.
+
+────────────────────────────────────────────────────────────────────────
+
+Protective Provisions
+So long as any shares of Series A-1 Preferred Stock are outstanding, the Company shall not, without the prior written consent of the holders of at least a majority of the Series A-1 Preferred Stock: (i) alter or change the rights of the Preferred Stock; (ii) increase or decrease the authorized number of shares; (iii) create any new class or series of shares having rights senior to or on parity with the Preferred Stock; (iv) declare or pay any dividend on Common Stock; (v) approve any merger, sale of substantially all assets, or other liquidation event; or (vi) increase the size of the Board of Directors.
+
+────────────────────────────────────────────────────────────────────────
+
+Option Pool
+Prior to the closing of the financing, the Company shall reserve 35% of its post-money fully-diluted capitalization for issuance to directors, officers, employees, and consultants under the Company's equity incentive plan.
+
+────────────────────────────────────────────────────────────────────────
+
+INFORMATION AND INSPECTION RIGHTS
+Major Investors shall receive annual audited financials, quarterly unaudited financials, monthly management reports, and an annual operating budget.
+
+────────────────────────────────────────────────────────────────────────
+
+ROFR AND CO-SALE AGREEMENT
+Founders may not transfer shares without first offering them to the Company, then to the Investors. If the transfer proceeds, Investors have co-sale rights to participate on a pro-rata basis.
+
+────────────────────────────────────────────────────────────────────────
+
+CONVERSION
+The Series A-1 Preferred converts to Common Stock at a 1:1 ratio (as adjusted). Automatic conversion occurs upon a Qualified IPO or majority Preferred consent.
+
+────────────────────────────────────────────────────────────────────────
+
+DRAG-ALONG RIGHTS
+A Sale of the Company approved by 33% or more of the outstanding shares shall be binding on all shareholders.
+
+────────────────────────────────────────────────────────────────────────
+
+Section – Mandatory Redemption
+The Series A-1 Preferred Stock is redeemable at the option of the holders commencing 4 years from the Closing Date.
+
+────────────────────────────────────────────────────────────────────────
+
+Section – Exclusivity Period
+The Founders agree to an exclusivity period of 90 days during which no competing offers shall be sought or entertained.
+
+────────────────────────────────────────────────────────────────────────
+
+Conditions Precedent
+The closing of the financing shall be subject to customary conditions, including: completion of due diligence satisfactory to the Investors; execution of definitive agreements; delivery of legal opinions; and all requisite corporate approvals.
+
+────────────────────────────────────────────────────────────────────────
+
+Expenses
+The Company shall pay the reasonable legal fees and expenses of counsel to the Investors in connection with the financing, up to a maximum of $25,000.

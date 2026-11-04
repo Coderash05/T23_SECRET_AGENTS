@@ -1,8 +1,8 @@
 {
   "_meta": {
     "description": "Corpus manifest tracking all term-sheet documents used for training, evaluation, and rule-base calibration.",
-    "version": "0.1.0",
-    "last_updated": "2026-10-19"
+    "version": "0.2.0",
+    "last_updated": "2026-11-01"
   },
   "knowledge_sources": [
     {
@@ -13,9 +13,16 @@
       "licence": "Public / NVCA standard licence",
       "notes": "Primary source for US market norms. Includes deal-term frequency data in Enhanced version.",
       "clause_families_covered": [
-        "liquidation_preference", "anti_dilution", "board_composition",
-        "protective_provisions", "founder_vesting", "information_rights",
-        "rofr_co_sale", "drag_along", "option_pool", "conversion_rights",
+        "liquidation_preference",
+        "anti_dilution",
+        "board_composition",
+        "protective_provisions",
+        "founder_vesting",
+        "information_rights",
+        "rofr_co_sale",
+        "drag_along",
+        "option_pool",
+        "conversion_rights",
         "redemption_rights"
       ]
     },
@@ -53,7 +60,7 @@
     "documents": [
       {
         "id": "eval-001",
-        "filename": "",
+        "filename": "ts_001_nvca_model_term_sheet.docx",
         "source": "NVCA Model Term Sheet (verbatim)",
         "is_synthetic": false,
         "split": "dev",
@@ -71,6 +78,54 @@
         "split": "dev",
         "provenance": "Downloaded from ycombinator.com/documents",
         "licence": "YC open licence",
+        "annotator_a": null,
+        "annotator_b": null,
+        "annotation_status": "pending"
+      },
+      {
+        "id": "eval-003",
+        "filename": "ts_010_founder_institute_plain_preferred.doc",
+        "source": "Founder Institute / TheFunded Plain Preferred Term Sheet (WSGR)",
+        "is_synthetic": false,
+        "split": "dev",
+        "provenance": "https://fi.co/insight/new-plain-preferred-term-sheet",
+        "licence": "Free public template",
+        "annotator_a": null,
+        "annotator_b": null,
+        "annotation_status": "pending"
+      },
+      {
+        "id": "eval-004",
+        "filename": "ts_002_wsgr_venture_financing.docx",
+        "source": "WSGR Term Sheet Generator - Venture Financing Term Sheet (generated)",
+        "is_synthetic": false,
+        "split": "dev",
+        "provenance": "Generated at https://ecvc.wsgr.com/generators/term-sheet-generator",
+        "licence": "Free public tool",
+        "annotator_a": null,
+        "annotator_b": null,
+        "annotation_status": "pending"
+      },
+      {
+        "id": "eval-005",
+        "filename": "ts_003_series_seed_equity.txt",
+        "source": "Series Seed Equity Term Sheet (Fenwick & West open-source release, converted from .md)",
+        "is_synthetic": false,
+        "split": "test",
+        "provenance": "github.com/seriesseed/equity",
+        "licence": "CC0 open source",
+        "annotator_a": null,
+        "annotator_b": null,
+        "annotation_status": "pending"
+      },
+      {
+        "id": "eval-006",
+        "filename": "ts_004_gunderson_series_seed.pdf",
+        "source": "Gunderson Dettmer Series Seed Term Sheet",
+        "is_synthetic": false,
+        "split": "test",
+        "provenance": "https://carta.com/learn/resources/term-sheet-template/",
+        "licence": "Free public template",
         "annotator_a": null,
         "annotator_b": null,
         "annotation_status": "pending"

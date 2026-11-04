@@ -1,0 +1,104 @@
+========================================================================
+TERM SHEET
+FOR SERIES B PREFERRED STOCK FINANCING OF
+NIMBUS ANALYTICS, INC.
+
+Date: 18 March 2025
+
+Issuer:           Nimbus Analytics, Inc. (the "Company")
+Investors:        Insight Partners (the "Lead Investor")
+Series:           Series B Preferred Stock
+Pre-Money Valuation:  $30.0 million
+Amount of Financing:  $7.1 million
+========================================================================
+
+This term sheet summarizes the principal terms of the proposed financing.
+Except for the binding provisions set forth below, this term sheet is
+non-binding and is intended solely as a basis for further discussion.
+────────────────────────────────────────────────────────────────────────
+
+
+────────────────────────────────────────────────────────────────────────
+
+Section – Liquidation Preference
+The Series B Preferred Stock shall have a liquidation preference equal to 1.5x the Original Purchase Price per share. The Series B Preferred Stock shall be non-participating.Any remaining proceeds shall be distributed pro rata among holders of Common Stock.
+
+────────────────────────────────────────────────────────────────────────
+
+Section – Price-Based Anti-Dilution
+The Series B Preferred Stock will have broad-based weighted average anti-dilution protection.
+
+────────────────────────────────────────────────────────────────────────
+
+Section – Board of Directors
+The Board shall have 5 seats, allocated as follows: Investors shall designate 2 director(s), Founders shall designate 2 director(s), and 1 independent director(s) mutually agreed upon by the Common and Preferred holders.
+
+────────────────────────────────────────────────────────────────────────
+
+Founder Vesting
+All shares held by each Founder shall be subject to vesting over 4.0 years (48 months total), with a 12-month cliff. Shares shall vest monthly following the cliff on a pro-rata basis. Double-trigger acceleration: 100% of unvested shares shall accelerate upon a Change of Control followed by termination without Cause within 12 months.
+
+────────────────────────────────────────────────────────────────────────
+
+DIVIDEND RIGHTS
+The Series B Preferred shall accrue non-cumulative dividends at 8% of the Original Issue Price, payable when and if declared by the Board.
+
+────────────────────────────────────────────────────────────────────────
+
+PROTECTIVE PROVISIONS
+The consent of the majority of Series B Preferred holders shall be required for: amendments to the Charter affecting the Preferred Stock; issuance of equity securities senior to the Series B Preferred; any Liquidation Event or Change of Control; changes to the Board size; and declaration of dividends on Common Stock.
+
+────────────────────────────────────────────────────────────────────────
+
+EMPLOYEE OPTION POOL
+An option pool equal to 20% of the post-money fully-diluted shares shall be established prior to closing.
+
+────────────────────────────────────────────────────────────────────────
+
+INFORMATION AND INSPECTION RIGHTS
+Major Investors shall receive annual audited financials, quarterly unaudited financials, monthly management reports, and an annual operating budget.
+
+────────────────────────────────────────────────────────────────────────
+
+Right of First Refusal / Co-Sale
+The Company shall have a right of first refusal on any proposed transfer of shares by a Founder. If the Company does not exercise its right, the Investors holding Series B Preferred Stock shall have a secondary right of first refusal, followed by a co-sale right allowing participation in the transfer pro rata.
+
+────────────────────────────────────────────────────────────────────────
+
+CONVERSION
+The Series B Preferred converts to Common Stock at a 1:1 ratio (as adjusted). Automatic conversion occurs upon a Qualified IPO or majority Preferred consent.
+
+────────────────────────────────────────────────────────────────────────
+
+Section – Drag-Along
+Shareholders holding at least 90% of the shares may compel all remaining shareholders to participate in an approved Sale of the Company.
+
+────────────────────────────────────────────────────────────────────────
+
+REDEMPTION
+Beginning 7 years after closing, the holders of Series B Preferred may require the Company to redeem their shares at the Original Issue Price.
+
+────────────────────────────────────────────────────────────────────────
+
+Section – Exclusivity Period
+The Founders agree to an exclusivity period of 30 days during which no competing offers shall be sought or entertained.
+
+────────────────────────────────────────────────────────────────────────
+
+Conditions Precedent
+The closing of the financing shall be subject to customary conditions, including: completion of due diligence satisfactory to the Investors; execution of definitive agreements; delivery of legal opinions; and all requisite corporate approvals.
+
+────────────────────────────────────────────────────────────────────────
+
+Expenses
+The Company shall pay the reasonable legal fees and expenses of counsel to the Investors in connection with the financing, up to a maximum of $25,000.
+
+────────────────────────────────────────────────────────────────────────
+
+Confidentiality
+The existence and terms of this Term Sheet shall be treated as confidential information by all parties and shall not be disclosed to any third party without the prior written consent of the other party, except as required by law.
+
+────────────────────────────────────────────────────────────────────────
+
+Binding Provisions
+This Term Sheet is non-binding, except for the provisions relating to Confidentiality, Exclusivity, and Expenses, which shall be binding agreements of the parties.

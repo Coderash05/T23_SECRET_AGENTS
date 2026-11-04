@@ -1,0 +1,99 @@
+========================================================================
+TERM SHEET
+FOR SERIES A-1 PREFERRED STOCK FINANCING OF
+CORTEX ANALYTICS, INC.
+
+Date: 16 January 2026
+
+Issuer:           Cortex Analytics, Inc. (the "Company")
+Investors:        First Round Capital (the "Lead Investor")
+Series:           Series A-1 Preferred Stock
+Pre-Money Valuation:  $8.0 million
+Amount of Financing:  $3.1 million
+========================================================================
+
+This term sheet summarizes the principal terms of the proposed financing.
+Except for the binding provisions set forth below, this term sheet is
+non-binding and is intended solely as a basis for further discussion.
+────────────────────────────────────────────────────────────────────────
+
+
+────────────────────────────────────────────────────────────────────────
+
+LIQUIDATION PREFERENCE
+Upon any Liquidation Event, each holder of Series A-1 Preferred shall receive a per-share amount equal to 1.0 times the Original Issue Price, plus any declared but unpaid dividends. The Series A-1 Preferred shall participate with Common Stock up to a maximum return of 3.0 times the Original Issue Price, after which they receive no further distributions.
+
+────────────────────────────────────────────────────────────────────────
+
+Section – Price-Based Anti-Dilution
+The Series A-1 Preferred Stock will have narrow-based weighted average anti-dilution protection.
+
+────────────────────────────────────────────────────────────────────────
+
+Board of Directors
+The Board of Directors shall consist of 5 members: 2 seat(s) designated by the holders of Series A-1 Preferred Stock, 2 seat(s) designated by the holders of Common Stock, and 1 independent director(s) mutually agreed upon by the Common and Preferred holders.
+
+────────────────────────────────────────────────────────────────────────
+
+Section – Founder Share Vesting
+36 months total vesting schedule. Cliff: 0 months. Monthly vesting thereafter. Double-trigger acceleration: 100% of unvested shares shall accelerate upon a Change of Control followed by termination without Cause within 12 months.
+
+────────────────────────────────────────────────────────────────────────
+
+DIVIDEND RIGHTS
+The Series A-1 Preferred shall accrue non-cumulative dividends at 8% of the Original Issue Price, payable when and if declared by the Board.
+
+────────────────────────────────────────────────────────────────────────
+
+PROTECTIVE PROVISIONS
+The consent of the majority of Series A-1 Preferred holders shall be required for: amendments to the Charter affecting the Preferred Stock; issuance of equity securities senior to the Series A-1 Preferred; any Liquidation Event or Change of Control; changes to the Board size; and declaration of dividends on Common Stock.
+
+────────────────────────────────────────────────────────────────────────
+
+Section – Equity Incentive Pool
+The Company's Option Pool shall be set at 25% of the fully-diluted post-money capitalization, to be created prior to the Closing.
+
+────────────────────────────────────────────────────────────────────────
+
+INFORMATION AND INSPECTION RIGHTS
+Major Investors shall receive annual audited financials, quarterly unaudited financials, monthly management reports, and an annual operating budget.
+
+────────────────────────────────────────────────────────────────────────
+
+Right of First Refusal / Co-Sale
+The Company shall have a right of first refusal on any proposed transfer of shares by a Founder. If the Company does not exercise its right, the Investors holding Series A-1 Preferred Stock shall have a secondary right of first refusal, followed by a co-sale right allowing participation in the transfer pro rata.
+
+────────────────────────────────────────────────────────────────────────
+
+Conversion Rights
+Each share of Series A-1 Preferred Stock shall be convertible, at the option of the holder, into shares of Common Stock at the then-applicable Conversion Rate (initially 1:1, subject to anti-dilution adjustments). All Series A-1 Preferred Stock shall automatically convert into Common Stock upon (i) an IPO with aggregate proceeds of at least $50,000,000 or (ii) the consent of a majority of the Preferred holders.
+
+────────────────────────────────────────────────────────────────────────
+
+Drag-Along Agreement
+If holders of at least 67% of the outstanding shares approve a Sale of the Company, all other shareholders shall be required to vote in favor of such transaction and take all necessary actions to consummate it.
+
+────────────────────────────────────────────────────────────────────────
+
+Redemption Rights
+At any time after 10 years from the date of issuance, upon the request of the holders of at least a majority of the then-outstanding Series A-1 Preferred Stock, the Company shall redeem all outstanding shares at the Original Purchase Price plus any declared but unpaid dividends.
+
+────────────────────────────────────────────────────────────────────────
+
+NO-SHOP AGREEMENT
+For 60 days from execution of this term sheet, the Company and the Founders shall not directly or indirectly solicit, initiate, or encourage any competing financing proposal.
+
+────────────────────────────────────────────────────────────────────────
+
+Governing Law
+This Term Sheet shall be governed by and construed in accordance with the laws of the State of Delaware, without regard to its conflict of laws provisions.
+
+────────────────────────────────────────────────────────────────────────
+
+Confidentiality
+The existence and terms of this Term Sheet shall be treated as confidential information by all parties and shall not be disclosed to any third party without the prior written consent of the other party, except as required by law.
+
+────────────────────────────────────────────────────────────────────────
+
+Conditions Precedent
+The closing of the financing shall be subject to customary conditions, including: completion of due diligence satisfactory to the Investors; execution of definitive agreements; delivery of legal opinions; and all requisite corporate approvals.

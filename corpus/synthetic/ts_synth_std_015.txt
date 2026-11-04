@@ -1,0 +1,104 @@
+========================================================================
+TERM SHEET
+FOR SERIES A-1 PREFERRED STOCK FINANCING OF
+ZENITH ANALYTICS, INC.
+
+Date: 8 June 2022
+
+Issuer:           Zenith Analytics, Inc. (the "Company")
+Investors:        Andreessen Horowitz (the "Lead Investor")
+Series:           Series A-1 Preferred Stock
+Pre-Money Valuation:  $12.0 million
+Amount of Financing:  $3.7 million
+========================================================================
+
+This term sheet summarizes the principal terms of the proposed financing.
+Except for the binding provisions set forth below, this term sheet is
+non-binding and is intended solely as a basis for further discussion.
+────────────────────────────────────────────────────────────────────────
+
+
+────────────────────────────────────────────────────────────────────────
+
+LIQUIDATION PREFERENCE
+Upon any Liquidation Event, each holder of Series A-1 Preferred shall receive a per-share amount equal to 2.0 times the Original Issue Price, plus any declared but unpaid dividends. No participation rights beyond the initial Liquidation Preference amount.
+
+────────────────────────────────────────────────────────────────────────
+
+Section – Price-Based Anti-Dilution
+The Series A-1 Preferred Stock will have broad-based weighted average anti-dilution protection.
+
+────────────────────────────────────────────────────────────────────────
+
+Section – Board of Directors
+The Board shall have 5 seats, allocated as follows: Investors shall designate 2 director(s), Founders shall designate 2 director(s), and 1 independent director(s) mutually agreed upon by the Common and Preferred holders.
+
+────────────────────────────────────────────────────────────────────────
+
+Founder Vesting
+All shares held by each Founder shall be subject to vesting over 3.0 years (36 months total), with a 12-month cliff. Shares shall vest monthly following the cliff on a pro-rata basis. Acceleration shall be double-trigger, requiring both a Change of Control event and involuntary termination.
+
+────────────────────────────────────────────────────────────────────────
+
+DIVIDEND RIGHTS
+The Series A-1 Preferred shall accrue non-cumulative dividends at 8% of the Original Issue Price, payable when and if declared by the Board.
+
+────────────────────────────────────────────────────────────────────────
+
+PROTECTIVE PROVISIONS
+The consent of the majority of Series A-1 Preferred holders shall be required for: amendments to the Charter affecting the Preferred Stock; issuance of equity securities senior to the Series A-1 Preferred; any Liquidation Event or Change of Control; changes to the Board size; and declaration of dividends on Common Stock.
+
+────────────────────────────────────────────────────────────────────────
+
+Option Pool
+Prior to the closing of the financing, the Company shall reserve 20% of its post-money fully-diluted capitalization for issuance to directors, officers, employees, and consultants under the Company's equity incentive plan.
+
+────────────────────────────────────────────────────────────────────────
+
+Information Rights
+The Company shall deliver to each Major Investor (i) annual audited financial statements within 120 days after the end of each fiscal year, (ii) unaudited quarterly financial statements within 45 days after the end of each quarter, and (iii) an annual budget and business plan within 30 days prior to the start of each fiscal year.
+
+────────────────────────────────────────────────────────────────────────
+
+ROFR AND CO-SALE AGREEMENT
+Founders may not transfer shares without first offering them to the Company, then to the Investors. If the transfer proceeds, Investors have co-sale rights to participate on a pro-rata basis.
+
+────────────────────────────────────────────────────────────────────────
+
+Conversion Rights
+Each share of Series A-1 Preferred Stock shall be convertible, at the option of the holder, into shares of Common Stock at the then-applicable Conversion Rate (initially 1:1, subject to anti-dilution adjustments). All Series A-1 Preferred Stock shall automatically convert into Common Stock upon (i) an IPO with aggregate proceeds of at least $50,000,000 or (ii) the consent of a majority of the Preferred holders.
+
+────────────────────────────────────────────────────────────────────────
+
+Section – Drag-Along
+Shareholders holding at least 75% of the shares may compel all remaining shareholders to participate in an approved Sale of the Company.
+
+────────────────────────────────────────────────────────────────────────
+
+Redemption Rights
+At any time after 5 years from the date of issuance, upon the request of the holders of at least a majority of the then-outstanding Series A-1 Preferred Stock, the Company shall redeem all outstanding shares at the Original Purchase Price plus any declared but unpaid dividends.
+
+────────────────────────────────────────────────────────────────────────
+
+Section – Exclusivity Period
+The Founders agree to an exclusivity period of 45 days during which no competing offers shall be sought or entertained.
+
+────────────────────────────────────────────────────────────────────────
+
+Confidentiality
+The existence and terms of this Term Sheet shall be treated as confidential information by all parties and shall not be disclosed to any third party without the prior written consent of the other party, except as required by law.
+
+────────────────────────────────────────────────────────────────────────
+
+Governing Law
+This Term Sheet shall be governed by and construed in accordance with the laws of the State of Delaware, without regard to its conflict of laws provisions.
+
+────────────────────────────────────────────────────────────────────────
+
+Conditions Precedent
+The closing of the financing shall be subject to customary conditions, including: completion of due diligence satisfactory to the Investors; execution of definitive agreements; delivery of legal opinions; and all requisite corporate approvals.
+
+────────────────────────────────────────────────────────────────────────
+
+Expenses
+The Company shall pay the reasonable legal fees and expenses of counsel to the Investors in connection with the financing, up to a maximum of $25,000.

@@ -1,0 +1,104 @@
+========================================================================
+TERM SHEET
+FOR SERIES A-1 PREFERRED STOCK FINANCING OF
+PRISM ROBOTICS, INC.
+
+Date: 12 March 2024
+
+Issuer:           Prism Robotics, Inc. (the "Company")
+Investors:        First Round Capital (the "Lead Investor")
+Series:           Series A-1 Preferred Stock
+Pre-Money Valuation:  $30.0 million
+Amount of Financing:  $11.2 million
+========================================================================
+
+This term sheet summarizes the principal terms of the proposed financing.
+Except for the binding provisions set forth below, this term sheet is
+non-binding and is intended solely as a basis for further discussion.
+────────────────────────────────────────────────────────────────────────
+
+
+────────────────────────────────────────────────────────────────────────
+
+Liquidation Preference
+In the event of any liquidation, dissolution, or winding up of the Company, the holders of Series Series A-1 Preferred Stock shall be entitled to receive, prior and in preference to any distribution to the holders of Common Stock, an amount per share equal to 2.0x the Original Purchase Price (the "Liquidation Preference"). Holders of Series A-1 Preferred shall not participate in remaining distributions beyond the Liquidation Preference.
+
+────────────────────────────────────────────────────────────────────────
+
+Section – Price-Based Anti-Dilution
+The Series A-1 Preferred Stock will have full ratchet anti-dilution protection.
+
+────────────────────────────────────────────────────────────────────────
+
+BOARD COMPOSITION
+The Company's Board shall be composed of 4 directors: 3 appointed by the Investors, 1 appointed by the Founders.
+
+────────────────────────────────────────────────────────────────────────
+
+Section – Founder Share Vesting
+60 months total vesting schedule. Cliff: 12 months. Monthly vesting thereafter. Double-trigger acceleration: 100% of unvested shares shall accelerate upon a Change of Control followed by termination without Cause within 12 months.
+
+────────────────────────────────────────────────────────────────────────
+
+Section – Dividends
+Dividends shall be cumulative at a rate of 8% per annum on the Series A-1 Preferred Stock. No dividends shall be paid on Common Stock until all Preferred dividends are satisfied.
+
+────────────────────────────────────────────────────────────────────────
+
+Protective Provisions
+So long as any shares of Series A-1 Preferred Stock are outstanding, the Company shall not, without the prior written consent of the holders of at least a majority of the Series A-1 Preferred Stock: (i) alter or change the rights of the Preferred Stock; (ii) increase or decrease the authorized number of shares; (iii) create any new class or series of shares having rights senior to or on parity with the Preferred Stock; (iv) declare or pay any dividend on Common Stock; (v) approve any merger, sale of substantially all assets, or other liquidation event; or (vi) increase the size of the Board of Directors.
+
+────────────────────────────────────────────────────────────────────────
+
+Section – Equity Incentive Pool
+The Company's Option Pool shall be set at 35% of the fully-diluted post-money capitalization, to be created prior to the Closing.
+
+────────────────────────────────────────────────────────────────────────
+
+Information Rights
+The Company shall deliver to each Major Investor (i) annual audited financial statements within 120 days after the end of each fiscal year, (ii) unaudited quarterly financial statements within 45 days after the end of each quarter, and (iii) an annual budget and business plan within 30 days prior to the start of each fiscal year.
+
+────────────────────────────────────────────────────────────────────────
+
+Right of First Refusal / Co-Sale
+The Company shall have a right of first refusal on any proposed transfer of shares by a Founder. If the Company does not exercise its right, the Investors holding Series A-1 Preferred Stock shall have a secondary right of first refusal, followed by a co-sale right allowing participation in the transfer pro rata.
+
+────────────────────────────────────────────────────────────────────────
+
+CONVERSION
+The Series A-1 Preferred converts to Common Stock at a 1:1 ratio (as adjusted). Automatic conversion occurs upon a Qualified IPO or majority Preferred consent.
+
+────────────────────────────────────────────────────────────────────────
+
+DRAG-ALONG RIGHTS
+A Sale of the Company approved by 25% or more of the outstanding shares shall be binding on all shareholders.
+
+────────────────────────────────────────────────────────────────────────
+
+REDEMPTION
+Beginning 3 years after closing, the holders of Series A-1 Preferred may require the Company to redeem their shares at the Original Issue Price.
+
+────────────────────────────────────────────────────────────────────────
+
+Section – Exclusivity Period
+The Founders agree to an exclusivity period of 90 days during which no competing offers shall be sought or entertained.
+
+────────────────────────────────────────────────────────────────────────
+
+Confidentiality
+The existence and terms of this Term Sheet shall be treated as confidential information by all parties and shall not be disclosed to any third party without the prior written consent of the other party, except as required by law.
+
+────────────────────────────────────────────────────────────────────────
+
+Expenses
+The Company shall pay the reasonable legal fees and expenses of counsel to the Investors in connection with the financing, up to a maximum of $25,000.
+
+────────────────────────────────────────────────────────────────────────
+
+Binding Provisions
+This Term Sheet is non-binding, except for the provisions relating to Confidentiality, Exclusivity, and Expenses, which shall be binding agreements of the parties.
+
+────────────────────────────────────────────────────────────────────────
+
+Conditions Precedent
+The closing of the financing shall be subject to customary conditions, including: completion of due diligence satisfactory to the Investors; execution of definitive agreements; delivery of legal opinions; and all requisite corporate approvals.

@@ -1,0 +1,407 @@
+{
+  "metadata": {
+    "doc_id": "demo-0001",
+    "filename": "demo_aggressive_series_a.pdf",
+    "file_type": "pdf",
+    "upload_timestamp": "2026-10-28T10:00:00Z",
+    "total_clauses": 8
+  },
+  "clauses": [
+    {
+      "clause_id": "c_1",
+      "raw_text": "Liquidation Preference: On any liquidation or sale of the Company, the Series A Preferred will first receive 3.0x the Original Purchase Price plus declared but unpaid dividends, and will then participate with the Common Stock pro rata on an as-converted basis, without any cap.",
+      "page_number": 1,
+      "section_header": "Liquidation Preference",
+      "detected_family": "liquidation_preference",
+      "classification_confidence": 0.96,
+      "is_unclassified": false
+    },
+    {
+      "clause_id": "c_2",
+      "raw_text": "Anti-Dilution: The Series A Preferred will have full-ratchet anti-dilution protection. If the Company later issues shares at a lower price, the conversion price will be reduced to that lower price.",
+      "page_number": 1,
+      "section_header": "Anti-Dilution",
+      "detected_family": "anti_dilution",
+      "classification_confidence": 0.93,
+      "is_unclassified": false
+    },
+    {
+      "clause_id": "c_3",
+      "raw_text": "Board of Directors: The Board will consist of five members: three designated by the Series A investors, one designated by the Founders, and one independent director designated by the Board.",
+      "page_number": 2,
+      "section_header": "Board of Directors",
+      "detected_family": "board_composition",
+      "classification_confidence": 0.91,
+      "is_unclassified": false
+    },
+    {
+      "clause_id": "c_4",
+      "raw_text": "Founder Vesting: All Founder shares will be re-vested over 48 months with an 18-month cliff starting at closing. Unvested shares are repurchased at cost on termination for any reason.",
+      "page_number": 2,
+      "section_header": "Founder Vesting",
+      "detected_family": "founder_vesting",
+      "classification_confidence": 0.87,
+      "is_unclassified": false
+    },
+    {
+      "clause_id": "c_5",
+      "raw_text": "Protective Provisions: The consent of a majority of the Series A Preferred is required to sell the Company, create a senior or equal class of stock, or amend the charter in a way that adversely affects the Series A.",
+      "page_number": 2,
+      "section_header": "Protective Provisions",
+      "detected_family": "protective_provisions",
+      "classification_confidence": 0.84,
+      "is_unclassified": false
+    },
+    {
+      "clause_id": "c_6",
+      "raw_text": "Information Rights: Major Investors will receive annual audited and quarterly unaudited financial statements and an annual budget.",
+      "page_number": 3,
+      "section_header": "Information Rights",
+      "detected_family": "information_rights",
+      "classification_confidence": 0.79,
+      "is_unclassified": false
+    },
+    {
+      "clause_id": "c_7",
+      "raw_text": "No-Shop: For 60 days after signing, the Company will not solicit or negotiate any competing financing or sale of the Company.",
+      "page_number": 3,
+      "section_header": "No-Shop",
+      "detected_family": "exclusivity_no_shop",
+      "classification_confidence": 0.82,
+      "is_unclassified": false
+    },
+    {
+      "clause_id": "c_8",
+      "raw_text": "Expenses: The Company will pay the reasonable fees and expenses of investor counsel, up to $50,000.",
+      "page_number": 3,
+      "section_header": "Expenses",
+      "detected_family": "other",
+      "classification_confidence": 0.41,
+      "is_unclassified": true
+    }
+  ],
+  "facts": {
+    "doc_id": "demo-0001",
+    "liquidation_preference": {
+      "clause_id": "c_1",
+      "source_span": {
+        "text": "3.0x the Original Purchase Price",
+        "start_char": 109,
+        "end_char": 141,
+        "page_number": 1
+      },
+      "is_grounded": true,
+      "multiple": 3.0,
+      "participation": "fully_participating",
+      "cap_multiple": null,
+      "seniority": "pari_passu"
+    },
+    "anti_dilution": {
+      "clause_id": "c_2",
+      "source_span": {
+        "text": "full-ratchet anti-dilution protection",
+        "start_char": 48,
+        "end_char": 85,
+        "page_number": 1
+      },
+      "is_grounded": true,
+      "anti_dilution_type": "full_ratchet"
+    },
+    "board_composition": {
+      "clause_id": "c_3",
+      "source_span": {
+        "text": "three designated by the Series A investors, one designated by the Founders, and one independent director",
+        "start_char": 60,
+        "end_char": 164,
+        "page_number": 2
+      },
+      "is_grounded": true,
+      "founder_seats": 1,
+      "investor_seats": 3,
+      "independent_seats": 1,
+      "total_seats": 5,
+      "investor_majority": true
+    },
+    "founder_vesting": {
+      "clause_id": "c_4",
+      "source_span": {
+        "text": "re-vested over 48 months with an 18-month cliff",
+        "start_char": 44,
+        "end_char": 91,
+        "page_number": 2
+      },
+      "is_grounded": true,
+      "total_vesting_years": 4.0,
+      "cliff_months": 18,
+      "acceleration_type": "none"
+    },
+    "protective_provisions": {
+      "clause_id": "c_5",
+      "source_span": {
+        "text": "majority of the Series A Preferred is required",
+        "start_char": 40,
+        "end_char": 86,
+        "page_number": 2
+      },
+      "is_grounded": true,
+      "requires_series_majority": true,
+      "covered_actions": [
+        "sale of the Company",
+        "senior or equal class of stock",
+        "adverse charter amendment"
+      ]
+    },
+    "custom_facts": {
+      "vesting_reset": true,
+      "no_shop_days": 60
+    }
+  },
+  "audit_trace": {
+    "doc_id": "demo-0001",
+    "risk_score": {
+      "overall_score": 87.0,
+      "critical_count": 1,
+      "high_count": 5,
+      "medium_count": 1,
+      "low_count": 0,
+      "info_count": 0
+    },
+    "flags": [
+      {
+        "flag_id": "flag_lp01",
+        "clause_id": "c_1",
+        "title": "Liquidation multiple above 1x",
+        "explanation": "Investors would take 3.0x their money back before common stockholders (founders) see anything. The market norm is 1x.",
+        "severity": "high",
+        "market_standard_source": "NVCA Model Term Sheet, Liquidation Preference: 1x is the typical multiple",
+        "justification": {
+          "rule_id": "R-LP-01",
+          "rule_name": "Liquidation multiple exceeds 1x",
+          "market_norm_cite": "NVCA Model Term Sheet, Liquidation Preference: 1x is the typical multiple",
+          "premise_facts": {
+            "multiple": 3.0
+          },
+          "conclusion_flag": "HighLiquidationMultiple"
+        }
+      },
+      {
+        "flag_id": "flag_lp02",
+        "clause_id": "c_1",
+        "title": "Uncapped participating preferred",
+        "explanation": "After taking 3.0x, investors also share in what is left with no cap (double-dipping). Non-participating, or participating with a cap, is the norm.",
+        "severity": "high",
+        "market_standard_source": "NVCA Enhanced Model Term Sheet, Liquidation Preference: participation frequency data",
+        "justification": {
+          "rule_id": "R-LP-02",
+          "rule_name": "Participating preferred",
+          "market_norm_cite": "NVCA Enhanced Model Term Sheet, Liquidation Preference: participation frequency data",
+          "premise_facts": {
+            "participation": "fully_participating",
+            "cap_multiple": null
+          },
+          "conclusion_flag": "UncappedParticipation"
+        }
+      },
+      {
+        "flag_id": "flag_ad01",
+        "clause_id": "c_2",
+        "title": "Full-ratchet anti-dilution",
+        "explanation": "In a down round, the investor's conversion price resets to the new lower price regardless of how many shares are sold, which can wipe out founder ownership.",
+        "severity": "critical",
+        "market_standard_source": "NVCA Model Term Sheet, Anti-Dilution: broad-based weighted average is the standard",
+        "justification": {
+          "rule_id": "R-AD-01",
+          "rule_name": "Full-ratchet anti-dilution",
+          "market_norm_cite": "NVCA Model Term Sheet, Anti-Dilution: broad-based weighted average is the standard",
+          "premise_facts": {
+            "anti_dilution_type": "full_ratchet"
+          },
+          "conclusion_flag": "SevereDilutionRisk"
+        }
+      },
+      {
+        "flag_id": "flag_ct02",
+        "clause_id": "c_3",
+        "title": "Investors control the board",
+        "explanation": "Investors hold 3 of 5 seats, and the founders plus the independent director cannot outvote them.",
+        "severity": "high",
+        "market_standard_source": "NVCA Model Term Sheet, Voting Rights / Board of Directors",
+        "justification": {
+          "rule_id": "R-CT-02",
+          "rule_name": "Investor board control",
+          "market_norm_cite": "NVCA Model Term Sheet, Voting Rights / Board of Directors",
+          "premise_facts": {
+            "investor_seats": 3,
+            "founder_seats": 1,
+            "independent_seats": 1
+          },
+          "conclusion_flag": "InvestorControl"
+        }
+      },
+      {
+        "flag_id": "flag_vs02",
+        "clause_id": "c_4",
+        "title": "Cliff longer than 12 months",
+        "explanation": "An 18-month cliff means a founder who leaves before month 18 keeps nothing. The norm is a 12-month cliff.",
+        "severity": "high",
+        "market_standard_source": "Market norm: 12-month cliff on a 4-year schedule",
+        "justification": {
+          "rule_id": "R-VS-02",
+          "rule_name": "Vesting cliff above 12 months",
+          "market_norm_cite": "Market norm: 12-month cliff on a 4-year schedule",
+          "premise_facts": {
+            "cliff_months": 18
+          },
+          "conclusion_flag": "LongVestingCliff"
+        }
+      },
+      {
+        "flag_id": "flag_ct05",
+        "clause_id": "c_4",
+        "title": "Founders removable with loss of equity",
+        "explanation": "Because investors control the board and the founders' shares re-vest, the board could remove a founder and repurchase their unvested shares at cost.",
+        "severity": "high",
+        "market_standard_source": "NVCA Model Term Sheet, Board of Directors and Founder Vesting",
+        "justification": {
+          "rule_id": "R-CT-05",
+          "rule_name": "Investor control with vesting reset",
+          "market_norm_cite": "NVCA Model Term Sheet, Board of Directors and Founder Vesting",
+          "premise_facts": {
+            "InvestorControl": true,
+            "VestingReset": true
+          },
+          "conclusion_flag": "FounderRemovableWithEquityLoss"
+        }
+      },
+      {
+        "flag_id": "flag_ex01",
+        "clause_id": "c_7",
+        "title": "No-shop longer than 45 days",
+        "explanation": "A 60-day no-shop stops you talking to other investors for longer than the usual 30 to 45 days, which weakens your negotiating position.",
+        "severity": "medium",
+        "market_standard_source": "Market norm: 30 to 45 day no-shop",
+        "justification": {
+          "rule_id": "R-EX-01",
+          "rule_name": "Exclusivity period above 45 days",
+          "market_norm_cite": "Market norm: 30 to 45 day no-shop",
+          "premise_facts": {
+            "duration_days": 60
+          },
+          "conclusion_flag": "LongExclusivity"
+        }
+      }
+    ],
+    "rule_traces": [
+      {
+        "rule_id": "R-LP-01",
+        "rule_name": "Liquidation multiple exceeds 1x",
+        "market_norm_cite": "NVCA Model Term Sheet, Liquidation Preference: 1x is the typical multiple",
+        "premise_facts": {
+          "multiple": 3.0
+        },
+        "conclusion_flag": "HighLiquidationMultiple"
+      },
+      {
+        "rule_id": "R-LP-02",
+        "rule_name": "Participating preferred",
+        "market_norm_cite": "NVCA Enhanced Model Term Sheet, Liquidation Preference: participation frequency data",
+        "premise_facts": {
+          "participation": "fully_participating",
+          "cap_multiple": null
+        },
+        "conclusion_flag": "UncappedParticipation"
+      },
+      {
+        "rule_id": "R-AD-01",
+        "rule_name": "Full-ratchet anti-dilution",
+        "market_norm_cite": "NVCA Model Term Sheet, Anti-Dilution: broad-based weighted average is the standard",
+        "premise_facts": {
+          "anti_dilution_type": "full_ratchet"
+        },
+        "conclusion_flag": "SevereDilutionRisk"
+      },
+      {
+        "rule_id": "R-CT-02",
+        "rule_name": "Investor board control",
+        "market_norm_cite": "NVCA Model Term Sheet, Voting Rights / Board of Directors",
+        "premise_facts": {
+          "investor_seats": 3,
+          "founder_seats": 1,
+          "independent_seats": 1
+        },
+        "conclusion_flag": "InvestorControl"
+      },
+      {
+        "rule_id": "R-VS-02",
+        "rule_name": "Vesting cliff above 12 months",
+        "market_norm_cite": "Market norm: 12-month cliff on a 4-year schedule",
+        "premise_facts": {
+          "cliff_months": 18
+        },
+        "conclusion_flag": "LongVestingCliff"
+      },
+      {
+        "rule_id": "R-CT-05",
+        "rule_name": "Investor control with vesting reset",
+        "market_norm_cite": "NVCA Model Term Sheet, Board of Directors and Founder Vesting",
+        "premise_facts": {
+          "InvestorControl": true,
+          "VestingReset": true
+        },
+        "conclusion_flag": "FounderRemovableWithEquityLoss"
+      },
+      {
+        "rule_id": "R-EX-01",
+        "rule_name": "Exclusivity period above 45 days",
+        "market_norm_cite": "Market norm: 30 to 45 day no-shop",
+        "premise_facts": {
+          "duration_days": 60
+        },
+        "conclusion_flag": "LongExclusivity"
+      }
+    ]
+  },
+  "summaries": [
+    {
+      "clause_id": "c_1",
+      "summary_text": "Investors get 3x their investment back first, then also share in the remaining proceeds with no cap.",
+      "numbers_verified": true
+    },
+    {
+      "clause_id": "c_2",
+      "summary_text": "If you raise money later at a lower price, the investor's shares convert as if they had bought at that lower price.",
+      "numbers_verified": true
+    },
+    {
+      "clause_id": "c_3",
+      "summary_text": "The board has 5 seats: 3 chosen by investors, 1 by founders and 1 independent.",
+      "numbers_verified": true
+    },
+    {
+      "clause_id": "c_4",
+      "summary_text": "Founder shares vest over 48 months with an 18-month cliff, and the company can buy back unvested shares at cost if a founder leaves.",
+      "numbers_verified": true
+    },
+    {
+      "clause_id": "c_5",
+      "summary_text": "Investors must approve a company sale, a new senior or equal share class, or harmful charter changes.",
+      "numbers_verified": true
+    },
+    {
+      "clause_id": "c_6",
+      "summary_text": "Large investors receive annual audited accounts, quarterly accounts and a yearly budget.",
+      "numbers_verified": true
+    },
+    {
+      "clause_id": "c_7",
+      "summary_text": "You cannot seek competing offers for 60 days after signing.",
+      "numbers_verified": true
+    },
+    {
+      "clause_id": "c_8",
+      "summary_text": "The company pays up to $50,000 of the investor's legal costs. (Deliberately marked unverified in the mock data to exercise the warning badge.)",
+      "numbers_verified": false
+    }
+  ],
+  "execution_errors": []
+}
