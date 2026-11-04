@@ -291,9 +291,9 @@ class TermSheetPipeline:
 
                 ingestor = Ingestor()
             if classifier is None:
-                from termsheet_ai.classify.tfidf import TfidfBaselineClassifier
+                from termsheet_ai.classify.sbert import SbertClassifier
 
-                classifier = TfidfBaselineClassifier()
+                classifier = SbertClassifier(mode="hybrid")
             if extractor is None:
                 from termsheet_ai.extraction.extractor import FactExtractor
 
@@ -357,6 +357,11 @@ class TermSheetPipeline:
             try:
                 if hasattr(self.explainer, "facts"):
                     self.explainer.facts = facts
+                if (
+                    hasattr(self.explainer, "retriever")
+                    and getattr(self.explainer, "retriever", None) is None
+                ):
+                    self.explainer.retriever = self.classifier
                 summaries = self.explainer.explain(clauses, audit_trace)
             except Exception as e:
                 errors.append(f"S5 Summary Error: {str(e)}")

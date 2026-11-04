@@ -65,3 +65,32 @@ def test_pipeline_mock_fallback_execution(tmp_path: Path):
     assert payload.audit_trace is not None
     assert len(payload.summaries) == 2
     assert len(payload.execution_errors) == 0
+
+
+def test_pipeline_unclassified_fallback_s2_to_s3(tmp_path: Path):
+    """Verifies S2 fallback handling for unclassified/OOD clauses and downstream S3 fact safety."""
+    ts_file = tmp_path / "fallback_sheet.txt"
+    ts_file.write_text(
+        "1. Liquidation Preference: 1.0x non-participating preferred.\n"
+        "2. Miscellaneous: The caterer shall deliver breakfast pastries and coffee at 8:00 AM daily.\n",
+        encoding="utf-8",
+    )
+
+    pipeline = TermSheetPipeline()
+    payload = pipeline.run(ts_file)
+
+    assert len(payload.clauses) == 2
+    # Clause 1 is recognized as LIQUIDATION_PREFERENCE
+    assert payload.clauses[0].detected_family == ClauseFamily.LIQUIDATION_PREFERENCE
+    assert payload.clauses[0].is_unclassified is False
+
+    # Clause 2 (OOD noise) falls back to OTHER and is marked unclassified
+    assert payload.clauses[1].detected_family == ClauseFamily.OTHER
+    assert payload.clauses[1].is_unclassified is True
+
+    # S3 FactExtractor must extract liquidation preference, but leave unclassified noise unextracted without hallucinating
+    assert payload.facts is not None
+    assert payload.facts.liquidation_preference is not None
+    assert payload.facts.anti_dilution is None
+    assert payload.facts.board_composition is None
+    assert len(payload.execution_errors) == 0
