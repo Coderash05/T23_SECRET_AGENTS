@@ -17,6 +17,7 @@ from termsheet_ai.pipeline.base import (
     BaseIngestor,
     BaseReasoner,
 )
+from termsheet_ai.pipeline.guardrails import InputGuardrail
 from termsheet_ai.schemas.contracts import (
     AntiDilutionFact,
     AntiDilutionType,
@@ -277,8 +278,11 @@ class TermSheetPipeline:
         extractor: Optional[BaseExtractor] = None,
         reasoner: Optional[BaseReasoner] = None,
         explainer: Optional[BaseExplainer] = None,
+        guardrail: Optional[InputGuardrail] = None,
         use_mock_fallbacks: bool = False,
     ):
+        self.guardrail = guardrail or InputGuardrail()
+
         if use_mock_fallbacks:
             self.ingestor = ingestor or MockIngestor()
             self.classifier = classifier or MockClassifier()
@@ -326,9 +330,49 @@ class TermSheetPipeline:
     def run(self, file_path: Union[str, Path]) -> PipelinePayload:
         """Executes full S1-S5 pipeline on the input document."""
         errors: List[str] = []
+        path = Path(file_path)
+
+        # Pre-flight input file validation
+        file_ok, file_err = self.guardrail.validate_file(path)
+        if not file_ok:
+            metadata = DocumentMetadata(
+                doc_id=f"invalid_{uuid.uuid4().hex[:8]}",
+                filename=path.name if path.name else "unknown",
+                file_type=DocumentType.TXT,
+                total_clauses=0,
+            )
+            return PipelinePayload(
+                metadata=metadata,
+                clauses=[],
+                execution_errors=[file_err or "Invalid input file."],
+            )
 
         # S1: Ingest
-        metadata, clauses = self.ingestor.ingest(file_path)
+        try:
+            metadata, clauses = self.ingestor.ingest(file_path)
+        except Exception as e:
+            metadata = DocumentMetadata(
+                doc_id=f"ingest_err_{uuid.uuid4().hex[:8]}",
+                filename=path.name,
+                file_type=DocumentType.TXT,
+                total_clauses=0,
+            )
+            return PipelinePayload(
+                metadata=metadata,
+                clauses=[],
+                execution_errors=[f"S1 Ingest Error: {str(e)}"],
+            )
+
+        # Ingestion sanity & domain assessment
+        clauses_ok, clause_warnings = self.guardrail.validate_ingested_clauses(clauses)
+        errors.extend(clause_warnings)
+
+        if not clauses_ok or not clauses:
+            return PipelinePayload(
+                metadata=metadata,
+                clauses=[],
+                execution_errors=errors,
+            )
 
         # S2: Classify
         try:
