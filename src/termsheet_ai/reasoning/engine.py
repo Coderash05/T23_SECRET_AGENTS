@@ -1,16 +1,20 @@
 """Custom forward-chaining inference engine with justification records.
 
 Implements forward chaining over definite Horn clauses loaded from rules_v1.yaml,
-maintaining an agenda, working memory, and proof-tree justification records
-as specified in the TermSheet AI KR&R architecture.
+maintaining an agenda, working memory, derived predicate chaining, and proof-tree
+justification records as specified in the TermSheet AI KR&R architecture.
 """
 
 import ast
 import operator
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Set, Tuple
 
-from termsheet_ai.ontology import load_rules_from_yaml
+from termsheet_ai.ontology import (
+    DEFAULT_SEVERITY_WEIGHTS,
+    load_rules_from_yaml,
+    load_severity_weights_from_yaml,
+)
 from termsheet_ai.pipeline.base import BaseReasoner
 from termsheet_ai.schemas.contracts import (
     AuditTrace,
@@ -55,8 +59,13 @@ def _safe_eval_node(node: ast.AST, context: Dict[str, Any]) -> Any:
                 elif type(op_type) is ast.NotEq:
                     return left_val is not right_val
                 return False
-            # Numeric conversion if needed
-            if isinstance(left_val, (int, float)) and isinstance(right_val, (int, float)):
+            # Numeric conversion if needed (excluding booleans which are int subclasses in Python)
+            if (
+                isinstance(left_val, (int, float))
+                and not isinstance(left_val, bool)
+                and isinstance(right_val, (int, float))
+                and not isinstance(right_val, bool)
+            ):
                 if not OPERATORS[type(op_type)](left_val, right_val):
                     return False
             elif type(left_val) is type(right_val):
@@ -107,6 +116,8 @@ class HornRule:
         severity: SeverityLevel,
         message: str,
         source: str,
+        conclusion: Optional[str] = None,
+        norm_id: Optional[str] = None,
     ):
         self.rule_id = rule_id
         self.family = family.lower()
@@ -114,6 +125,8 @@ class HornRule:
         self.severity = severity
         self.message = message
         self.source = source
+        self.conclusion = conclusion
+        self.norm_id = norm_id
 
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> "HornRule":
@@ -130,6 +143,8 @@ class HornRule:
             severity=severity,
             message=data.get("message", "Rule triggered."),
             source=data.get("source", "NVCA Model Term Sheet"),
+            conclusion=data.get("conclusion"),
+            norm_id=data.get("norm_id"),
         )
 
 
@@ -148,7 +163,7 @@ class WorkingMemory:
         clause_id: Optional[str] = None,
         source_span: Optional[str] = None,
     ) -> None:
-        """Asserts a ground fact into working memory."""
+        """Asserts a ground or derived fact into working memory."""
         self._facts[key] = value
         if clause_id:
             self._clause_associations[key] = clause_id
@@ -179,24 +194,24 @@ class WorkingMemory:
 class ForwardChainingEngine(BaseReasoner):
     """The symbolic forward-chaining inference engine with justification traces."""
 
-    SEVERITY_WEIGHTS = {
-        SeverityLevel.CRITICAL: 40.0,
-        SeverityLevel.HIGH: 25.0,
-        SeverityLevel.MEDIUM: 10.0,
-        SeverityLevel.LOW: 5.0,
-        SeverityLevel.INFO: 0.0,
-    }
+    SEVERITY_WEIGHTS = dict(DEFAULT_SEVERITY_WEIGHTS)
 
     def __init__(
         self,
         rules: Optional[List[HornRule]] = None,
         rules_yaml_path: Optional[Path] = None,
+        severity_weights: Optional[Dict[SeverityLevel, float]] = None,
     ):
         if rules is not None:
             self.rules = rules
         else:
             raw_rules = load_rules_from_yaml(rules_yaml_path)
             self.rules = [HornRule.from_dict(r) for r in raw_rules]
+
+        if severity_weights is not None:
+            self.severity_weights = dict(severity_weights)
+        else:
+            self.severity_weights = load_severity_weights_from_yaml(rules_yaml_path)
 
     def build_working_memory_from_facts(self, facts: ExtractedFacts) -> WorkingMemory:
         """Translates Pydantic ExtractedFacts into working memory ground facts."""
@@ -244,9 +259,11 @@ class ForwardChainingEngine(BaseReasoner):
             wm.assert_fact("total_seats", bd.total_seats, cid, span)
 
         # Vesting
+        vesting_cid: Optional[str] = None
         if facts.founder_vesting:
             fv = facts.founder_vesting
             cid = fv.clause_id
+            vesting_cid = cid
             span = fv.source_span.text if fv.source_span else ""
             months = int(fv.total_vesting_years * 12)
             wm.assert_fact("vesting.vesting_months", months, cid, span)
@@ -256,54 +273,107 @@ class ForwardChainingEngine(BaseReasoner):
             wm.assert_fact("vesting.acceleration", fv.acceleration_type, cid, span)
             wm.assert_fact("acceleration", fv.acceleration_type, cid, span)
 
+            lower_span = span.lower()
+            if any(tok in lower_span for tok in ("re-vest", "revest", "vesting reset")):
+                wm.assert_fact("vesting.VestingReset", True, cid, span)
+                wm.assert_fact("VestingReset", True, cid, span)
+
+        # Protective Provisions
+        if facts.protective_provisions:
+            pp = facts.protective_provisions
+            cid = pp.clause_id
+            span = pp.source_span.text if pp.source_span else ""
+            wm.assert_fact(
+                "protective_provisions.requires_series_majority",
+                pp.requires_series_majority,
+                cid,
+                span,
+            )
+            wm.assert_fact("requires_series_majority", pp.requires_series_majority, cid, span)
+            lower_actions = " ".join(pp.covered_actions).lower() + " " + span.lower()
+            if "day-to-day" in lower_actions or "day_to_day" in lower_actions:
+                wm.assert_fact("protective_provisions.veto_day_to_day_operations", True, cid, span)
+                wm.assert_fact("veto_day_to_day_operations", True, cid, span)
+
         # Custom / Extended facts
         for k, v in facts.custom_facts.items():
             wm.assert_fact(k, v)
+            if k == "vesting_reset" and bool(v):
+                wm.assert_fact("vesting.VestingReset", True, vesting_cid)
+                wm.assert_fact("VestingReset", True, vesting_cid)
+            elif k == "no_shop_days":
+                wm.assert_fact("exclusivity.duration_days", v)
+                wm.assert_fact("duration_days", v)
 
         return wm
 
     def infer(self, wm: WorkingMemory, doc_id: str) -> AuditTrace:
-        """Executes forward chaining over working memory using rules on the agenda."""
-        agenda = list(self.rules)
+        """Executes multi-pass forward chaining over working memory until fixpoint."""
         flags: List[RiskFlag] = []
         rule_traces: List[JustificationRecord] = []
         total_risk_score = 0.0
+        fired_rules: Set[str] = set()
 
-        for rule in agenda:
-            context = wm.to_context(family=rule.family)
-            matched, premises = safe_eval_condition(rule.condition, context)
+        while True:
+            new_fired = False
+            for rule in self.rules:
+                if rule.rule_id in fired_rules:
+                    continue
 
-            if matched:
-                clause_id = "general"
-                for prem_var in premises.keys():
-                    cid = wm.get_clause_for_key(prem_var) or wm.get_clause_for_key(
-                        f"{rule.family}.{prem_var}"
+                context = wm.to_context(family=rule.family)
+                matched, premises = safe_eval_condition(rule.condition, context)
+
+                if matched:
+                    fired_rules.add(rule.rule_id)
+                    new_fired = True
+
+                    # Prefer associating the flag with the clause matching the rule's own family
+                    clause_id = "general"
+                    for prem_var in premises.keys():
+                        cid = wm.get_clause_for_key(f"{rule.family}.{prem_var}")
+                        if cid:
+                            clause_id = cid
+                            break
+                    if clause_id == "general":
+                        for prem_var in premises.keys():
+                            cid = wm.get_clause_for_key(prem_var)
+                            if cid:
+                                clause_id = cid
+                                break
+
+                    conclusion_label = (
+                        rule.conclusion if rule.conclusion else f"Flag: {rule.message}"
                     )
-                    if cid:
-                        clause_id = cid
-                        break
+                    if rule.conclusion:
+                        wm.assert_fact(rule.conclusion, True, clause_id=clause_id)
+                        wm.assert_fact(
+                            f"{rule.family}.{rule.conclusion}", True, clause_id=clause_id
+                        )
 
-                rec = JustificationRecord(
-                    rule_id=rule.rule_id,
-                    rule_name=rule.message,
-                    market_norm_cite=rule.source,
-                    premise_facts=premises,
-                    conclusion_flag=f"Flag: {rule.message}",
-                )
+                    rec = JustificationRecord(
+                        rule_id=rule.rule_id,
+                        rule_name=rule.message,
+                        market_norm_cite=rule.source,
+                        premise_facts=premises,
+                        conclusion_flag=conclusion_label,
+                    )
 
-                flag = RiskFlag(
-                    flag_id=f"flag_{rule.rule_id}",
-                    clause_id=clause_id,
-                    title=rule.message,
-                    explanation=f"Evaluated condition '{rule.condition}' with ground premises: {premises}.",
-                    severity=rule.severity,
-                    market_standard_source=rule.source,
-                    justification=rec,
-                )
+                    flag = RiskFlag(
+                        flag_id=f"flag_{rule.rule_id}",
+                        clause_id=clause_id,
+                        title=rule.message,
+                        explanation=f"Evaluated condition '{rule.condition}' with ground premises: {premises}.",
+                        severity=rule.severity,
+                        market_standard_source=rule.source,
+                        justification=rec,
+                    )
 
-                flags.append(flag)
-                rule_traces.append(rec)
-                total_risk_score += self.SEVERITY_WEIGHTS.get(rule.severity, 0.0)
+                    flags.append(flag)
+                    rule_traces.append(rec)
+                    total_risk_score += self.severity_weights.get(rule.severity, 0.0)
+
+            if not new_fired:
+                break
 
         risk_score = DocumentRiskScore(
             overall_score=min(100.0, total_risk_score),
