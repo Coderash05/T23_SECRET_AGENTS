@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "TermSheet AI Attribute Schema",
-  "description": "JSON schema for extracting specific clause variables and their source text spans. Use null for any field not stated in the document.",
+  "description": "JSON schema for extracting structured clause variables across all 12 canonical venture-capital clause families plus dividends, anchored to verbatim source text spans. Use null for any field not explicitly stated in the document.",
   "type": "object",
   "properties": {
     "liquidation_preference": {
@@ -9,45 +9,51 @@
       "properties": {
         "source_span": {
           "type": "string",
-          "description": "The exact quote from the document proving these liquidation values."
+          "description": "The exact verbatim quote from the document proving these liquidation values."
         },
         "multiple": {
           "type": ["number", "null"],
           "minimum": 0,
-          "description": "The payout multiple (e.g., 1.0, 2.0)."
+          "description": "The payout multiple (e.g., 1.0, 2.0, 3.0)."
         },
         "participation": {
-          "type": ["boolean", "null"],
-          "description": "True if investors have participating preferred rights, false if non-participating."
+          "type": ["boolean", "string", "null"],
+          "description": "True or participation mode ('non_participating', 'fully_participating', 'capped_participating') indicating participating preferred rights."
         },
         "cap": {
           "type": ["number", "null"],
           "minimum": 0,
           "description": "Participation cap as a multiple of the original purchase price (e.g., 3 means 3x). Null if no cap."
+        },
+        "seniority": {
+          "type": ["string", "null"],
+          "enum": ["pari_passu", "senior", "junior", null],
+          "description": "Liquidation seniority tier relative to other preferred stock series."
         }
       },
       "required": ["source_span", "multiple", "participation", "cap"],
       "additionalProperties": false
     },
-    "vesting": {
+    "anti_dilution": {
       "type": ["object", "null"],
       "properties": {
         "source_span": {
           "type": "string",
-          "description": "The exact quote proving the vesting schedule."
+          "description": "The exact verbatim quote proving the anti-dilution formula."
         },
-        "vesting_months": {
-          "type": ["number", "null"],
-          "minimum": 0,
-          "description": "Total duration of the vesting schedule in months (e.g., 48)."
-        },
-        "cliff_months": {
-          "type": ["number", "null"],
-          "minimum": 0,
-          "description": "The cliff period in months (e.g., 12). Null if no cliff."
+        "type": {
+          "type": ["string", "null"],
+          "enum": [
+            "broad_based_weighted_average",
+            "narrow_based_weighted_average",
+            "full_ratchet",
+            "none",
+            null
+          ],
+          "description": "Down-round anti-dilution conversion price adjustment mechanism."
         }
       },
-      "required": ["source_span", "vesting_months", "cliff_months"],
+      "required": ["source_span", "type"],
       "additionalProperties": false
     },
     "board_of_directors": {
@@ -55,25 +61,237 @@
       "properties": {
         "source_span": {
           "type": "string",
-          "description": "The exact quote proving the board composition."
+          "description": "The exact verbatim quote proving the board composition."
         },
         "investor_seats": {
           "type": ["integer", "null"],
           "minimum": 0,
-          "description": "Number of board seats controlled by investors."
+          "description": "Number of board seats designated by preferred investors."
         },
         "founder_seats": {
           "type": ["integer", "null"],
           "minimum": 0,
-          "description": "Number of board seats controlled by founders."
+          "description": "Number of board seats designated by founders / common holders."
         },
         "independent_seats": {
           "type": ["integer", "null"],
           "minimum": 0,
-          "description": "Number of independent board seats."
+          "description": "Number of mutually agreed independent board seats."
+        },
+        "total_seats": {
+          "type": ["integer", "null"],
+          "minimum": 0,
+          "description": "Total number of directors on the board."
         }
       },
       "required": ["source_span", "investor_seats", "founder_seats", "independent_seats"],
+      "additionalProperties": false
+    },
+    "vesting": {
+      "type": ["object", "null"],
+      "properties": {
+        "source_span": {
+          "type": "string",
+          "description": "The exact verbatim quote proving the vesting schedule."
+        },
+        "vesting_months": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "description": "Total duration of the vesting schedule in months (market standard is 48)."
+        },
+        "cliff_months": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "description": "The cliff period in months (market standard is 12). Null if no cliff."
+        },
+        "acceleration": {
+          "type": ["string", "null"],
+          "enum": ["double_trigger", "single_trigger", "none", null],
+          "description": "Vesting acceleration upon Change of Control."
+        },
+        "vesting_reset": {
+          "type": ["boolean", "null"],
+          "description": "True if existing founder shares reset vesting at closing."
+        }
+      },
+      "required": ["source_span", "vesting_months", "cliff_months"],
+      "additionalProperties": false
+    },
+    "protective_provisions": {
+      "type": ["object", "null"],
+      "properties": {
+        "source_span": {
+          "type": "string",
+          "description": "The exact verbatim quote proving protective provision thresholds and vetoes."
+        },
+        "requires_series_majority": {
+          "type": ["boolean", "null"],
+          "description": "True if preferred majority approval is required for major corporate actions."
+        },
+        "veto_day_to_day_operations": {
+          "type": ["boolean", "null"],
+          "description": "True if preferred holders have veto rights over ordinary-course operational decisions."
+        }
+      },
+      "required": ["source_span", "requires_series_majority"],
+      "additionalProperties": false
+    },
+    "information_rights": {
+      "type": ["object", "null"],
+      "properties": {
+        "source_span": {
+          "type": "string",
+          "description": "The exact verbatim quote proving information and reporting rights."
+        },
+        "has_major_investor_threshold": {
+          "type": ["boolean", "null"],
+          "description": "True if financial reporting rights are restricted to Major Investors."
+        },
+        "monthly_reporting_required": {
+          "type": ["boolean", "null"],
+          "description": "True if monthly financial reporting is mandated."
+        }
+      },
+      "required": ["source_span"],
+      "additionalProperties": false
+    },
+    "rofr_co_sale": {
+      "type": ["object", "null"],
+      "properties": {
+        "source_span": {
+          "type": "string",
+          "description": "The exact verbatim quote proving right of first refusal and co-sale terms."
+        },
+        "investor_co_sale": {
+          "type": ["boolean", "null"],
+          "description": "True if investors hold pro-rata co-sale (tag-along) rights on founder transfers."
+        },
+        "full_founder_transfer_lockup": {
+          "type": ["boolean", "null"],
+          "description": "True if founders are prohibited from transferring shares outright beyond standard ROFR."
+        }
+      },
+      "required": ["source_span"],
+      "additionalProperties": false
+    },
+    "drag_along": {
+      "type": ["object", "null"],
+      "properties": {
+        "source_span": {
+          "type": "string",
+          "description": "The exact verbatim quote proving drag-along voting thresholds."
+        },
+        "approval_threshold": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Minimum shareholder voting percentage required to trigger drag-along."
+        },
+        "requires_founder_consent": {
+          "type": ["boolean", "null"],
+          "description": "True if common/founder majority approval is also required to trigger a sale."
+        }
+      },
+      "required": ["source_span", "approval_threshold"],
+      "additionalProperties": false
+    },
+    "option_pool": {
+      "type": ["object", "null"],
+      "properties": {
+        "source_span": {
+          "type": "string",
+          "description": "The exact verbatim quote proving the employee option pool size."
+        },
+        "pool_percentage": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Option pool reserve as a percentage of post-money capitalization."
+        },
+        "pre_money_pool": {
+          "type": ["boolean", "null"],
+          "description": "True if the option pool expansion is carved out of pre-money valuation."
+        }
+      },
+      "required": ["source_span", "pool_percentage"],
+      "additionalProperties": false
+    },
+    "exclusivity": {
+      "type": ["object", "null"],
+      "properties": {
+        "source_span": {
+          "type": "string",
+          "description": "The exact verbatim quote proving the exclusivity / no-shop duration."
+        },
+        "duration_days": {
+          "type": ["integer", "null"],
+          "minimum": 0,
+          "description": "Duration of the exclusivity/no-shop lockup in calendar days."
+        }
+      },
+      "required": ["source_span", "duration_days"],
+      "additionalProperties": false
+    },
+    "conversion_rights": {
+      "type": ["object", "null"],
+      "properties": {
+        "source_span": {
+          "type": "string",
+          "description": "The exact verbatim quote proving optional and automatic conversion terms."
+        },
+        "optional_conversion_ratio": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "description": "Initial optional conversion ratio into Common Stock (standard is 1.0)."
+        },
+        "automatic_conversion_ipo_threshold": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "description": "Minimum Qualified IPO gross proceeds threshold in millions USD."
+        }
+      },
+      "required": ["source_span"],
+      "additionalProperties": false
+    },
+    "redemption": {
+      "type": ["object", "null"],
+      "properties": {
+        "source_span": {
+          "type": "string",
+          "description": "The exact verbatim quote proving redemption horizon and terms."
+        },
+        "redemption_years": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "description": "Years after closing when mandatory redemption becomes exercisable."
+        },
+        "interest_rate": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "description": "Annual interest rate on unredeemed shares."
+        }
+      },
+      "required": ["source_span", "redemption_years"],
+      "additionalProperties": false
+    },
+    "dividends": {
+      "type": ["object", "null"],
+      "properties": {
+        "source_span": {
+          "type": "string",
+          "description": "The exact verbatim quote proving dividend terms."
+        },
+        "cumulative": {
+          "type": ["boolean", "null"],
+          "description": "True if dividends accrue cumulatively regardless of board declaration."
+        },
+        "annual_rate": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "description": "Annual dividend percentage rate (e.g., 8.0)."
+        }
+      },
+      "required": ["source_span", "cumulative"],
       "additionalProperties": false
     }
   },
