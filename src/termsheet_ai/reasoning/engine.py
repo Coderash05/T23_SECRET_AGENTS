@@ -20,7 +20,6 @@ from termsheet_ai.schemas.contracts import (
     SeverityLevel,
 )
 
-
 _COMPARISONS = {
     ast.Gt: operator.gt,
     ast.GtE: operator.ge,
@@ -70,7 +69,7 @@ def _safe_eval_node(node: ast.AST, context: Dict[str, Any]) -> Any:
 
     if isinstance(node, ast.Compare):
         left = _safe_eval_node(node.left, context)
-        for op, comparator in zip(node.ops, node.comparators):
+        for op, comparator in zip(node.ops, node.comparators, strict=False):
             right = _safe_eval_node(comparator, context)
             if left is _MISSING or right is _MISSING:
                 return False
@@ -78,9 +77,8 @@ def _safe_eval_node(node: ast.AST, context: Dict[str, Any]) -> Any:
             if fn is None:
                 return False
             if type(op) in (ast.Gt, ast.GtE, ast.Lt, ast.LtE):
-                comparable = (
-                    (type(left) in (int, float) and type(right) in (int, float))
-                    or (type(left) is str and type(right) is str)
+                comparable = (type(left) in (int, float) and type(right) in (int, float)) or (
+                    type(left) is str and type(right) is str
                 )
                 if not comparable:
                     return False
@@ -98,9 +96,7 @@ def _safe_eval_node(node: ast.AST, context: Dict[str, Any]) -> Any:
     return _MISSING
 
 
-def safe_eval_condition(
-    condition_str: str, context: Dict[str, Any]
-) -> Tuple[bool, Dict[str, Any]]:
+def safe_eval_condition(condition_str: str, context: Dict[str, Any]) -> Tuple[bool, Dict[str, Any]]:
     """Return whether a condition matches and the values of its referenced facts."""
     try:
         expression = ast.parse(condition_str, mode="eval")
@@ -195,7 +191,7 @@ class WorkingMemory:
             prefix = f"{family}."
             for key, value in self._facts.items():
                 if key.startswith(prefix):
-                    context[key[len(prefix):]] = value
+                    context[key[len(prefix) :]] = value
         return context
 
     def get_clause_for_key(self, key: str) -> Optional[str]:
@@ -204,7 +200,6 @@ class WorkingMemory:
     def get_derivation(self, key: str) -> Optional[JustificationRecord]:
         return self._derivations.get(key)
 
-    
     def build_fact_proof(
         self,
         fact_name: str,
@@ -242,10 +237,7 @@ class WorkingMemory:
             "origin": "derived",
             "rule_id": derivation.rule_id,
             "source": derivation.market_norm_cite,
-            "premises": [
-                self.build_fact_proof(name, visited)
-                for name in derivation.premise_facts
-            ],
+            "premises": [self.build_fact_proof(name, visited) for name in derivation.premise_facts],
         }
 
 
@@ -269,8 +261,7 @@ class ForwardChainingEngine(BaseReasoner):
             self.rules = rules
         else:
             self.rules = [
-                HornRule.from_dict(item)
-                for item in load_rules_from_yaml(rules_yaml_path)
+                HornRule.from_dict(item) for item in load_rules_from_yaml(rules_yaml_path)
             ]
 
     def build_working_memory_from_facts(self, facts: ExtractedFacts) -> WorkingMemory:
@@ -281,7 +272,8 @@ class ForwardChainingEngine(BaseReasoner):
             span = lp.source_span.text if lp.source_span else ""
             cid = lp.clause_id
             is_participating = lp.participation.value in (
-                "fully_participating", "capped_participating"
+                "fully_participating",
+                "capped_participating",
             )
             fields = {
                 "multiple": lp.multiple,
@@ -336,8 +328,15 @@ class ForwardChainingEngine(BaseReasoner):
         if facts.protective_provisions:
             pp = facts.protective_provisions
             span = pp.source_span.text if pp.source_span else ""
-            wm.assert_fact("protective_provisions.requires_series_majority", pp.requires_series_majority, pp.clause_id, span)
-            wm.assert_fact("requires_series_majority", pp.requires_series_majority, pp.clause_id, span)
+            wm.assert_fact(
+                "protective_provisions.requires_series_majority",
+                pp.requires_series_majority,
+                pp.clause_id,
+                span,
+            )
+            wm.assert_fact(
+                "requires_series_majority", pp.requires_series_majority, pp.clause_id, span
+            )
 
         for key, value in facts.custom_facts.items():
             wm.assert_fact(key, value)
@@ -379,7 +378,8 @@ class ForwardChainingEngine(BaseReasoner):
 
                 conclusion = (
                     ", ".join(f"{key}={value!r}" for key, value in rule.derives.items())
-                    if rule.derives else f"Flag: {rule.message}"
+                    if rule.derives
+                    else f"Flag: {rule.message}"
                 )
                 record = JustificationRecord(
                     rule_id=rule.rule_id,
@@ -407,10 +407,7 @@ class ForwardChainingEngine(BaseReasoner):
                     "rule_id": rule.rule_id,
                     "conclusion": rule.message,
                     "source": rule.source,
-                    "premises": [
-                        wm.build_fact_proof(fact_name)
-                        for fact_name in premises
-                    ],
+                    "premises": [wm.build_fact_proof(fact_name) for fact_name in premises],
                 }
 
                 dependencies = [
@@ -418,9 +415,7 @@ class ForwardChainingEngine(BaseReasoner):
                     for key in premises
                     if wm.get_derivation(key) is not None
                 ]
-                explanation = (
-                    f"Condition '{rule.condition}' matched facts {premises}."
-                )
+                explanation = f"Condition '{rule.condition}' matched facts {premises}."
                 if dependencies:
                     explanation += f" Depends on rule(s): {', '.join(dict.fromkeys(dependencies))}."
 

@@ -133,6 +133,7 @@ def test_forward_chaining_on_facts():
     assert trace.risk_score.overall_score > 0
     assert trace.risk_score.critical_count == len(critical_flags)
 
+
 def test_multistep_forward_chaining():
     """A derived fact must trigger a dependent rule."""
 
@@ -141,10 +142,7 @@ def test_multistep_forward_chaining():
         HornRule(
             rule_id="R-CT-05",
             family="board_of_directors",
-            condition=(
-                "investor_control == True "
-                "and vesting_reset == True"
-            ),
+            condition=("investor_control == True and vesting_reset == True"),
             severity=SeverityLevel.HIGH,
             message="Investor control with vesting reset",
             source="Test source",
@@ -161,12 +159,8 @@ def test_multistep_forward_chaining():
     ]
 
     wm = WorkingMemory()
-    wm.assert_fact(
-        "investor_majority", True, clause_id="c_board"
-    )
-    wm.assert_fact(
-        "vesting_reset", True, clause_id="c_vesting"
-    )
+    wm.assert_fact("investor_majority", True, clause_id="c_board")
+    wm.assert_fact("vesting_reset", True, clause_id="c_vesting")
 
     engine = ForwardChainingEngine(rules=rules)
 
@@ -176,17 +170,12 @@ def test_multistep_forward_chaining():
     assert wm.get("investor_control") is True
 
     # R-CT-05 should then use the derived fact.
-    rule_ids = {
-        r.rule_id for r in trace.rule_traces
-    }
+    rule_ids = {r.rule_id for r in trace.rule_traces}
 
     assert "R-CT-02" in rule_ids
     assert "R-CT-05" in rule_ids
 
-    high_flags = [
-        flag for flag in trace.flags
-        if flag.severity == SeverityLevel.HIGH
-    ]
+    high_flags = [flag for flag in trace.flags if flag.severity == SeverityLevel.HIGH]
 
     assert len(high_flags) == 1
 
@@ -198,10 +187,7 @@ def test_multistep_proof_tree():
         HornRule(
             rule_id="R-CT-05",
             family="board_of_directors",
-            condition=(
-                "investor_control == True "
-                "and vesting_reset == True"
-            ),
+            condition=("investor_control == True and vesting_reset == True"),
             severity=SeverityLevel.HIGH,
             message="Investor control with vesting reset",
             source="Test source",
@@ -231,10 +217,7 @@ def test_multistep_proof_tree():
     assert tree is not None
     assert tree["rule_id"] == "R-CT-05"
 
-    investor_control = next(
-        p for p in tree["premises"]
-        if p["fact"] == "investor_control"
-    )
+    investor_control = next(p for p in tree["premises"] if p["fact"] == "investor_control")
 
     assert investor_control["origin"] == "derived"
     assert investor_control["rule_id"] == "R-CT-02"
