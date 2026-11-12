@@ -128,3 +128,47 @@
 ---
 
 *Last updated: 2026-10-31 by M3*
+
+## Week 4 (1–7 Nov 2026)
+
+### Completed
+
+#### M2 — Data & Preprocessing
+- [x] **Annotation guide v0** — [`docs/annotation_guide_v0.md`](annotation_guide_v0.md)
+  - Documented annotation rules, literal source-span requirements, null handling,
+    expected flags, and gold-file format
+  - Added family-specific guidance and attributes for all 13 clause families
+- [x] **Synthetic evaluation registration** — [`corpus/manifest.json`](../corpus/manifest.json)
+  - Registered all 30 synthetic text/gold pairs as auto-labeled entries
+  - Maintained a 20-document dev split with the currently available corpus
+- [x] **SEC EDGAR Form D lookup client** — [`src/termsheet_ai/edgar/client.py`](../src/termsheet_ai/edgar/client.py)
+  - Added required User-Agent support, rate limiting, response caching, and
+    found/not-found/ambiguous result handling
+  - Ensured lookup failures degrade to `not_found` without surfacing false risk flags
+- [x] **EDGAR mocked test suite** — [`tests/test_edgar.py`](../tests/test_edgar.py)
+  - Covers positive, empty, ambiguous, failed, cached, batched, rate-limited,
+    and invalid-input lookups
+
+### Validation
+- [x] Targeted EDGAR tests pass in the repository virtual environment
+- [x] Manifest JSON and synthetic text/gold registrations validated
+
+### Remaining
+- [ ] Gold annotations for the real documents require independent human labeling
+  by Annotators A and B before reconciliation and Cohen's kappa reporting.
+
+## Week 5 (8–14 Nov 2026)
+
+### In progress
+
+#### M2 — Data & Preprocessing
+- [x] **Corpus evaluation harness** — [`src/termsheet_ai/evaluation/corpus.py`](../src/termsheet_ai/evaluation/corpus.py)
+  - Validates manifest paths, gold sidecars, duplicate clause IDs, and literal source spans
+  - Computes family precision, recall, F1, confusion matrices, and expected-flag counts
+  - Emits explicit missing-file and missing-annotation diagnostics
+- [x] **Evaluation CLI and focused tests** — [`scripts/evaluate_corpus.py`](../scripts/evaluate_corpus.py) and [`tests/test_evaluation.py`](../tests/test_evaluation.py)
+  - Supports validation-only audits and prediction-vs-gold evaluation
+  - Covers valid and invalid spans, missing files, duplicate IDs, metrics, and malformed predictions
+- [x] **Corpus audit**
+  - Synthetic sidecars are available for the 30 registered synthetic documents
+  - Real-document gold sidecars remain blocked on independent Annotator A/B labeling
