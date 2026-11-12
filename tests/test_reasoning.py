@@ -227,3 +227,101 @@ def test_multistep_proof_tree():
     assert original_fact["fact"] == "investor_majority"
     assert original_fact["value"] is True
     assert original_fact["origin"] == "extracted"
+
+
+def test_ungrounded_liquidation_is_rejected():
+    """Ungrounded liquidation facts must not trigger risk rules."""
+
+    facts = ExtractedFacts(
+        doc_id="ungrounded_test",
+        liquidation_preference=LiquidationPreferenceFact(
+            clause_id="c_1",
+            multiple=3.0,
+            participation=ParticipationType.FULLY_PARTICIPATING,
+            cap_multiple=None,
+            source_span=SourceSpan(
+                text="Unverified liquidation clause",
+                page_number=1,
+            ),
+            is_grounded=False,
+        ),
+    )
+
+    engine = ForwardChainingEngine()
+
+    wm = engine.build_working_memory_from_facts(facts)
+
+    # Ungrounded facts must not enter working memory.
+    assert wm.get("multiple") is None
+    assert wm.get("liquidation_preference.multiple") is None
+
+    trace = engine.reason(facts)
+
+    # No risk warning should be produced from this fact.
+    assert trace.flags == []
+    assert trace.risk_score.overall_score == 0
+
+
+def test_grounded_liquidation_is_accepted():
+    """Grounded liquidation facts should still trigger rules."""
+
+    facts = ExtractedFacts(
+        doc_id="grounded_test",
+        liquidation_preference=LiquidationPreferenceFact(
+            clause_id="c_1",
+            multiple=3.0,
+            participation=ParticipationType.NON_PARTICIPATING,
+            cap_multiple=None,
+            source_span=SourceSpan(
+                text="3.0x non-participating liquidation preference",
+                page_number=1,
+            ),
+            is_grounded=True,
+        ),
+    )
+
+    engine = ForwardChainingEngine()
+    wm = engine.build_working_memory_from_facts(facts)
+
+    assert wm.get("multiple") == 3.0
+
+    trace = engine.reason(facts)
+
+    rule_ids = {record.rule_id for record in trace.rule_traces}
+
+    assert "R-LP-01" in rule_ids
+    assert "R-LP-04" in rule_ids
+
+
+def test_mixed_grounded_and_ungrounded_facts():
+    """Reject invalid facts without blocking valid ones."""
+
+    facts = ExtractedFacts(
+        doc_id="mixed_grounding_test",
+        liquidation_preference=LiquidationPreferenceFact(
+            clause_id="c_1",
+            multiple=3.0,
+            participation=ParticipationType.FULLY_PARTICIPATING,
+            source_span=SourceSpan(text="Unverified clause"),
+            is_grounded=False,
+        ),
+        anti_dilution=AntiDilutionFact(
+            clause_id="c_2",
+            anti_dilution_type=AntiDilutionType.FULL_RATCHET,
+            source_span=SourceSpan(text="full-ratchet anti-dilution"),
+            is_grounded=True,
+        ),
+    )
+
+    engine = ForwardChainingEngine()
+    trace = engine.reason(facts)
+
+    rule_ids = {record.rule_id for record in trace.rule_traces}
+
+    # Grounded anti-dilution fact should trigger its rule.
+    assert "R-AD-01" in rule_ids
+
+    # Ungrounded liquidation fact must not trigger rules.
+    assert "R-LP-01" not in rule_ids
+    assert "R-LP-04" not in rule_ids
+    assert "R-LP-05" not in rule_ids

@@ -267,7 +267,7 @@ class ForwardChainingEngine(BaseReasoner):
     def build_working_memory_from_facts(self, facts: ExtractedFacts) -> WorkingMemory:
         wm = WorkingMemory()
 
-        if facts.liquidation_preference:
+        if facts.liquidation_preference is not None and facts.liquidation_preference.is_grounded:
             lp = facts.liquidation_preference
             span = lp.source_span.text if lp.source_span else ""
             cid = lp.clause_id
@@ -289,14 +289,14 @@ class ForwardChainingEngine(BaseReasoner):
                 wm.assert_fact(f"liquidation_preference.{key}", value, cid, span)
                 wm.assert_fact(key, value, cid, span)
 
-        if facts.anti_dilution:
+        if facts.anti_dilution is not None and facts.anti_dilution.is_grounded:
             ad = facts.anti_dilution
             span = ad.source_span.text if ad.source_span else ""
             value = ad.anti_dilution_type.value
             wm.assert_fact("anti_dilution.type", value, ad.clause_id, span)
             wm.assert_fact("type", value, ad.clause_id, span)
 
-        if facts.board_composition:
+        if facts.board_composition is not None and facts.board_composition.is_grounded:
             bd = facts.board_composition
             span = bd.source_span.text if bd.source_span else ""
             fields = {
@@ -313,7 +313,7 @@ class ForwardChainingEngine(BaseReasoner):
                 wm.assert_fact("board_of_directors.investor_majority", majority, bd.clause_id, span)
                 wm.assert_fact("investor_majority", majority, bd.clause_id, span)
 
-        if facts.founder_vesting:
+        if facts.founder_vesting is not None and facts.founder_vesting.is_grounded:
             fv = facts.founder_vesting
             span = fv.source_span.text if fv.source_span else ""
             fields = {
@@ -325,7 +325,7 @@ class ForwardChainingEngine(BaseReasoner):
                 wm.assert_fact(f"vesting.{key}", value, fv.clause_id, span)
                 wm.assert_fact(key, value, fv.clause_id, span)
 
-        if facts.protective_provisions:
+        if facts.protective_provisions is not None and facts.protective_provisions.is_grounded:
             pp = facts.protective_provisions
             span = pp.source_span.text if pp.source_span else ""
             wm.assert_fact(
