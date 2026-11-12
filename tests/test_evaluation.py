@@ -60,7 +60,9 @@ def test_validate_invalid_span(tmp_path: Path) -> None:
 def test_missing_document_and_gold_are_reported(tmp_path: Path) -> None:
     manifest = tmp_path / "manifest.json"
     manifest.write_text(
-        json.dumps({"evaluation_corpus": {"documents": [{"id": "eval-001", "filename": "missing.txt"}]}})
+        json.dumps(
+            {"evaluation_corpus": {"documents": [{"id": "eval-001", "filename": "missing.txt"}]}}
+        )
     )
     report = validate_corpus(manifest)
     assert len(report.missing_files) == 1

@@ -14,7 +14,9 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--manifest", type=Path, default=Path("corpus/manifest.json"))
     parser.add_argument("--predictions", type=Path)
-    parser.add_argument("--output", type=Path, help="Write the machine-readable report to this path")
+    parser.add_argument(
+        "--output", type=Path, help="Write the machine-readable report to this path"
+    )
     args = parser.parse_args()
     try:
         report = (

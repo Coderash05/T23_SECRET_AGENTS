@@ -124,9 +124,7 @@ class TestEdgarClient:
     @patch("termsheet_ai.edgar.client.requests")
     def test_caching(self, mock_requests: MagicMock) -> None:
         """Second call with same name must NOT hit the network."""
-        mock_requests.get.return_value = _make_response(
-            [_make_hit("Greylock Partners LLC")]
-        )
+        mock_requests.get.return_value = _make_response([_make_hit("Greylock Partners LLC")])
 
         client = EdgarClient()
         r1 = client.lookup_investor("Greylock Partners")
@@ -158,9 +156,7 @@ class TestEdgarClient:
     @patch("termsheet_ai.edgar.client.requests")
     def test_batch_lookup(self, mock_requests: MagicMock) -> None:
         """lookup_batch returns a dict keyed by name for every queried name."""
-        mock_requests.get.return_value = _make_response(
-            [_make_hit("Khosla Ventures LLC")]
-        )
+        mock_requests.get.return_value = _make_response([_make_hit("Khosla Ventures LLC")])
 
         client = EdgarClient()
         names = ["Khosla Ventures", "Tiger Global"]
@@ -174,9 +170,7 @@ class TestEdgarClient:
     @patch("termsheet_ai.edgar.client.requests")
     def test_clear_cache(self, mock_requests: MagicMock) -> None:
         """After clear_cache(), the next call fetches from the network again."""
-        mock_requests.get.return_value = _make_response(
-            [_make_hit("Index Ventures Management SA")]
-        )
+        mock_requests.get.return_value = _make_response([_make_hit("Index Ventures Management SA")])
 
         client = EdgarClient()
         client.lookup_investor("Index Ventures")

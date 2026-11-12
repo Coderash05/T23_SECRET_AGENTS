@@ -158,7 +158,9 @@ def evaluate_corpus(manifest_path: Path, predictions_path: Path) -> EvaluationRe
     try:
         predictions = json.loads(predictions_path.read_text())
     except (OSError, json.JSONDecodeError) as exc:
-        raise CorpusEvaluationError(f"Unable to load predictions {predictions_path}: {exc}") from exc
+        raise CorpusEvaluationError(
+            f"Unable to load predictions {predictions_path}: {exc}"
+        ) from exc
     predicted = _prediction_map(predictions)
     root = manifest_path.parent
     family_counts: Counter[tuple[str, str]] = Counter()
@@ -188,11 +190,21 @@ def evaluate_corpus(manifest_path: Path, predictions_path: Path) -> EvaluationRe
     labels = sorted({label for pair in family_counts for label in pair})
     for label in labels:
         tp = family_counts[(label, label)]
-        fp = sum(value for (gold, predicted_label), value in family_counts.items() if predicted_label == label and gold != label)
-        fn = sum(value for (gold, predicted_label), value in family_counts.items() if gold == label and predicted_label != label)
+        fp = sum(
+            value
+            for (gold, predicted_label), value in family_counts.items()
+            if predicted_label == label and gold != label
+        )
+        fn = sum(
+            value
+            for (gold, predicted_label), value in family_counts.items()
+            if gold == label and predicted_label != label
+        )
         report.family_metrics[label] = _metric(tp, fp, fn)
     report.confusion_matrix = {
-        gold: {predicted_label: family_counts[(gold, predicted_label)] for predicted_label in labels}
+        gold: {
+            predicted_label: family_counts[(gold, predicted_label)] for predicted_label in labels
+        }
         for gold in labels
     }
     report.flag_metrics = {
