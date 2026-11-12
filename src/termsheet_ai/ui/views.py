@@ -166,11 +166,42 @@ def render_facts_tab(payload: PipelinePayload) -> None:
 
 
 def render_investor_tab() -> None:
-    st.info(
-        "Investor lookup (SEC EDGAR Form D) is a stretch feature planned for Week 4. This panel is a placeholder."
+    st.subheader("Investor Verification (SEC Form D)")
+    st.caption("Verify venture funds and investors against SEC EDGAR Form D exemption filings.")
+    investor_query = st.text_input(
+        "Investor or fund name", placeholder="e.g. Sequoia Capital, Accel, Benchmark"
     )
-    st.text_input("Investor or fund name", disabled=True, placeholder="e.g. Example Ventures LP")
-    st.button("Search Form D records", disabled=True)
+    if st.button("Search Form D records", type="primary") and investor_query.strip():
+        from termsheet_ai.edgar.client import EdgarClient
+
+        with st.spinner("Searching SEC EDGAR..."):
+            try:
+                client = EdgarClient()
+                result = client.lookup_investor(investor_query.strip())
+                if result.status == "found":
+                    st.success(
+                        f"Confirmed Form D filing found for **{result.matched_name or investor_query}**"
+                    )
+                    if result.cik:
+                        st.write(f"**CIK**: `{result.cik}`")
+                    if result.filing_date:
+                        st.write(f"**Latest Filing Date**: {result.filing_date}")
+                    if result.filing_url:
+                        st.markdown(f"[View SEC EDGAR Filing]({result.filing_url})")
+                elif result.status == "ambiguous":
+                    st.warning(
+                        f"Multiple potential Form D matches found for '{investor_query}'. Verify exact entity name."
+                    )
+                    if result.filing_url:
+                        st.markdown(f"[Search Results on SEC.gov]({result.filing_url})")
+                else:
+                    st.info(
+                        f"No Form D filings found for '{investor_query}'. "
+                        "Note: Many venture funds operate under private partnership exemptions without public Form D filings; "
+                        "this does not indicate an adverse risk."
+                    )
+            except Exception as e:
+                st.error(f"EDGAR lookup service unavailable: {e}")
 
 
 def render_debug_tab(payload: PipelinePayload) -> None:

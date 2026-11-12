@@ -1,0 +1,15 @@
+{
+  "total_documents": 30,
+  "neuro_symbolic_pipeline": {
+    "numerical_hallucination_rate": 0.0,
+    "proof_tree_justification_rate": 0.3,
+    "verifiable_source_grounding": "100%",
+    "rule_transparency": "Deterministic (25 Horn rules in YAML)"
+  },
+  "llm_only_baseline": {
+    "numerical_hallucination_rate": 1.0,
+    "proof_tree_justification_rate": 0.0,
+    "verifiable_source_grounding": "None (free-form generation)",
+    "rule_transparency": "Opaque (probabilistic weights)"
+  }
+}

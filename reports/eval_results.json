@@ -1,0 +1,1012 @@
+{
+  "summary_metrics": {
+    "total_documents_evaluated": 30,
+    "risk_flag_precision": 0.4599,
+    "risk_flag_recall": 0.3214,
+    "risk_flag_f1": 0.3784,
+    "fact_extraction_accuracy": {
+      "multiple": 0.6333,
+      "participation": 0.3667,
+      "anti_dilution": 0.5333,
+      "founder_seats": 0.2333,
+      "investor_seats": 0.2333
+    },
+    "numerical_hallucination_rate": 0.1,
+    "zero_hallucination_pass_rate": 0.9
+  },
+  "document_results": [
+    {
+      "doc_id": "ts_synth_adv_001.txt",
+      "is_adversarial": true,
+      "total_clauses": 17,
+      "fact_matches": {
+        "multiple": true,
+        "participation": true,
+        "anti_dilution": true,
+        "founder_seats": true,
+        "investor_seats": true
+      },
+      "grounding_rate": 1.0,
+      "tp": 5,
+      "fp": 3,
+      "fn": 6,
+      "expected_flags": [
+        "R-LP-02",
+        "R-EX-01",
+        "R-LP-01",
+        "R-RD-01",
+        "R-DA-01",
+        "R-CT-02",
+        "R-AD-01",
+        "R-CT-03",
+        "R-LP-03",
+        "R-OP-01",
+        "R-DV-01"
+      ],
+      "predicted_flags": [
+        "R-LP-02",
+        "R-VS-03",
+        "R-LP-01",
+        "R-LP-04",
+        "R-AD-01",
+        "R-CT-02",
+        "R-CT-03",
+        "R-LP-05"
+      ],
+      "hallucination_rate": 0.0,
+      "execution_errors": []
+    },
+    {
+      "doc_id": "ts_synth_adv_002.txt",
+      "is_adversarial": true,
+      "total_clauses": 13,
+      "fact_matches": {
+        "multiple": true,
+        "participation": false,
+        "anti_dilution": false,
+        "founder_seats": false,
+        "investor_seats": false
+      },
+      "grounding_rate": 1.0,
+      "tp": 1,
+      "fp": 3,
+      "fn": 8,
+      "expected_flags": [
+        "R-EX-01",
+        "R-LP-01",
+        "R-RD-01",
+        "R-DA-01",
+        "R-CT-02",
+        "R-AD-01",
+        "R-CT-03",
+        "R-OP-01",
+        "R-DV-01"
+      ],
+      "predicted_flags": [
+        "R-LP-05",
+        "R-LP-01",
+        "R-VS-04",
+        "R-LP-02"
+      ],
+      "hallucination_rate": 0.0,
+      "execution_errors": []
+    },
+    {
+      "doc_id": "ts_synth_adv_003.txt",
+      "is_adversarial": true,
+      "total_clauses": 13,
+      "fact_matches": {
+        "multiple": true,
+        "participation": false,
+        "anti_dilution": true,
+        "founder_seats": true,
+        "investor_seats": true
+      },
+      "grounding_rate": 1.0,
+      "tp": 6,
+      "fp": 3,
+      "fn": 5,
+      "expected_flags": [
+        "R-VS-02",
+        "R-LP-02",
+        "R-EX-01",
+        "R-LP-01",
+        "R-RD-01",
+        "R-DA-01",
+        "R-CT-02",
+        "R-AD-01",
+        "R-CT-03",
+        "R-OP-01",
+        "R-DV-01"
+      ],
+      "predicted_flags": [
+        "R-VS-02",
+        "R-LP-02",
+        "R-VS-03",
+        "R-LP-01",
+        "R-LP-04",
+        "R-AD-01",
+        "R-CT-02",
+        "R-CT-03",
+        "R-LP-05"
+      ],
+      "hallucination_rate": 0.0,
+      "execution_errors": []
+    },
+    {
+      "doc_id": "ts_synth_adv_004.txt",
+      "is_adversarial": true,
+      "total_clauses": 16,
+      "fact_matches": {
+        "multiple": true,
+        "participation": false,
+        "anti_dilution": false,
+        "founder_seats": true,
+        "investor_seats": true
+      },
+      "grounding_rate": 1.0,
+      "tp": 4,
+      "fp": 5,
+      "fn": 5,
+      "expected_flags": [
+        "R-EX-01",
+        "R-LP-01",
+        "R-RD-01",
+        "R-CT-02",
+        "R-AD-01",
+        "R-CT-03",
+        "R-VS-01",
+        "R-LP-03",
+        "R-DV-01"
+      ],
+      "predicted_flags": [
+        "R-LP-02",
+        "R-CT-04",
+        "R-VS-03",
+        "R-LP-01",
+        "R-LP-04",
+        "R-CT-02",
+        "R-CT-03",
+        "R-VS-01",
+        "R-LP-05"
+      ],
+      "hallucination_rate": 0.0,
+      "execution_errors": []
+    },
+    {
+      "doc_id": "ts_synth_adv_005.txt",
+      "is_adversarial": true,
+      "total_clauses": 13,
+      "fact_matches": {
+        "multiple": true,
+        "participation": false,
+        "anti_dilution": true,
+        "founder_seats": false,
+        "investor_seats": false
+      },
+      "grounding_rate": 1.0,
+      "tp": 4,
+      "fp": 5,
+      "fn": 7,
+      "expected_flags": [
+        "R-VS-02",
+        "R-EX-01",
+        "R-LP-01",
+        "R-RD-01",
+        "R-DA-01",
+        "R-CT-02",
+        "R-AD-01",
+        "R-CT-03",
+        "R-LP-03",
+        "R-OP-01",
+        "R-DV-01"
+      ],
+      "predicted_flags": [
+        "R-VS-02",
+        "R-LP-02",
+        "R-CT-04",
+        "R-LP-01",
+        "R-LP-04",
+        "R-AD-01",
+        "R-VS-04",
+        "R-CT-03",
+        "R-LP-05"
+      ],
+      "hallucination_rate": 0.07692307692307693,
+      "execution_errors": []
+    },
+    {
+      "doc_id": "ts_synth_adv_006.txt",
+      "is_adversarial": true,
+      "total_clauses": 11,
+      "fact_matches": {
+        "multiple": true,
+        "participation": false,
+        "anti_dilution": false,
+        "founder_seats": false,
+        "investor_seats": false
+      },
+      "grounding_rate": 1.0,
+      "tp": 2,
+      "fp": 3,
+      "fn": 7,
+      "expected_flags": [
+        "R-EX-01",
+        "R-LP-01",
+        "R-RD-01",
+        "R-DA-01",
+        "R-CT-02",
+        "R-AD-01",
+        "R-CT-03",
+        "R-OP-01",
+        "R-DV-01"
+      ],
+      "predicted_flags": [
+        "R-LP-02",
+        "R-LP-01",
+        "R-LP-04",
+        "R-CT-03",
+        "R-LP-05"
+      ],
+      "hallucination_rate": 0.09090909090909091,
+      "execution_errors": []
+    },
+    {
+      "doc_id": "ts_synth_adv_007.txt",
+      "is_adversarial": true,
+      "total_clauses": 15,
+      "fact_matches": {
+        "multiple": false,
+        "participation": false,
+        "anti_dilution": false,
+        "founder_seats": false,
+        "investor_seats": false
+      },
+      "grounding_rate": 0.6666666666666666,
+      "tp": 2,
+      "fp": 3,
+      "fn": 5,
+      "expected_flags": [
+        "R-VS-02",
+        "R-EX-01",
+        "R-LP-01",
+        "R-RD-01",
+        "R-CT-02",
+        "R-AD-01",
+        "R-CT-03"
+      ],
+      "predicted_flags": [
+        "R-VS-02",
+        "R-LP-02",
+        "R-VS-03",
+        "R-CT-03",
+        "R-LP-05"
+      ],
+      "hallucination_rate": 0.0,
+      "execution_errors": []
+    },
+    {
+      "doc_id": "ts_synth_adv_008.txt",
+      "is_adversarial": true,
+      "total_clauses": 13,
+      "fact_matches": {
+        "multiple": false,
+        "participation": true,
+        "anti_dilution": true,
+        "founder_seats": false,
+        "investor_seats": false
+      },
+      "grounding_rate": 1.0,
+      "tp": 2,
+      "fp": 1,
+      "fn": 8,
+      "expected_flags": [
+        "R-LP-02",
+        "R-EX-01",
+        "R-LP-01",
+        "R-RD-01",
+        "R-CT-02",
+        "R-AD-01",
+        "R-CT-03",
+        "R-LP-03",
+        "R-OP-01",
+        "R-DV-01"
+      ],
+      "predicted_flags": [
+        "R-LP-05",
+        "R-AD-01",
+        "R-LP-02"
+      ],
+      "hallucination_rate": 0.0,
+      "execution_errors": []
+    },
+    {
+      "doc_id": "ts_synth_adv_009.txt",
+      "is_adversarial": true,
+      "total_clauses": 15,
+      "fact_matches": {
+        "multiple": true,
+        "participation": true,
+        "anti_dilution": true,
+        "founder_seats": false,
+        "investor_seats": false
+      },
+      "grounding_rate": 1.0,
+      "tp": 4,
+      "fp": 2,
+      "fn": 5,
+      "expected_flags": [
+        "R-LP-02",
+        "R-EX-01",
+        "R-LP-01",
+        "R-RD-01",
+        "R-CT-02",
+        "R-AD-01",
+        "R-CT-03",
+        "R-LP-03",
+        "R-OP-01"
+      ],
+      "predicted_flags": [
+        "R-LP-02",
+        "R-LP-01",
+        "R-LP-04",
+        "R-AD-01",
+        "R-CT-03",
+        "R-LP-05"
+      ],
+      "hallucination_rate": 0.0,
+      "execution_errors": []
+    },
+    {
+      "doc_id": "ts_synth_adv_010.txt",
+      "is_adversarial": true,
+      "total_clauses": 12,
+      "fact_matches": {
+        "multiple": false,
+        "participation": true,
+        "anti_dilution": false,
+        "founder_seats": false,
+        "investor_seats": false
+      },
+      "grounding_rate": 1.0,
+      "tp": 2,
+      "fp": 2,
+      "fn": 10,
+      "expected_flags": [
+        "R-VS-02",
+        "R-LP-02",
+        "R-EX-01",
+        "R-LP-01",
+        "R-RD-01",
+        "R-DA-01",
+        "R-CT-02",
+        "R-AD-01",
+        "R-CT-03",
+        "R-LP-03",
+        "R-OP-01",
+        "R-DV-01"
+      ],
+      "predicted_flags": [
+        "R-VS-02",
+        "R-VS-03",
+        "R-LP-05",
+        "R-LP-02"
+      ],
+      "hallucination_rate": 0.0,
+      "execution_errors": []
+    },
+    {
+      "doc_id": "ts_synth_adv_011.txt",
+      "is_adversarial": true,
+      "total_clauses": 14,
+      "fact_matches": {
+        "multiple": true,
+        "participation": true,
+        "anti_dilution": true,
+        "founder_seats": false,
+        "investor_seats": false
+      },
+      "grounding_rate": 1.0,
+      "tp": 3,
+      "fp": 3,
+      "fn": 9,
+      "expected_flags": [
+        "R-VS-02",
+        "R-LP-02",
+        "R-EX-01",
+        "R-LP-01",
+        "R-RD-01",
+        "R-DA-01",
+        "R-CT-02",
+        "R-AD-02",
+        "R-CT-03",
+        "R-LP-03",
+        "R-OP-01",
+        "R-DV-01"
+      ],
+      "predicted_flags": [
+        "R-LP-02",
+        "R-VS-03",
+        "R-LP-01",
+        "R-LP-04",
+        "R-AD-02",
+        "R-LP-05"
+      ],
+      "hallucination_rate": 0.07142857142857142,
+      "execution_errors": []
+    },
+    {
+      "doc_id": "ts_synth_adv_012.txt",
+      "is_adversarial": true,
+      "total_clauses": 14,
+      "fact_matches": {
+        "multiple": true,
+        "participation": false,
+        "anti_dilution": true,
+        "founder_seats": false,
+        "investor_seats": false
+      },
+      "grounding_rate": 1.0,
+      "tp": 3,
+      "fp": 2,
+      "fn": 7,
+      "expected_flags": [
+        "R-VS-02",
+        "R-LP-02",
+        "R-EX-01",
+        "R-LP-01",
+        "R-RD-01",
+        "R-CT-02",
+        "R-AD-01",
+        "R-CT-03",
+        "R-OP-01",
+        "R-DV-01"
+      ],
+      "predicted_flags": [
+        "R-LP-02",
+        "R-VS-03",
+        "R-LP-01",
+        "R-AD-01",
+        "R-LP-05"
+      ],
+      "hallucination_rate": 0.0,
+      "execution_errors": []
+    },
+    {
+      "doc_id": "ts_synth_adv_013.txt",
+      "is_adversarial": true,
+      "total_clauses": 9,
+      "fact_matches": {
+        "multiple": false,
+        "participation": false,
+        "anti_dilution": false,
+        "founder_seats": false,
+        "investor_seats": false
+      },
+      "grounding_rate": 1.0,
+      "tp": 1,
+      "fp": 1,
+      "fn": 11,
+      "expected_flags": [
+        "R-LP-02",
+        "R-EX-01",
+        "R-LP-01",
+        "R-RD-01",
+        "R-DA-01",
+        "R-CT-02",
+        "R-AD-01",
+        "R-CT-03",
+        "R-VS-01",
+        "R-LP-03",
+        "R-OP-01",
+        "R-DV-01"
+      ],
+      "predicted_flags": [
+        "R-VS-01",
+        "R-VS-04"
+      ],
+      "hallucination_rate": 0.0,
+      "execution_errors": []
+    },
+    {
+      "doc_id": "ts_synth_adv_014.txt",
+      "is_adversarial": true,
+      "total_clauses": 16,
+      "fact_matches": {
+        "multiple": false,
+        "participation": false,
+        "anti_dilution": true,
+        "founder_seats": false,
+        "investor_seats": false
+      },
+      "grounding_rate": 0.5,
+      "tp": 1,
+      "fp": 2,
+      "fn": 8,
+      "expected_flags": [
+        "R-VS-02",
+        "R-EX-01",
+        "R-LP-01",
+        "R-RD-01",
+        "R-CT-02",
+        "R-AD-01",
+        "R-CT-03",
+        "R-LP-03",
+        "R-OP-01"
+      ],
+      "predicted_flags": [
+        "R-LP-05",
+        "R-AD-01",
+        "R-LP-02"
+      ],
+      "hallucination_rate": 0.0,
+      "execution_errors": []
+    },
+    {
+      "doc_id": "ts_synth_adv_015.txt",
+      "is_adversarial": true,
+      "total_clauses": 11,
+      "fact_matches": {
+        "multiple": true,
+        "participation": true,
+        "anti_dilution": false,
+        "founder_seats": false,
+        "investor_seats": false
+      },
+      "grounding_rate": 1.0,
+      "tp": 2,
+      "fp": 1,
+      "fn": 9,
+      "expected_flags": [
+        "R-VS-02",
+        "R-LP-02",
+        "R-EX-01",
+        "R-LP-01",
+        "R-RD-01",
+        "R-DA-01",
+        "R-CT-02",
+        "R-AD-01",
+        "R-CT-03",
+        "R-OP-01",
+        "R-DV-01"
+      ],
+      "predicted_flags": [
+        "R-LP-05",
+        "R-LP-01",
+        "R-LP-02"
+      ],
+      "hallucination_rate": 0.0,
+      "execution_errors": []
+    },
+    {
+      "doc_id": "ts_synth_std_001.txt",
+      "is_adversarial": false,
+      "total_clauses": 16,
+      "fact_matches": {
+        "multiple": false,
+        "participation": true,
+        "anti_dilution": false,
+        "founder_seats": false,
+        "investor_seats": false
+      },
+      "grounding_rate": 0.5,
+      "tp": 0,
+      "fp": 1,
+      "fn": 2,
+      "expected_flags": [
+        "R-LP-01",
+        "R-AD-01"
+      ],
+      "predicted_flags": [
+        "R-VS-04"
+      ],
+      "hallucination_rate": 0.0,
+      "execution_errors": []
+    },
+    {
+      "doc_id": "ts_synth_std_002.txt",
+      "is_adversarial": false,
+      "total_clauses": 12,
+      "fact_matches": {
+        "multiple": true,
+        "participation": false,
+        "anti_dilution": true,
+        "founder_seats": false,
+        "investor_seats": false
+      },
+      "grounding_rate": 1.0,
+      "tp": 2,
+      "fp": 2,
+      "fn": 1,
+      "expected_flags": [
+        "R-LP-01",
+        "R-AD-02",
+        "R-EX-01"
+      ],
+      "predicted_flags": [
+        "R-LP-05",
+        "R-LP-01",
+        "R-AD-02",
+        "R-LP-02"
+      ],
+      "hallucination_rate": 0.0,
+      "execution_errors": []
+    },
+    {
+      "doc_id": "ts_synth_std_003.txt",
+      "is_adversarial": false,
+      "total_clauses": 14,
+      "fact_matches": {
+        "multiple": true,
+        "participation": false,
+        "anti_dilution": true,
+        "founder_seats": false,
+        "investor_seats": false
+      },
+      "grounding_rate": 1.0,
+      "tp": 3,
+      "fp": 2,
+      "fn": 1,
+      "expected_flags": [
+        "R-VS-01",
+        "R-OP-01",
+        "R-AD-02",
+        "R-LP-02"
+      ],
+      "predicted_flags": [
+        "R-LP-02",
+        "R-VS-03",
+        "R-AD-02",
+        "R-VS-01",
+        "R-LP-05"
+      ],
+      "hallucination_rate": 0.0,
+      "execution_errors": []
+    },
+    {
+      "doc_id": "ts_synth_std_004.txt",
+      "is_adversarial": false,
+      "total_clauses": 17,
+      "fact_matches": {
+        "multiple": false,
+        "participation": false,
+        "anti_dilution": true,
+        "founder_seats": true,
+        "investor_seats": true
+      },
+      "grounding_rate": 1.0,
+      "tp": 0,
+      "fp": 4,
+      "fn": 1,
+      "expected_flags": [
+        "R-LP-01"
+      ],
+      "predicted_flags": [
+        "R-VS-03",
+        "R-LP-05",
+        "R-AD-03",
+        "R-LP-02"
+      ],
+      "hallucination_rate": 0.0,
+      "execution_errors": []
+    },
+    {
+      "doc_id": "ts_synth_std_005.txt",
+      "is_adversarial": false,
+      "total_clauses": 16,
+      "fact_matches": {
+        "multiple": true,
+        "participation": false,
+        "anti_dilution": true,
+        "founder_seats": true,
+        "investor_seats": true
+      },
+      "grounding_rate": 1.0,
+      "tp": 3,
+      "fp": 3,
+      "fn": 1,
+      "expected_flags": [
+        "R-VS-01",
+        "R-LP-01",
+        "R-AD-02",
+        "R-DV-01"
+      ],
+      "predicted_flags": [
+        "R-LP-02",
+        "R-VS-03",
+        "R-LP-01",
+        "R-AD-02",
+        "R-VS-01",
+        "R-LP-05"
+      ],
+      "hallucination_rate": 0.0,
+      "execution_errors": []
+    },
+    {
+      "doc_id": "ts_synth_std_006.txt",
+      "is_adversarial": false,
+      "total_clauses": 15,
+      "fact_matches": {
+        "multiple": false,
+        "participation": false,
+        "anti_dilution": true,
+        "founder_seats": false,
+        "investor_seats": false
+      },
+      "grounding_rate": 1.0,
+      "tp": 2,
+      "fp": 3,
+      "fn": 1,
+      "expected_flags": [
+        "R-AD-02",
+        "R-LP-02",
+        "R-DV-01"
+      ],
+      "predicted_flags": [
+        "R-CT-04",
+        "R-LP-02",
+        "R-LP-01",
+        "R-AD-02",
+        "R-LP-05"
+      ],
+      "hallucination_rate": 0.0,
+      "execution_errors": []
+    },
+    {
+      "doc_id": "ts_synth_std_007.txt",
+      "is_adversarial": false,
+      "total_clauses": 17,
+      "fact_matches": {
+        "multiple": true,
+        "participation": false,
+        "anti_dilution": true,
+        "founder_seats": false,
+        "investor_seats": false
+      },
+      "grounding_rate": 1.0,
+      "tp": 2,
+      "fp": 2,
+      "fn": 2,
+      "expected_flags": [
+        "R-VS-01",
+        "R-LP-03",
+        "R-LP-01",
+        "R-AD-02"
+      ],
+      "predicted_flags": [
+        "R-LP-05",
+        "R-LP-01",
+        "R-AD-02",
+        "R-LP-02"
+      ],
+      "hallucination_rate": 0.0,
+      "execution_errors": []
+    },
+    {
+      "doc_id": "ts_synth_std_008.txt",
+      "is_adversarial": false,
+      "total_clauses": 12,
+      "fact_matches": {
+        "multiple": true,
+        "participation": true,
+        "anti_dilution": false,
+        "founder_seats": false,
+        "investor_seats": false
+      },
+      "grounding_rate": 1.0,
+      "tp": 0,
+      "fp": 1,
+      "fn": 1,
+      "expected_flags": [
+        "R-AD-02"
+      ],
+      "predicted_flags": [
+        "R-VS-04"
+      ],
+      "hallucination_rate": 0.0,
+      "execution_errors": []
+    },
+    {
+      "doc_id": "ts_synth_std_009.txt",
+      "is_adversarial": false,
+      "total_clauses": 13,
+      "fact_matches": {
+        "multiple": true,
+        "participation": true,
+        "anti_dilution": false,
+        "founder_seats": false,
+        "investor_seats": false
+      },
+      "grounding_rate": 1.0,
+      "tp": 1,
+      "fp": 1,
+      "fn": 2,
+      "expected_flags": [
+        "R-LP-03",
+        "R-LP-01",
+        "R-AD-02"
+      ],
+      "predicted_flags": [
+        "R-LP-01",
+        "R-VS-04"
+      ],
+      "hallucination_rate": 0.0,
+      "execution_errors": []
+    },
+    {
+      "doc_id": "ts_synth_std_010.txt",
+      "is_adversarial": false,
+      "total_clauses": 16,
+      "fact_matches": {
+        "multiple": true,
+        "participation": false,
+        "anti_dilution": true,
+        "founder_seats": false,
+        "investor_seats": false
+      },
+      "grounding_rate": 1.0,
+      "tp": 1,
+      "fp": 4,
+      "fn": 1,
+      "expected_flags": [
+        "R-AD-02",
+        "R-DV-01"
+      ],
+      "predicted_flags": [
+        "R-CT-04",
+        "R-LP-02",
+        "R-VS-03",
+        "R-AD-02",
+        "R-LP-05"
+      ],
+      "hallucination_rate": 0.0,
+      "execution_errors": []
+    },
+    {
+      "doc_id": "ts_synth_std_011.txt",
+      "is_adversarial": false,
+      "total_clauses": 16,
+      "fact_matches": {
+        "multiple": false,
+        "participation": true,
+        "anti_dilution": true,
+        "founder_seats": true,
+        "investor_seats": true
+      },
+      "grounding_rate": 0.75,
+      "tp": 1,
+      "fp": 3,
+      "fn": 1,
+      "expected_flags": [
+        "R-LP-01",
+        "R-LP-02"
+      ],
+      "predicted_flags": [
+        "R-VS-03",
+        "R-LP-05",
+        "R-AD-03",
+        "R-LP-02"
+      ],
+      "hallucination_rate": 0.0,
+      "execution_errors": []
+    },
+    {
+      "doc_id": "ts_synth_std_012.txt",
+      "is_adversarial": false,
+      "total_clauses": 12,
+      "fact_matches": {
+        "multiple": true,
+        "participation": true,
+        "anti_dilution": false,
+        "founder_seats": false,
+        "investor_seats": false
+      },
+      "grounding_rate": 1.0,
+      "tp": 1,
+      "fp": 2,
+      "fn": 3,
+      "expected_flags": [
+        "R-LP-03",
+        "R-AD-02",
+        "R-LP-02",
+        "R-DV-01"
+      ],
+      "predicted_flags": [
+        "R-LP-05",
+        "R-VS-04",
+        "R-LP-02"
+      ],
+      "hallucination_rate": 0.0,
+      "execution_errors": []
+    },
+    {
+      "doc_id": "ts_synth_std_013.txt",
+      "is_adversarial": false,
+      "total_clauses": 15,
+      "fact_matches": {
+        "multiple": false,
+        "participation": false,
+        "anti_dilution": false,
+        "founder_seats": true,
+        "investor_seats": true
+      },
+      "grounding_rate": 1.0,
+      "tp": 3,
+      "fp": 2,
+      "fn": 1,
+      "expected_flags": [
+        "R-VS-01",
+        "R-LP-01",
+        "R-LP-02",
+        "R-DV-01"
+      ],
+      "predicted_flags": [
+        "R-LP-02",
+        "R-LP-01",
+        "R-VS-04",
+        "R-VS-01",
+        "R-LP-05"
+      ],
+      "hallucination_rate": 0.0,
+      "execution_errors": []
+    },
+    {
+      "doc_id": "ts_synth_std_014.txt",
+      "is_adversarial": false,
+      "total_clauses": 15,
+      "fact_matches": {
+        "multiple": true,
+        "participation": false,
+        "anti_dilution": false,
+        "founder_seats": false,
+        "investor_seats": false
+      },
+      "grounding_rate": 1.0,
+      "tp": 1,
+      "fp": 2,
+      "fn": 3,
+      "expected_flags": [
+        "R-VS-01",
+        "R-OP-01",
+        "R-EX-01",
+        "R-LP-02"
+      ],
+      "predicted_flags": [
+        "R-LP-05",
+        "R-CT-04",
+        "R-LP-02"
+      ],
+      "hallucination_rate": 0.0,
+      "execution_errors": []
+    },
+    {
+      "doc_id": "ts_synth_std_015.txt",
+      "is_adversarial": false,
+      "total_clauses": 15,
+      "fact_matches": {
+        "multiple": false,
+        "participation": false,
+        "anti_dilution": false,
+        "founder_seats": false,
+        "investor_seats": false
+      },
+      "grounding_rate": 1.0,
+      "tp": 1,
+      "fp": 3,
+      "fn": 2,
+      "expected_flags": [
+        "R-VS-01",
+        "R-LP-01",
+        "R-AD-02"
+      ],
+      "predicted_flags": [
+        "R-VS-01",
+        "R-LP-05",
+        "R-VS-04",
+        "R-LP-02"
+      ],
+      "hallucination_rate": 0.0,
+      "execution_errors": []
+    }
+  ]
+}
