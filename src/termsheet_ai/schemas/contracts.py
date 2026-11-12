@@ -235,6 +235,9 @@ class JustificationRecord(BaseModel):
     )
     conclusion_flag: str = Field(description="Derived conclusion or flag title.")
 
+    # NEW: Nested explanation of how the conclusion was reached.
+    proof_tree: Optional[Dict[str, Any]] = None
+
 
 class RiskFlag(BaseModel):
     """A risk assessment flag raised by the symbolic rule engine."""
