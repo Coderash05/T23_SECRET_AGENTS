@@ -132,3 +132,196 @@ def test_forward_chaining_on_facts():
 
     assert trace.risk_score.overall_score > 0
     assert trace.risk_score.critical_count == len(critical_flags)
+
+
+def test_multistep_forward_chaining():
+    """A derived fact must trigger a dependent rule."""
+
+    rules = [
+        # Deliberately put the dependent rule FIRST.
+        HornRule(
+            rule_id="R-CT-05",
+            family="board_of_directors",
+            condition=("investor_control == True and vesting_reset == True"),
+            severity=SeverityLevel.HIGH,
+            message="Investor control with vesting reset",
+            source="Test source",
+        ),
+        HornRule(
+            rule_id="R-CT-02",
+            family="board_of_directors",
+            condition="investor_majority == True",
+            severity=SeverityLevel.INFO,
+            message="Investor board majority established",
+            source="Test source",
+            derives={"investor_control": True},
+        ),
+    ]
+
+    wm = WorkingMemory()
+    wm.assert_fact("investor_majority", True, clause_id="c_board")
+    wm.assert_fact("vesting_reset", True, clause_id="c_vesting")
+
+    engine = ForwardChainingEngine(rules=rules)
+
+    trace = engine.infer(wm, "test_multistep")
+
+    # R-CT-02 should derive investor_control.
+    assert wm.get("investor_control") is True
+
+    # R-CT-05 should then use the derived fact.
+    rule_ids = {r.rule_id for r in trace.rule_traces}
+
+    assert "R-CT-02" in rule_ids
+    assert "R-CT-05" in rule_ids
+
+    high_flags = [flag for flag in trace.flags if flag.severity == SeverityLevel.HIGH]
+
+    assert len(high_flags) == 1
+
+
+def test_multistep_proof_tree():
+    """The final flag must explain its derived premises."""
+
+    rules = [
+        HornRule(
+            rule_id="R-CT-05",
+            family="board_of_directors",
+            condition=("investor_control == True and vesting_reset == True"),
+            severity=SeverityLevel.HIGH,
+            message="Investor control with vesting reset",
+            source="Test source",
+        ),
+        HornRule(
+            rule_id="R-CT-02",
+            family="board_of_directors",
+            condition="investor_majority == True",
+            severity=None,
+            message="Investor board majority established",
+            source="Test source",
+            derives={"investor_control": True},
+        ),
+    ]
+
+    wm = WorkingMemory()
+    wm.assert_fact("investor_majority", True)
+    wm.assert_fact("vesting_reset", True)
+
+    engine = ForwardChainingEngine(rules=rules)
+    trace = engine.infer(wm, "test_proof")
+
+    assert len(trace.flags) == 1
+
+    tree = trace.flags[0].justification.proof_tree
+
+    assert tree is not None
+    assert tree["rule_id"] == "R-CT-05"
+
+    investor_control = next(p for p in tree["premises"] if p["fact"] == "investor_control")
+
+    assert investor_control["origin"] == "derived"
+    assert investor_control["rule_id"] == "R-CT-02"
+
+    original_fact = investor_control["premises"][0]
+
+    assert original_fact["fact"] == "investor_majority"
+    assert original_fact["value"] is True
+    assert original_fact["origin"] == "extracted"
+
+
+def test_ungrounded_liquidation_is_rejected():
+    """Ungrounded liquidation facts must not trigger risk rules."""
+
+    facts = ExtractedFacts(
+        doc_id="ungrounded_test",
+        liquidation_preference=LiquidationPreferenceFact(
+            clause_id="c_1",
+            multiple=3.0,
+            participation=ParticipationType.FULLY_PARTICIPATING,
+            cap_multiple=None,
+            source_span=SourceSpan(
+                text="Unverified liquidation clause",
+                page_number=1,
+            ),
+            is_grounded=False,
+        ),
+    )
+
+    engine = ForwardChainingEngine()
+
+    wm = engine.build_working_memory_from_facts(facts)
+
+    # Ungrounded facts must not enter working memory.
+    assert wm.get("multiple") is None
+    assert wm.get("liquidation_preference.multiple") is None
+
+    trace = engine.reason(facts)
+
+    # No risk warning should be produced from this fact.
+    assert trace.flags == []
+    assert trace.risk_score.overall_score == 0
+
+
+def test_grounded_liquidation_is_accepted():
+    """Grounded liquidation facts should still trigger rules."""
+
+    facts = ExtractedFacts(
+        doc_id="grounded_test",
+        liquidation_preference=LiquidationPreferenceFact(
+            clause_id="c_1",
+            multiple=3.0,
+            participation=ParticipationType.NON_PARTICIPATING,
+            cap_multiple=None,
+            source_span=SourceSpan(
+                text="3.0x non-participating liquidation preference",
+                page_number=1,
+            ),
+            is_grounded=True,
+        ),
+    )
+
+    engine = ForwardChainingEngine()
+    wm = engine.build_working_memory_from_facts(facts)
+
+    assert wm.get("multiple") == 3.0
+
+    trace = engine.reason(facts)
+
+    rule_ids = {record.rule_id for record in trace.rule_traces}
+
+    assert "R-LP-01" in rule_ids
+    assert "R-LP-04" in rule_ids
+
+
+def test_mixed_grounded_and_ungrounded_facts():
+    """Reject invalid facts without blocking valid ones."""
+
+    facts = ExtractedFacts(
+        doc_id="mixed_grounding_test",
+        liquidation_preference=LiquidationPreferenceFact(
+            clause_id="c_1",
+            multiple=3.0,
+            participation=ParticipationType.FULLY_PARTICIPATING,
+            source_span=SourceSpan(text="Unverified clause"),
+            is_grounded=False,
+        ),
+        anti_dilution=AntiDilutionFact(
+            clause_id="c_2",
+            anti_dilution_type=AntiDilutionType.FULL_RATCHET,
+            source_span=SourceSpan(text="full-ratchet anti-dilution"),
+            is_grounded=True,
+        ),
+    )
+
+    engine = ForwardChainingEngine()
+    trace = engine.reason(facts)
+
+    rule_ids = {record.rule_id for record in trace.rule_traces}
+
+    # Grounded anti-dilution fact should trigger its rule.
+    assert "R-AD-01" in rule_ids
+
+    # Ungrounded liquidation fact must not trigger rules.
+    assert "R-LP-01" not in rule_ids
+    assert "R-LP-04" not in rule_ids
+    assert "R-LP-05" not in rule_ids
