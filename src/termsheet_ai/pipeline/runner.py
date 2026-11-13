@@ -299,7 +299,9 @@ class TermSheetPipeline:
 
                 classifier = SbertClassifier(mode="hybrid")
             if extractor is None:
-                from termsheet_ai.extraction.extractor import FactExtractor
+                # Use the S3 extractor that provides Gemini-backed, source-grounded
+                # extraction.  ``termsheet_ai.extraction`` is a legacy duplicate.
+                from termsheet_ai.extract.extractor import FactExtractor
 
                 extractor = FactExtractor()
             if reasoner is None:
