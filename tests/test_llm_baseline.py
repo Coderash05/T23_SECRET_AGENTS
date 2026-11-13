@@ -21,11 +21,13 @@ def test_baseline_uses_one_direct_prompt_and_normalizes_output():
 
     def fake_llm(prompt: str) -> str:
         prompts.append(prompt)
-        return json.dumps({
-            "clause_family": "liquidation_preference",
-            "risk_flags": ["R-LP-01", "NOT-A-RULE", "R-LP-01"],
-            "summary": "The investor receives a 2x preference.",
-        })
+        return json.dumps(
+            {
+                "clause_family": "liquidation_preference",
+                "risk_flags": ["R-LP-01", "NOT-A-RULE", "R-LP-01"],
+                "summary": "The investor receives a 2x preference.",
+            }
+        )
 
     prediction = LLMOnlyBaseline(fake_llm).predict("Investor receives a 2x liquidation preference.")
 
@@ -51,12 +53,19 @@ def test_baseline_rejects_empty_input():
 
 
 def test_evaluation_reports_family_and_multilabel_metrics():
-    responses = iter([
-        '{"clause_family":"liquidation_preference","risk_flags":["R-LP-01"],"summary":"x"}',
-        '{"clause_family":"board_composition","risk_flags":["R-CT-02"],"summary":"y"}',
-    ])
+    responses = iter(
+        [
+            '{"clause_family":"liquidation_preference","risk_flags":["R-LP-01"],"summary":"x"}',
+            '{"clause_family":"board_composition","risk_flags":["R-CT-02"],"summary":"y"}',
+        ]
+    )
     records = [
-        {"id": "a", "text": "x", "gold_family": "liquidation_preference", "gold_flags": ["R-LP-01"]},
+        {
+            "id": "a",
+            "text": "x",
+            "gold_family": "liquidation_preference",
+            "gold_flags": ["R-LP-01"],
+        },
         {"id": "b", "text": "y", "gold_family": "anti_dilution", "gold_flags": ["R-AD-01"]},
     ]
 

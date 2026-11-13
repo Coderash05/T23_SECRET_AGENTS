@@ -49,7 +49,6 @@ from typing import Any, Dict, List, Optional, Set, Tuple
 
 from termsheet_ai.schemas.contracts import ClauseSpan, ExtractedFacts, JustificationRecord
 
-
 # ---------------------------------------------------------------------------
 # Schema limitation registry — referenced in docstrings and test assertions
 # ---------------------------------------------------------------------------
@@ -270,7 +269,7 @@ class CrossClauseConsistencyChecker:
         # "liquidation_multiple_<clause_id>": <float>
         for key, val in facts.custom_facts.items():
             if key.startswith("liquidation_multiple_") and isinstance(val, (int, float)):
-                clause_id = key[len("liquidation_multiple_"):]
+                clause_id = key[len("liquidation_multiple_") :]
                 multiples[clause_id] = float(val)
 
         if len(multiples) < 2:
@@ -329,10 +328,10 @@ class CrossClauseConsistencyChecker:
 
         for key, val in facts.custom_facts.items():
             if key.startswith("vesting_years_") and isinstance(val, (int, float)):
-                cid = key[len("vesting_years_"):]
+                cid = key[len("vesting_years_") :]
                 years_map[cid] = float(val)
             elif key.startswith("vesting_cliff_") and isinstance(val, int):
-                cid = key[len("vesting_cliff_"):]
+                cid = key[len("vesting_cliff_") :]
                 cliff_map[cid] = val
 
         # Check years conflicts

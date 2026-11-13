@@ -18,18 +18,15 @@ Coverage
 
 from __future__ import annotations
 
-from typing import Any, Dict, List, Optional
+from typing import List, Optional
 from unittest.mock import MagicMock, patch
 
 import pytest
 
 from termsheet_ai.explain.consistency import NumberConsistencyChecker
-from termsheet_ai.explain.explainer import PlainEnglishExplainer, _RAG_PROMPT_TEMPLATE
+from termsheet_ai.explain.explainer import _RAG_PROMPT_TEMPLATE, PlainEnglishExplainer
 from termsheet_ai.schemas.contracts import (
-    AntiDilutionFact,
-    AntiDilutionType,
     AuditTrace,
-    BoardCompositionFact,
     ClauseFamily,
     ClauseSpan,
     DocumentRiskScore,
@@ -41,7 +38,6 @@ from termsheet_ai.schemas.contracts import (
     SeverityLevel,
     SourceSpan,
 )
-
 
 # ---------------------------------------------------------------------------
 # Shared fixtures
@@ -362,9 +358,7 @@ def test_whitespace_only_llm_response_falls_back():
 def test_hallucinated_number_triggers_fallback():
     """LLM summary containing an unverified number (99.9) is rejected; template used."""
     # 99.9 is not in the clause text, facts, or standard market constants
-    hallucinated = (
-        "The company will pay investors 99.9 times their investment upon liquidation."
-    )
+    hallucinated = "The company will pay investors 99.9 times their investment upon liquidation."
 
     clause = ClauseSpan(
         clause_id="c_1",
@@ -558,10 +552,10 @@ def test_rag_prompt_template_has_required_placeholders():
 # Skipped automatically when GEMINI_API_KEY is absent or network is unavailable.
 # ===========================================================================
 
-import os
-import socket
+import os  # noqa: E402
+import socket  # noqa: E402
 
-from dotenv import load_dotenv
+from dotenv import load_dotenv  # noqa: E402
 
 load_dotenv()
 
@@ -631,8 +625,8 @@ class TestPlainEnglishExplainerLiveIntegration:
 
     def _make_explainer(self) -> PlainEnglishExplainer:
         """Create a Gemini-wired explainer using the existing cached callable."""
-        from termsheet_ai.extract.llm_client import make_gemini_callable
         from termsheet_ai.extract.llm_cache import make_cached_callable
+        from termsheet_ai.extract.llm_client import make_gemini_callable
 
         raw_llm = make_gemini_callable(temperature=0.0)
         cached_llm = make_cached_callable(raw_llm)
@@ -679,7 +673,6 @@ class TestPlainEnglishExplainerLiveIntegration:
         Standard constants (1.0, 4.0, 12.0, 48.0, 100.0) are excluded from
         this check since they are permitted by the consistency checker.
         """
-        from termsheet_ai.explain.consistency import NumberConsistencyChecker
 
         explainer = self._make_explainer()
         summaries = explainer.explain([self._CLAUSE], self._TRACE_NO_FLAGS, facts=self._FACTS)

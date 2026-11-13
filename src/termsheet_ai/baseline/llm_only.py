@@ -19,9 +19,20 @@ from termsheet_ai.schemas.contracts import ClauseFamily
 LLMCallable = Callable[[str], str]
 
 RISK_FLAG_IDS = (
-    "R-LP-01", "R-LP-02", "R-LP-03", "R-AD-01", "R-AD-02", "R-CT-02",
-    "R-CT-03", "R-VS-01", "R-VS-02", "R-OP-01", "R-EX-01", "R-DA-01",
-    "R-RD-01", "R-DV-01",
+    "R-LP-01",
+    "R-LP-02",
+    "R-LP-03",
+    "R-AD-01",
+    "R-AD-02",
+    "R-CT-02",
+    "R-CT-03",
+    "R-VS-01",
+    "R-VS-02",
+    "R-OP-01",
+    "R-EX-01",
+    "R-DA-01",
+    "R-RD-01",
+    "R-DV-01",
 )
 
 _PROMPT = """You are an LLM-only baseline for a venture-capital term-sheet evaluation.

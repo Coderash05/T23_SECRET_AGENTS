@@ -36,20 +36,28 @@ def load_jsonl(path: Path) -> list[dict[str, Any]]:
     return records
 
 
-def flag_metrics(gold_sets: Iterable[set[str]], predicted_sets: Iterable[set[str]]) -> dict[str, float]:
+def flag_metrics(
+    gold_sets: Iterable[set[str]], predicted_sets: Iterable[set[str]]
+) -> dict[str, float]:
     """Return micro-averaged multi-label precision, recall, and F1."""
     true_positive = false_positive = false_negative = 0
     for gold, predicted in zip(gold_sets, predicted_sets, strict=True):
         true_positive += len(gold & predicted)
         false_positive += len(predicted - gold)
         false_negative += len(gold - predicted)
-    precision = true_positive / (true_positive + false_positive) if true_positive + false_positive else 0.0
-    recall = true_positive / (true_positive + false_negative) if true_positive + false_negative else 0.0
+    precision = (
+        true_positive / (true_positive + false_positive) if true_positive + false_positive else 0.0
+    )
+    recall = (
+        true_positive / (true_positive + false_negative) if true_positive + false_negative else 0.0
+    )
     f1 = 2 * precision * recall / (precision + recall) if precision + recall else 0.0
     return {"precision": round(precision, 4), "recall": round(recall, 4), "f1": round(f1, 4)}
 
 
-def evaluate(records: list[dict[str, Any]], baseline: LLMOnlyBaseline) -> tuple[dict[str, Any], list[dict[str, Any]]]:
+def evaluate(
+    records: list[dict[str, Any]], baseline: LLMOnlyBaseline
+) -> tuple[dict[str, Any], list[dict[str, Any]]]:
     """Run predictions and calculate only metrics for labels present in the input."""
     output: list[dict[str, Any]] = []
     family_total = family_correct = 0
@@ -82,7 +90,9 @@ def evaluate(records: list[dict[str, Any]], baseline: LLMOnlyBaseline) -> tuple[
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Evaluate the TermSheet AI LLM-only baseline.")
-    parser.add_argument("input", type=Path, help="JSONL records containing text and optional gold labels")
+    parser.add_argument(
+        "input", type=Path, help="JSONL records containing text and optional gold labels"
+    )
     parser.add_argument("--output", type=Path, default=Path("llm_baseline_predictions.jsonl"))
     parser.add_argument("--model", default=None, help="Optional Gemini model override")
     parser.add_argument("--no-cache", action="store_true", help="Disable the existing prompt cache")

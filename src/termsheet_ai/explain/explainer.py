@@ -224,9 +224,7 @@ class PlainEnglishExplainer(BaseExplainer):
             details = " ".join(
                 self._format_flag_explanation(clause, flag, market_ref) for flag in clause_flags
             )
-            summary_text = (
-                f"Clause {clause.clause_id} ({clause.detected_family.value}): {details}"
-            )
+            summary_text = f"Clause {clause.clause_id} ({clause.detected_family.value}): {details}"
             first_justification = clause_flags[0].justification
         else:
             family_name = clause.detected_family.value.replace("_", " ").title()
@@ -346,9 +344,7 @@ class PlainEnglishExplainer(BaseExplainer):
             # ----------------------------------------------------------------
             # Retrieve the first justification record for the template path; also
             # used by the checker to allow numbers from rule premises.
-            _, first_justification = self._build_template_summary(
-                clause, clause_flags, market_ref
-            )
+            _, first_justification = self._build_template_summary(clause, clause_flags, market_ref)
 
             if llm_text is not None:
                 # Verify numbers in the LLM output
@@ -388,9 +384,7 @@ class PlainEnglishExplainer(BaseExplainer):
                     numbers_verified = verified_tmpl
             else:
                 # Deterministic template path (no llm_callable or LLM failed)
-                template_text, _ = self._build_template_summary(
-                    clause, clause_flags, market_ref
-                )
+                template_text, _ = self._build_template_summary(clause, clause_flags, market_ref)
                 verified_tmpl, _ = self.checker.verify_summary(
                     summary_text=template_text,
                     clause=clause,

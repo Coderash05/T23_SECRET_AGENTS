@@ -44,7 +44,6 @@ from __future__ import annotations
 
 from termsheet_ai.explain.consistency import (
     SCHEMA_LIMITATIONS,
-    ConsistencyIssue,
     CrossClauseConsistencyChecker,
     NumberConsistencyChecker,
 )
@@ -62,7 +61,6 @@ from termsheet_ai.schemas.contracts import (
     SourceSpan,
     VestingFact,
 )
-
 
 # ---------------------------------------------------------------------------
 # Shared helpers
@@ -476,8 +474,8 @@ def test_vesting_conflicting_cliff_raises_separate_issue():
         doc_id="d",
         founder_vesting=_vesting_fact("c1", 4.0, 12),
         custom_facts={
-            "vesting_years_c2": 4.0,   # same years — no years conflict
-            "vesting_cliff_c2": 6,      # but different cliff
+            "vesting_years_c2": 4.0,  # same years — no years conflict
+            "vesting_cliff_c2": 6,  # but different cliff
         },
     )
     checker = CrossClauseConsistencyChecker()
@@ -553,7 +551,7 @@ def test_schema_limitations_are_documented():
     assert "single_liquidation_fact" in SCHEMA_LIMITATIONS
     assert "single_vesting_fact" in SCHEMA_LIMITATIONS
     assert "no_security_discriminator" in SCHEMA_LIMITATIONS
-    for key, val in SCHEMA_LIMITATIONS.items():
+    for _key, val in SCHEMA_LIMITATIONS.items():
         assert isinstance(val, str) and len(val) > 10
 
 
@@ -571,12 +569,11 @@ def test_runner_production_uses_member4_extractor():
     the class directly.
     """
     # Member 4's authoritative extractor
-    from termsheet_ai.extract.extractor import FactExtractor as M4FactExtractor
-
     # Inspect the runner source rather than constructing the production pipeline,
     # which would load the optional SBERT dependency.
     import inspect
 
+    from termsheet_ai.extract.extractor import FactExtractor as M4FactExtractor
     from termsheet_ai.pipeline.runner import TermSheetPipeline
 
     runner_source = inspect.getsource(TermSheetPipeline.__init__)
